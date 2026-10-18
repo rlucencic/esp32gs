@@ -79,9 +79,9 @@ emulator (MIT).
 - **Touch**: the pointer goes where you touch, and a touch clicks (GS/OS and
   other desktop programs)
 - **Web page** at `http://apple2gs.local`: drop disk images or `.ZIP` files
-  onto it, put them into drives, eject, make blank disks, and watch the
-  machine (with GS/OS's free memory), drives, board and Bluetooth devices
-  live
+  onto it (with a progress bar), put them into drives, eject, make blank
+  disks, and watch the machine (with GS/OS's free memory), drives, board and
+  Bluetooth devices live
 - **Sound** on the board's speaker (on the Tab5 by default, on the MaTouch
   optional, `menuconfig`)
 
