@@ -144,11 +144,18 @@ static void unescape(char *s)
     *o = 0;
 }
 
+extern unsigned long gs_host_iwm_cells[2];
+
 static void print_status(void)
 {
+    static unsigned long cells[2];
     gs_status_t s;
     gs_get_status(&s);
-    printf("host: c036 %02X iwm async %d latch %d fast %d ", gs.mmio->speed_c036, gs.mmio->dev_iwm.async_mode, gs.mmio->dev_iwm.latch_mode, gs.mmio->dev_iwm.fast_mode);
+    printf("host: c036 %02X iwm async %d latch %d fast %d cells %lu full %lu lean ", gs.mmio->speed_c036,
+           gs.mmio->dev_iwm.async_mode, gs.mmio->dev_iwm.latch_mode, gs.mmio->dev_iwm.fast_mode,
+           gs_host_iwm_cells[0] - cells[0], gs_host_iwm_cells[1] - cells[1]);
+    cells[0] = gs_host_iwm_cells[0];
+    cells[1] = gs_host_iwm_cells[1];
     printf("host: frame %u pc %06X %s %s 3.5 t%d r%u w%u 5.25 t%d r%u w%u HD1 %u/%u HD2 %u/%u\n", s.frames, s.pc,
            s.fast ? "fast" : "slow", s.emulation ? "emu" : "native", s.track[0], s.reads[0], s.writes[0], s.track[1], s.reads[1],
            s.writes[1], s.reads[2], s.writes[2], s.reads[3], s.writes[3]);
@@ -384,10 +391,17 @@ static void trace(void)
 }
 
 int gs_host_no_iwm_skip;
+int gs_host_no_iwm_lean;
+unsigned long gs_host_iwm_cells[2];
 
 int main(int argc, char **argv)
 {
     gs_host_no_iwm_skip = getenv("GS_NO_IWM_SKIP") != NULL;
+    gs_host_no_iwm_lean = getenv("GS_NO_IWM_LEAN") != NULL;
+    if (getenv("GS_CLOCK")) {
+        gs_host_clock = strtoul(getenv("GS_CLOCK"), NULL, 0);
+    }
+    gs_host_check_maps = getenv("GS_CHECK_MAPS") != NULL;
     int frames = argc > 1 ? atoi(argv[1]) : 300;
     const char *out = argc > 2 ? argv[2] : NULL;
 
@@ -485,6 +499,12 @@ int main(int argc, char **argv)
     }
     if (getenv("GS_TEXT")) {
         print_text(frames);
+    }
+    if (getenv("GS_IWM_STAT")) {
+        printf("IWM bit cells: %lu full, %lu lean\n", gs_host_iwm_cells[0], gs_host_iwm_cells[1]);
+    }
+    if (gs_host_check_maps) {
+        printf("page tables: %lu pages missed\n", gs_host_check_maps_bad);
     }
     if (wav) {
         uint32_t rate = GS_AUDIO_HZ, bytes = samples * 4;

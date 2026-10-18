@@ -252,9 +252,9 @@ Clemens, debugging options and the lessons learned along the way.
 
 - **Speed on the MaTouch**: GS/OS's desktop runs at full speed (core 1 about
   three quarters busy), but the 3.5" drive's bit-by-bit emulation takes it
-  to half speed while a floppy turns, and music on the Ensoniq beyond what
-  it can keep up with. The Tab5 runs everything at full speed with time to
-  spare. Use hard disk images on the MaTouch.
+  to 77-97% while a floppy turns, and music on the Ensoniq beyond what it
+  can keep up with. The Tab5 runs everything at full speed with time to
+  spare, floppies included. Hard disk images are faster on the MaTouch.
 - **1 MB on the MaTouch**: more doesn't fit next to the disk buffers and the
   board's own needs.
 - Tried so far: ROM 3's startup and Applesoft, GS/OS 6.0.1 and 6.0.4 from

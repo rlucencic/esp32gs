@@ -60,7 +60,9 @@ Control-Reset is `K 36 1`, `K 7F 1`, `K 7F 0`, `K 36 0`), `T <text>` type
 (`\n` Return; 3 frames down, 3 up a key), `m dx dy btn` mouse (1 count =
 1 Super Hi-Res pixel), `g [hex n]` registers, IRQ lines, the last 32 bus
 callbacks and n bytes at an address, `R <MB>` restart with that RAM (Tab5).
-`i` also prints the frame profile (see Performance). Touches: Start
+`i` also prints the frame profile (see Performance) and, with the speaker
+on, the sample frames it found missing since power-on (it holds the last
+one: a gap in the sound). Touches: Start
 `t 850 532` (MaTouch), `t 1065 637` (Tab5); the Tab5's Memory buttons
 `t 351|528|706|884 269`; a touch on the picture moves the IIGS pointer there
 (`t x y ms`, one per `send`; a double click needs two within ~0.3 s: write
@@ -154,7 +156,10 @@ to the port directly).
 - Serializer code under `#ifdef CLEM_SERIALIZER`; `cross_endian.h` knows the
   ESP32; `clem_2img_generate_header`'s definition uses `uint32_t` like its
   prototype (Xtensa's `uint32_t` is `long`).
-- `clem_mmio.c`: `clem_mmio_map_generation` and `clem_mmio_dirty_pages`.
+- `clem_mmio.c`: `clem_mmio_map_generation` and `clem_mmio_dirty_pages`,
+  marked for the pages that move: bank 00's video pages by their banks
+  before and after, shadowing by its own bits (not the ones `remap_flags`
+  gains for PAGE2, 80STORE+HIRES and RAMWRT).
 - `clem_adb.c`: absolute mouse tracking started with `mx0 = my` (typo).
 - `clem_audio.c`: the DOC's sync skips over halted oscillators in one step
   (and does nothing until a register is written), doesn't mix silence, the
@@ -162,7 +167,12 @@ to the port directly).
 - `clem_iwm.c`: with the drive off (and no SmartPort units) a step moves time
   on in one go; the reset puts the scanline grid on the machine's grid
   (Clemens started it at time 0: after a later reset the IWM stretched nearly
-  every bit cell catching up).
+  every bit cell catching up). Reading with the drive on, once a bit cell's
+  control (the drive's commands and queries, the head's track) changed
+  nothing and the IWM's outputs stay as they were, the cells after it only
+  move the bit stream: `_clem_iwm_lean_run()` does that on local copies,
+  the clock in 32 bits from the call's start (insert, eject and reset start
+  over with a full cell).
 
 ## Performance (measured 2026-10-18)
 
@@ -173,10 +183,14 @@ stepping on a data register read). The MaTouch's budget is 4,000 a frame.
 - MaTouch, GS/OS desktop: 100%, core 1 ~75% (cpu 2,320, video 165, sound 117,
   the rest ~400). Booting GS/OS from the slot 7 hard disk: Finder in ~30 s
   (6.0.1) or ~45 s (6.0.4's Live.Install image). From the 3.5" floppy:
-  45-60% of real time while the disk turns (the IWM's bit cells cost
-  ~1,900 plus the CPU's polling), ~4 minutes to the Finder.
+  77-97% of real time while the disk turns, `_clem_iwm_step` ~31% of core 1
+  (45-60% with the full bit cells: ~1,900 plus the CPU's polling). The Tour
+  of the Apple IIGS loads in ~5 1/2 minutes.
 - Tab5, GS/OS desktop with 8 MB: 100%, core 1 ~40%; a floppy mounted while
-  running at 100%.
+  running at 100%. The Tour's 4 1/2 minute load from the 3.5" drive: 100%,
+  core 1 ~60%, no sample missed but ~0.02 s during the boot's silence (with
+  the full bit cells: 97-98%, core 1 ~92%, 300-850 samples a second missing,
+  and 0.45 s at once where it flips PAGE2: the gaps heard in its sound).
 - PSRAM (MaTouch): after `reserve_memory()` 2,577 KB free, ~1.1 MB while
   running. Internal RAM is tight: 57 KB free, 38 KB at the lowest.
 
@@ -215,6 +229,17 @@ stepping on a data register read). The MaTouch's budget is 4,000 a frame.
 - **The Disk II boot reads track 0 a while before it gives up**: "Check
   startup device!" with a 5.25" disk in the drive was the I/O penalty at
   1 MHz (above), not the image.
+- **A turning floppy costs every bit cell**: the Tour reads its 3.5" disk for
+  4 1/2 minutes, and Clemens's five calls per 2 us cell (control, write
+  head, step, read latch, head) took 30% of the Tab5's frame: short of real
+  time, the speaker ran dry (gaps in the music). A cell's control has
+  nothing to do once settled; the lean cells, on local copies of the IWM's
+  and the drive's state (in PSRAM, so field by field every cell cost as
+  much again), and the clock in 32 bits (the S3 has no 64-bit arithmetic).
+- **A PAGE2 flip rebuilt 350 pages**: Clemens adds the shadow bits to
+  `remap_flags` when PAGE2 changes, so pages 04-9F of banks 00 and 01 were
+  marked each flip; the Tour flips 128 times a frame for a while (0.45 s
+  of sound lost at once). Mark what moves; `GS_CHECK_MAPS` checks it.
 
 ## Testing
 
@@ -225,7 +250,12 @@ stepping on a data register read). The MaTouch's budget is 4,000 a frame.
   `GS_NEWDISK=<path>:<KB>`, `GS_BRAM=<file>`, `GS_TEXT=1` (the text page at
   the end), `GS_WAV=<file>`, `GS_STATUS=1`, `GS_TRACE=<pc>:<n>`,
   `GS_RING=<n>` (+ `GS_RING_PC=<pc>`, default 000000: the last n
-  instructions before pc). `GS_SCRIPT=<file>`, lines `<frame> <command>`:
+  instructions before pc), `GS_CLOCK=<seconds since 1904>` (a fixed clock:
+  runs to compare), `GS_NO_IWM_LEAN=1` (only full IWM bit cells),
+  `GS_IWM_STAT=1` (full and lean cells at the end; `status` lines show them
+  too), `GS_CHECK_MAPS=1` (after each memory map change all of 00, 01, E0
+  and E1 rebuilt: the pages that differed are counted at the end).
+  `GS_SCRIPT=<file>`, lines `<frame> <command>`:
   `type <text>` (`\n` Return), `key <adb hex> 0|1`, `mouse dx dy btn`,
   `shot <file.ppm>`, `text`, `insert <drive 0-3> <path>`, `eject <drive>`,
   `reset`, `peek <hex>`, `dump <hex> <n>`, `flush`, `status`, `iostat` (bus
@@ -243,18 +273,25 @@ stepping on a data register read). The MaTouch's budget is 4,000 a frame.
   identically) and from the hard disk; 6.0.4's System Disk from 3.5" and
   Live.Install as a hard disk; DOS 3.3 from 5.25": CATALOG, SAVE, RUN from
   the written image, also after GS/OS ran and a reset; the power-on beep.
+  The IWM's lean cells against the full ones (`GS_NO_IWM_LEAN`, `GS_CLOCK`
+  fixed): the Tour's first 200 s, GS/OS 6.0.1 and 6.0.4 booting from 3.5",
+  DOS 3.3 SAVE and RUN, screenshots, `GS_WAV` and images byte for byte the
+  same; the page tables with `GS_CHECK_MAPS` (those, the whole Tour, 80
+  columns under DOS 3.3): none missed.
 - Checked on the boards: the setup screen, GS/OS 6.0.1 from 3.5" (MaTouch)
   and hard disk (both), 6.0.4 Live.Install (both), mouse (console) and touch
   (Tab5: pointer, double click opens a disk), a 3.5" disk mounted while
   running (Tab5), DOS 3.3 SAVE/RUN on the MaTouch with the image on the SD
-  card updated, the web page's Free RAM row.
+  card updated, the web page's Free RAM row; the Tour from 3.5" on both
+  (its load, the first screen), the Tab5's speaker fed without gaps
+  through it (the counter in `i`).
 - **Not checked by eye or ear**: sound on the speakers, a Bluetooth keyboard
   and mouse on the IIGS, touch on the MaTouch, games and other programs.
 
 ## Open items
 
-- Floppy access on the MaTouch runs at 45-60%: the IWM steps every bit cell
-  (2 us for 3.5"). The hard disk card is the fast way.
+- Floppy access on the MaTouch runs at 77-97%: the IWM still steps every bit
+  cell (2 us for 3.5"), now lean. The hard disk card is the fast way.
 - No Apple II mouse firmware for ProDOS 8 programs on touch (the absolute
   mode follows the toolbox's cursor only), no serial ports to the outside, no
   AppleTalk, no 2nd 3.5"/5.25" drive, no `.NIB` or nibble `.2MG`.

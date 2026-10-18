@@ -51,6 +51,9 @@ void storage_status(gs_status_t *s);
 
 #ifndef ESP_PLATFORM
 extern void (*gs_host_hook)(void);  /* the host build: before each instruction, if set */
+extern uint32_t gs_host_clock;      /* the host build: the clock from there, in emulated time (runs to compare) */
+extern int gs_host_check_maps;      /* the host build: after each map change, all of 00/01/E0/E1 rebuilt and compared */
+extern unsigned long gs_host_check_maps_bad;    /* pages that differed */
 #endif
 
 /* gs.c: the memory as the CPU sees it, for DMA and debugging */

@@ -1377,6 +1377,16 @@ static void _clem_mmio_memory_map(ClemensMMIO *mmio, uint32_t memory_flags) {
         }
     }
 
+    /* esp32gs: bank 00's video pages as they were, to mark below only those
+       that move (a program flipping PAGE2 with 80STORE off moves none) */
+    uint8_t video_banks[2][0x40];
+    if (remap_flags & CLEM_MEM_IO_MMAP_OLDVIDEO) {
+        for (page_idx = 0x04; page_idx < 0x40; ++page_idx) {
+            video_banks[0][page_idx] = page_map_B00->pages[page_idx].bank_read;
+            video_banks[1][page_idx] = page_map_B00->pages[page_idx].bank_write;
+        }
+    }
+
     //  TODO: 80COLSTORE and TXTPAGE2 will override RAMRD, RAMWRT and so
     //        we check the 80COLSTORE flags before RAMRD/WRT
     //  Shadowing is always applied after the write to 00/01, so the remapping
@@ -1687,19 +1697,28 @@ static void _clem_mmio_memory_map(ClemensMMIO *mmio, uint32_t memory_flags) {
     /* esp32gs: the CPU's page tables follow, for the pages that changed:
        RAMRD/RAMWRT, ALTZP and the old video switches only move bank 00's
        pages, shadowing 00 and 01's, and E0/E1 change only in the slot ROM
-       and language card areas */
+       and language card areas. Shadowing changes only with its own bits
+       (remap_flags gains them for PAGE2, 80STORE+HIRES and RAMWRT too, but
+       _clem_mmio_shadow_map() goes by the bits themselves): a program
+       flipping PAGE2 had every page from 04 to 9F rebuilt, 128 times a
+       frame (the IIGS Tour) */
     if (remap_flags & CLEM_MEM_IO_MMAP_ALTZPLC)
         _clem_mmio_dirty(1, 0x00, 0x01);
     if (remap_flags & CLEM_MEM_IO_MMAP_OLDVIDEO) {
-        _clem_mmio_dirty(1, 0x04, 0x07);
-        _clem_mmio_dirty(1, 0x20, 0x3F);
+        for (page_idx = 0x04; page_idx < 0x40; ++page_idx) {
+            if (page_idx == 0x08)
+                page_idx = 0x20; /* 04-07 and 20-3F */
+            if (video_banks[0][page_idx] != page_map_B00->pages[page_idx].bank_read ||
+                video_banks[1][page_idx] != page_map_B00->pages[page_idx].bank_write)
+                _clem_mmio_dirty(1, page_idx, page_idx);
+        }
     }
     if (remap_flags & (CLEM_MEM_IO_MMAP_RAMRD + CLEM_MEM_IO_MMAP_RAMWRT)) {
         _clem_mmio_dirty(1, 0x02, 0x03);
         _clem_mmio_dirty(1, 0x08, 0x1F);
         _clem_mmio_dirty(1, 0x40, 0xBF);
     }
-    if (remap_flags & CLEM_MEM_IO_MMAP_NSHADOW)
+    if ((mmio->mmap_register ^ memory_flags) & CLEM_MEM_IO_MMAP_NSHADOW)
         _clem_mmio_dirty(3, 0x04, 0x9F);
     if (remap_flags & (CLEM_MEM_IO_MMAP_NIOLC + CLEM_MEM_IO_MMAP_CROM))
         _clem_mmio_dirty(7, 0xC0, 0xCF);

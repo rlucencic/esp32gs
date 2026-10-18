@@ -106,6 +106,34 @@ static clem_clocks_duration_t _clem_iwm_select_clocks_step(struct ClemensDeviceI
     return iwm->fast_mode ? CLEM_IWM_SYNC_CLOCKS_FAST : CLEM_IWM_SYNC_CLOCKS_NORMAL;
 }
 
+/* esp32gs: the lean bit cell (see _clem_iwm_step). A drive's control state,
+   which clem_disk_control() works on every bit cell: */
+struct ClemensIWMLeanDrive {
+    int qtr_track_index;
+    unsigned ctl_switch;
+    unsigned cog_orient;
+    uint16_t status_mask_35;
+    uint8_t real_track_index;
+    bool is_spindle_on;
+    bool has_disk;
+};
+
+/* the inputs and the drive's state of the last full bit cell, valid if its
+   control left everything as it was (so it would again) */
+#define CLEM_IWM_LEAN_FLAGS                                                                        \
+    (CLEM_IWM_FLAG_DRIVE_35 + CLEM_IWM_FLAG_DRIVE_ON + CLEM_IWM_FLAG_DRIVE_ANY +                   \
+     CLEM_IWM_FLAG_HEAD_SEL + CLEM_IWM_FLAG_WRITE_REQUEST)
+
+static struct {
+    bool valid;
+    struct ClemensDrive *drive;
+    unsigned flags; /* io_flags & CLEM_IWM_LEAN_FLAGS */
+    unsigned phase;
+    unsigned state;
+    unsigned sense; /* CLEM_IWM_FLAG_WRPROTECT_SENSE as the control set it */
+    struct ClemensIWMLeanDrive at;
+} s_lean;
+
 static uint8_t _clem_iwm_read_status(struct ClemensDeviceIWM *iwm);
 
 //  Only for debugging.
@@ -264,6 +292,7 @@ void clem_iwm_reset(struct ClemensDeviceIWM *iwm, struct ClemensTimeSpec *tspec)
     iwm->scanline_phase_ctr = 0;
     iwm->state = CLEM_IWM_STATE_UNKNOWN;
     iwm->debug_level = 1;
+    s_lean.valid = false; /* esp32gs */
 }
 
 struct ClemensNibbleDisk *clem_iwm_insert_disk(struct ClemensDeviceIWM *iwm,
@@ -282,6 +311,7 @@ struct ClemensNibbleDisk *clem_iwm_insert_disk(struct ClemensDeviceIWM *iwm,
     }
     drive->has_disk = true;
     drive->disk.is_dirty = false;
+    s_lean.valid = false; /* esp32gs */
 
     return &drive->disk;
 }
@@ -296,6 +326,7 @@ struct ClemensNibbleDisk *clem_iwm_eject_disk(struct ClemensDeviceIWM *iwm,
         drive->status_mask_35 |= CLEM_IWM_DISK35_STATUS_EJECTED;
     }
     drive->has_disk = false;
+    s_lean.valid = false; /* esp32gs */
     return &drive->disk;
 }
 
@@ -628,10 +659,235 @@ static bool _clem_iwm_step_current_clocks_ts(struct ClemensDeviceIWM *iwm,
     return true;
 }
 
+/* esp32gs: the lean bit cell. Reading with the drive on, a bit cell is
+   clem_disk_control() (the drive's commands and queries, the head's place),
+   clem_disk_write_head(), clem_disk_step(), the read latch and
+   clem_disk_update_head(). Once the control has nothing left to do (no step
+   or eject under way, the last cell's control changed nothing) and the IWM's
+   outputs stay as they were, it would do the same again: only the bit
+   stream moves on. These cells were most of core 1's time while a program
+   streams from a floppy (the IIGS Tour); the host build checks this against
+   the full cells (GS_NO_IWM_LEAN) for identical results.
+*/
+#ifndef ESP_PLATFORM
+extern int gs_host_no_iwm_lean;
+extern unsigned long gs_host_iwm_cells[2]; /* full, lean */
+#define CLEM_IWM_LEAN_COUNT(_i_) (gs_host_iwm_cells[_i_]++)
+#else
+#define CLEM_IWM_LEAN_COUNT(_i_)
+#endif
+
+static inline void _clem_iwm_lean_take(struct ClemensIWMLeanDrive *s,
+                                       const struct ClemensDrive *drive) {
+    s->qtr_track_index = drive->qtr_track_index;
+    s->ctl_switch = drive->ctl_switch;
+    s->cog_orient = drive->cog_orient;
+    s->status_mask_35 = drive->status_mask_35;
+    s->real_track_index = drive->real_track_index;
+    s->is_spindle_on = drive->is_spindle_on;
+    s->has_disk = drive->has_disk;
+}
+
+static inline bool _clem_iwm_lean_same(const struct ClemensIWMLeanDrive *s,
+                                       const struct ClemensDrive *drive) {
+    return s->qtr_track_index == drive->qtr_track_index && s->ctl_switch == drive->ctl_switch &&
+           s->cog_orient == drive->cog_orient && s->status_mask_35 == drive->status_mask_35 &&
+           s->real_track_index == drive->real_track_index &&
+           s->is_spindle_on == drive->is_spindle_on && s->has_disk == drive->has_disk &&
+           drive->step_timer_35_dt == 0;
+}
+
+/* no SmartPort unit on the bus: as the drive-off path checks */
+static inline bool _clem_iwm_no_units(struct ClemensDriveBay *drives) {
+    for (unsigned i = 0; i < CLEM_SMARTPORT_DRIVE_LIMIT; i++) {
+        if (drives->smartport[i].device.device_id != 0)
+            return false;
+    }
+    return true;
+}
+
+/* The lean cells up to end_clocks_ts: the loop of _clem_iwm_step() with
+   _clem_iwm_step_current_clocks_ts(), and per cell the drive's part and
+   _clem_iwm_read_step(), on local copies (the IWM's and the drive's state
+   are in PSRAM: field by field, every cell, they cost as much again). The
+   clock in 32 bits from the call's start (the ESP32-S3 has no 64-bit
+   arithmetic); false if that won't do (a call is at most a scanline) */
+static bool _clem_iwm_lean_run(struct ClemensDeviceIWM *iwm, struct ClemensDrive *drive,
+                               clem_clocks_time_t end_clocks_ts) {
+    /* the clock */
+    const clem_clocks_time_t base = iwm->cur_clocks_ts;
+    const int64_t to_scanline = (int64_t)(iwm->clocks_at_next_scanline - base);
+    if (end_clocks_ts - base > 0x40000000u || to_scanline > 0x40000000 ||
+        to_scanline < -0x40000000) {
+        return false;
+    }
+    const uint32_t end = (uint32_t)(end_clocks_ts - base);
+    uint32_t cur = 0;
+    int32_t next_scanline = (int32_t)to_scanline;
+    clem_clocks_duration_t used = iwm->clocks_used_this_step;
+    clem_clocks_duration_t this_step = iwm->clocks_this_step;
+    unsigned phase_ctr = iwm->scanline_phase_ctr;
+    const clem_clocks_duration_t cell_clocks = _clem_iwm_select_clocks_step(iwm);
+    const bool async_mode = iwm->async_mode;
+    /* the drive */
+    const unsigned len = drive->track_bit_length;
+    const unsigned track = drive->real_track_index;
+    const bool has_disk = drive->has_disk;
+    const bool valid = has_disk && track != 0xff && drive->disk.track_initialized[track];
+    const uint8_t *data =
+        valid ? drive->disk.bits_data + drive->disk.track_byte_offset[track] : NULL;
+    const uint8_t *random_bits = drive->random_bits;
+    unsigned pos = drive->track_byte_index * 8 + (7 - drive->track_bit_shift);
+    unsigned read_buffer = drive->read_buffer;
+    unsigned random_bit_index = drive->random_bit_index;
+    uint8_t current_byte = drive->current_byte;
+    /* the IWM's read side */
+    const unsigned flags_base =
+        (iwm->io_flags & ~CLEM_IWM_FLAG_MASK_PRE_STEP_CLEARED) | s_lean.sense;
+    const bool read_status = iwm->state == CLEM_IWM_STATE_READ_STATUS;
+    const bool latch_mode = iwm->latch_mode;
+    unsigned flags = iwm->io_flags;
+    unsigned read_state = iwm->read_state;
+    uint8_t latch = iwm->latch;
+    uint8_t data_r = iwm->data_r;
+    bool cells = false;
+
+    while (cur < end) {
+        if (used == 0 && cur + this_step <= end && (int32_t)(cur + this_step) < next_scanline) {
+            /* a whole cell before the end and the scanline's next event: the
+               steps below, without what can't happen */
+            cur += this_step;
+        } else {
+            clem_clocks_duration_t dt = this_step - used;
+            if (cur + dt > end) {
+                dt = end - cur;
+            }
+            /* _clem_iwm_step_current_clocks_ts */
+            used += dt;
+            cur += dt;
+            if ((int32_t)cur >= next_scanline) {
+                phase_ctr++;
+                if (phase_ctr & 1) {
+                    next_scanline += CLEM_CLOCKS_7MHZ_CYCLE;
+                    if (!async_mode) {
+                        this_step += CLEM_CLOCKS_7MHZ_CYCLE;
+                    }
+                } else {
+                    next_scanline += CLEM_VGC_HORIZ_SCAN_PHI0_CYCLES * CLEM_CLOCKS_PHI0_CYCLE;
+                }
+            }
+            if (used < this_step) {
+                continue;
+            }
+            used = 0;
+        }
+        this_step = cell_clocks;
+        CLEM_IWM_LEAN_COUNT(1);
+        cells = true;
+
+        /* clem_disk_control: the head's place, from the track's start again */
+        flags = flags_base;
+        if (len > 0) {
+            if (pos >= len)
+                pos -= len;
+        } else {
+            pos = 0;
+        }
+        /* clem_disk_step: the bit under the head, or a random one */
+        if (valid && (data[pos >> 3] & (0x80 >> (pos & 7))))
+            read_buffer |= 0x1;
+        if ((read_buffer & 0xf) && valid) {
+            if (read_buffer & 0x2)
+                flags |= CLEM_IWM_FLAG_READ_DATA;
+        } else {
+            flags |= CLEM_IWM_FLAG_READ_DATA_FAKE;
+            if (random_bits[random_bit_index >> 3] & (1 << (random_bit_index & 7)))
+                flags |= CLEM_IWM_FLAG_READ_DATA;
+            random_bit_index = (random_bit_index + 1) % (8 * CLEM_IWM_DRIVE_RANDOM_BYTES);
+        }
+        /* clem_disk_update_head: on to the next bit */
+        current_byte = (uint8_t)(((current_byte & 0xfe) | (read_buffer & 0x01)) << 1);
+        read_buffer <<= 1;
+        pos++;
+
+        /* _clem_iwm_read_step */
+        {
+            bool pulse = (flags & CLEM_IWM_FLAG_READ_DATA) != 0;
+            unsigned read_latch_hold = read_state & CLEM_IWM_READ_REG_STATE_LATCH;
+            if (read_status) {
+                latch = (flags & CLEM_IWM_FLAG_WRPROTECT_SENSE) ? 0x80 : 0x00;
+                data_r = latch;
+                read_latch_hold = 0;
+            }
+            switch (read_state & CLEM_IWM_READ_REG_STATE_MASK) {
+            case CLEM_IWM_READ_REG_STATE_START:
+                if (pulse) {
+                    latch = (uint8_t)((latch << 1) | 0x1);
+                    data_r = latch;
+                    read_state =
+                        (read_state & ~CLEM_IWM_READ_REG_STATE_MASK) | CLEM_IWM_READ_REG_STATE_QA0;
+                }
+                break;
+            case CLEM_IWM_READ_REG_STATE_QA0:
+                latch = (uint8_t)((latch << 1) | (pulse ? 0x1 : 0x0));
+                if (!read_latch_hold) {
+                    data_r = latch;
+                }
+                if (latch & 0x80) {
+                    if (latch_mode) {
+                        data_r = latch;
+                        read_latch_hold = 1;
+                    }
+                    read_state =
+                        (read_state & ~CLEM_IWM_READ_REG_STATE_MASK) | CLEM_IWM_READ_REG_STATE_QA1;
+                }
+                break;
+            case CLEM_IWM_READ_REG_STATE_QA1:
+                if (pulse) {
+                    latch = 0x01;
+                    read_state = (read_state & ~CLEM_IWM_READ_REG_STATE_MASK) |
+                                 CLEM_IWM_READ_REG_STATE_QA1_1;
+                }
+                break;
+            case CLEM_IWM_READ_REG_STATE_QA1_1:
+                latch = (uint8_t)((latch << 1) | (pulse ? 0x1 : 0x0));
+                read_state =
+                    (read_state & ~CLEM_IWM_READ_REG_STATE_MASK) | CLEM_IWM_READ_REG_STATE_QA0;
+                break;
+            }
+            read_state &= CLEM_IWM_READ_REG_STATE_MASK;
+            read_state |= (read_latch_hold & 0xffff);
+        }
+    }
+
+    iwm->cur_clocks_ts = base + cur;
+    iwm->clocks_at_next_scanline = (clem_clocks_time_t)((int64_t)base + next_scanline);
+    iwm->clocks_used_this_step = used;
+    iwm->clocks_this_step = this_step;
+    iwm->scanline_phase_ctr = phase_ctr;
+    if (cells) {
+        iwm->io_flags = flags;
+        iwm->read_state = read_state;
+        iwm->latch = latch;
+        iwm->data_r = data_r;
+        if (has_disk) {
+            drive->write_pulse = false; /* clem_disk_write_head: no write request */
+        }
+        drive->track_byte_index = pos / 8;
+        drive->track_bit_shift = 7 - (pos % 8);
+        drive->read_buffer = read_buffer;
+        drive->random_bit_index = random_bit_index;
+        drive->current_byte = current_byte;
+    }
+    return true;
+}
+
 static void _clem_iwm_step(struct ClemensDeviceIWM *iwm, struct ClemensDriveBay *drives,
                            clem_clocks_time_t end_clocks_ts) {
     struct ClemensDrive *drive = _clem_iwm_select_drive(iwm, drives);
-    unsigned delta_ns = clem_calc_ns_step_from_clocks(end_clocks_ts - iwm->cur_clocks_ts);
+    /* esp32gs: the time in ns only for the drive's hold below (a 64-bit
+       division, every call) */
+    clem_clocks_time_t start_clocks_ts = iwm->cur_clocks_ts;
     bool is_drive_35_sel = (iwm->io_flags & CLEM_IWM_FLAG_DRIVE_35) != 0;
 
     assert(iwm->cur_clocks_ts <= end_clocks_ts);
@@ -670,11 +926,33 @@ static void _clem_iwm_step(struct ClemensDeviceIWM *iwm, struct ClemensDriveBay 
         }
     }
 
+    /* esp32gs: the lean cells, if the last full one left the control as it
+       was and the IWM's outputs to the drive haven't changed since (the
+       SmartPort bus stays off: no units, and for a 5.25" drive the phases
+       don't enable it) */
+    bool lean = s_lean.valid && drive != NULL && s_lean.drive == drive &&
+                (iwm->io_flags & CLEM_IWM_LEAN_FLAGS) == s_lean.flags &&
+                iwm->out_phase == s_lean.phase && iwm->state == s_lean.state &&
+                _clem_iwm_lean_same(&s_lean.at, drive) &&
+                (is_drive_35_sel || _clem_iwm_no_units(drives));
+#ifndef ESP_PLATFORM
+    lean = lean && !gs_host_no_iwm_lean;
+#endif
+    if (lean) {
+        iwm->smartport_active = false;
+    }
+
     while (iwm->cur_clocks_ts < end_clocks_ts) {
+        if (lean) {
+            if (_clem_iwm_lean_run(iwm, drive, end_clocks_ts))
+                break;
+            lean = false;
+        }
         //  execute write and read steps if we've settled a full bit cell
         clem_clocks_duration_t bit_cell_clocks_dt =
             (iwm->clocks_this_step - iwm->clocks_used_this_step);
         clem_clocks_time_t next_clocks_ts = iwm->cur_clocks_ts + bit_cell_clocks_dt;
+        bool settled = false;
 
         if (next_clocks_ts > end_clocks_ts) {
             bit_cell_clocks_dt = (end_clocks_ts - iwm->cur_clocks_ts);
@@ -700,6 +978,7 @@ static void _clem_iwm_step(struct ClemensDeviceIWM *iwm, struct ClemensDriveBay 
         if (!(iwm->io_flags & CLEM_IWM_FLAG_DRIVE_ON)) {
             continue;
         }
+        CLEM_IWM_LEAN_COUNT(0);
         bit_cell_clocks_dt = iwm->clocks_this_step;
 
         //  obtain write signal from IWM -> io_flags, motor is implied as on
@@ -731,7 +1010,14 @@ static void _clem_iwm_step(struct ClemensDeviceIWM *iwm, struct ClemensDriveBay 
             }
         }
         if (drive) {
+            /* esp32gs: did the control change anything? */
+            struct ClemensIWMLeanDrive before;
+            unsigned sense = iwm->io_flags & CLEM_IWM_FLAG_WRPROTECT_SENSE;
+            _clem_iwm_lean_take(&before, drive);
+            settled = drive->step_timer_35_dt == 0;
             clem_disk_control(drive, &iwm->io_flags, iwm->out_phase, bit_cell_clocks_dt);
+            settled = settled && _clem_iwm_lean_same(&before, drive) &&
+                      sense == (iwm->io_flags & CLEM_IWM_FLAG_WRPROTECT_SENSE);
             clem_disk_write_head(drive, &iwm->io_flags);
             clem_disk_step(drive, &iwm->io_flags);
         }
@@ -743,9 +1029,26 @@ static void _clem_iwm_step(struct ClemensDeviceIWM *iwm, struct ClemensDriveBay 
             //  update the head's position
             clem_disk_update_head(drive, &iwm->io_flags);
         }
+        /* esp32gs: from here on lean, if reading (a disk or none) and settled */
+        s_lean.valid = settled && !iwm->smartport_active &&
+                       !(iwm->state & CLEM_IWM_STATE_WRITE_MASK) &&
+                       !(iwm->io_flags & CLEM_IWM_FLAG_WRITE_REQUEST);
+        if (s_lean.valid) {
+            s_lean.drive = drive;
+            s_lean.flags = iwm->io_flags & CLEM_IWM_LEAN_FLAGS;
+            s_lean.phase = iwm->out_phase;
+            s_lean.state = iwm->state;
+            s_lean.sense = iwm->io_flags & CLEM_IWM_FLAG_WRPROTECT_SENSE;
+            _clem_iwm_lean_take(&s_lean.at, drive);
+            lean = is_drive_35_sel || _clem_iwm_no_units(drives);
+#ifndef ESP_PLATFORM
+            lean = lean && !gs_host_no_iwm_lean;
+#endif
+        }
     }
     assert(iwm->cur_clocks_ts == end_clocks_ts);
     if (iwm->drive_hold_ns > 0) {
+        unsigned delta_ns = clem_calc_ns_step_from_clocks(end_clocks_ts - start_clocks_ts);
         iwm->drive_hold_ns = clem_util_timer_decrement(iwm->drive_hold_ns, delta_ns);
         if (iwm->drive_hold_ns == 0 || iwm->timer_1sec_disabled) {
             CLEM_DEBUG("IWM: turning drive off in sync");

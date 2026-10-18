@@ -56,6 +56,9 @@ static uint32_t s_cycles_avg;                           /* 65816 cycles a frame 
 #define PROF(i, stmt)   do { uint32_t t0_ = PROF_NOW(); stmt; s_prof[i] += PROF_NOW() - t0_; } while (0)
 #ifndef ESP_PLATFORM
 void (*gs_host_hook)(void);
+uint32_t gs_host_clock;
+int gs_host_check_maps;
+unsigned long gs_host_check_maps_bad;
 #endif
 
 static uint8_t **s_rd, **s_wr;      /* the CPU's page tables */
@@ -179,6 +182,21 @@ static inline void maps_follow(void)
             }
         }
     }
+#ifndef ESP_PLATFORM
+    if (gs_host_check_maps) {   /* every page rebuilt: the marked ones must have been all that moved */
+        static const uint8_t check[4] = { 0x00, 0x01, 0xE0, 0xE1 };
+        for (int k = 0; k < 4; k++) {
+            uint32_t base = (uint32_t)check[k] << 8;
+            for (int p = 0; p < 256; p++) {
+                uint8_t *rd = s_rd[base + p], *wr = s_wr[base + p];
+                build_page(check[k], p);
+                if (rd != s_rd[base + p] || wr != s_wr[base + p]) {
+                    gs_host_check_maps_bad++;
+                }
+            }
+        }
+    }
+#endif
     gs.cpu.vector_bank = gs.clem->mem.mmio_niolc(&gs.clem->mem) ? 0x00 : 0xFF;
 }
 
@@ -660,6 +678,11 @@ int gs_audio_pending(void)
 
 static uint32_t seconds_since_1904(void)
 {
+#ifndef ESP_PLATFORM
+    if (gs_host_clock) {
+        return gs_host_clock + gs.frames / 60;
+    }
+#endif
     time_t t = time(NULL);
     struct tm tm;
     localtime_r(&t, &tm);
