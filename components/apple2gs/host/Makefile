@@ -4,21 +4,23 @@
 GS        := ..
 CLEM      := ../clemens
 W65816    := ../../../../esp32emu/components/w65816
+EMUDBG    := ../../../../esp32emu/components/emudbg
 BUILD     := build
 CFLAGS    := -O2 -g -Wall -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function \
              -Wno-unused-but-set-variable -Wno-sign-compare \
-             -I$(GS)/include -I$(GS) -I$(CLEM) -I$(W65816)/include
+             -I$(GS)/include -I$(GS) -I$(CLEM) -I$(W65816)/include -I$(EMUDBG)/include
 
 GS_SRCS   := $(wildcard $(GS)/*.c)
 CLEM_SRCS := $(wildcard $(CLEM)/*.c)
 OBJS      := $(patsubst $(GS)/%.c,$(BUILD)/gs/%.o,$(GS_SRCS)) \
              $(patsubst $(CLEM)/%.c,$(BUILD)/clem/%.o,$(CLEM_SRCS)) \
-             $(BUILD)/w65816.o $(BUILD)/w65816_dis.o
+             $(BUILD)/w65816.o $(BUILD)/w65816_dis.o $(BUILD)/w65816_dbg.o \
+             $(BUILD)/emudbg.o $(BUILD)/emudbg_posix.o
 
 all: $(BUILD)/gs_host
 
 $(BUILD)/gs_host: host_main.c $(OBJS)
-	$(CC) $(CFLAGS) $^ -lm -o $@
+	$(CC) $(CFLAGS) $^ -lm -lpthread -o $@
 
 $(BUILD)/gs/%.o: $(GS)/%.c $(wildcard $(GS)/*.h $(GS)/include/*.h)
 	@mkdir -p $(dir $@)
@@ -28,11 +30,11 @@ $(BUILD)/clem/%.o: $(CLEM)/%.c $(wildcard $(CLEM)/*.h)
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(BUILD)/w65816.o: $(W65816)/w65816.c $(W65816)/include/w65816.h
+$(BUILD)/%.o: $(W65816)/%.c $(W65816)/include/w65816.h $(EMUDBG)/include/emudbg.h
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(BUILD)/w65816_dis.o: $(W65816)/w65816_dis.c $(W65816)/include/w65816.h
+$(BUILD)/%.o: $(EMUDBG)/%.c $(EMUDBG)/include/emudbg.h
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 

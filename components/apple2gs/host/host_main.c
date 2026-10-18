@@ -20,12 +20,15 @@
  *   GS_WAV=<file>            write the sound
  *   GS_TRACE=<hex pc>:<n>    print n instructions from when pc (24-bit) is reached
  *   GS_STATUS=1              machine state every 60 frames
+ *   GS_DEBUG=<port>          serve the debugger (esp32emu's docs/debugger.md) on
+ *                            127.0.0.1:<port> and run in real time until killed
  */
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "gs_internal.h"
+#include "emudbg.h"
 #include "clem_mmio_types.h"
 
 static uint8_t *load_file(const char *path, size_t want, bool required)
@@ -468,6 +471,7 @@ int main(int argc, char **argv)
     if (getenv("GS_SCRIPT")) {
         load_script(getenv("GS_SCRIPT"));
     }
+    emudbg_host_run("GS_DEBUG", gs_run_frame, 60);
     uint32_t samples = 0;
     for (int f = 0; f < frames; f++) {
         run_script(f);

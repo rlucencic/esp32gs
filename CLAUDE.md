@@ -243,6 +243,13 @@ stepping on a data register read). The MaTouch's budget is 4,000 a frame.
 
 ## Testing
 
+- **Debugger** (esp32emu's `components/emudbg`, the VS Code extension
+  `../esp32emu-vscode`): the board serves it on port 6502;
+  `GS_DEBUG=<port> build/gs_host ...` serves it from the host build, which
+  then runs in real time until killed. The CPUs (65C816), `where()`,
+  the screen and typing are described in `components/apple2gs/gs.c` (`emudbg_set_machine()`
+  at every init).
+
 - **Host build**: `make -C components/apple2gs/host`, then
   `build/gs_host [frames] [out.ppm]` (frames at 60 Hz; it runs ~90x real
   time). Environment: `GS_ROM`, `GS_CHARGEN` (default `roms/...`),

@@ -24,6 +24,7 @@
 #include <string.h>
 #include <time.h>
 #include "gs_internal.h"
+#include "emudbg.h"
 #include "clem_mmio.h"
 #include "clem_mmio_defs.h"
 #include "clem_device.h"
@@ -893,6 +894,72 @@ static bool raw_peek32(uint32_t addr, uint32_t *v)
     return true;
 }
 
+/* ---- The debugger (emudbg.h) ---- */
+
+/* Memory as the CPU sees it: the page tables, else the RAM behind them
+ * (shadowed and slow memory); I/O ($Cxxx of banks 00, 01, E0, E1) reads $FF
+ */
+static uint8_t dbg_peek(void *ctx, uint32_t addr)
+{
+    (void)ctx;
+    const uint8_t *page = gs.cpu.rd[(addr >> 8) & 0xFFFF];
+    uint8_t v;
+    if (page) {
+        return page[addr & 0xFF];
+    }
+    if ((addr & 0xF000) != 0xC000 && raw_peek(addr, &v)) {
+        return v;
+    }
+    return 0xFF;
+}
+
+static void dbg_poke(void *ctx, uint32_t addr, uint8_t v)
+{
+    (void)ctx;
+    uint8_t *page = gs.cpu.wr[(addr >> 8) & 0xFFFF];
+    uint8_t bank = addr >> 16;
+    if (page) {
+        page[addr & 0xFF] = v;
+    } else if ((addr & 0xF000) == 0xC000) {
+        /* I/O: left alone */
+    } else if (bank < gs.cfg.ram_kb / 64) {
+        gs.cfg.ram[addr] = v;
+    } else if (bank == 0xE0 || bank == 0xE1) {
+        gs.cfg.mega2[addr - 0xE00000] = v;
+    }
+}
+
+static emudbg_cpu_t s_dbg_cpus[] = {
+    { .name = "65C816", .arch = &emudbg_arch_65c816, .core = &gs.cpu, .peek = dbg_peek, .poke = dbg_poke },
+};
+
+static void dbg_where(char *buf, size_t len)
+{
+    snprintf(buf, len, "frame %lu", (unsigned long)gs.frames);
+}
+
+static void dbg_screen(int *width, int *height)
+{
+    *width = GS_SCREEN_WIDTH;
+    *height = GS_SCREEN_HEIGHT;
+}
+
+static void dbg_render_line(int y, uint16_t *dst)
+{
+    memcpy(dst, gs_line(y), GS_SCREEN_WIDTH * sizeof(uint16_t));
+}
+
+static emudbg_machine_t s_dbg = {
+    .name = "Apple IIGS",
+    .cpus = s_dbg_cpus,
+    .cpu_count = 1,
+    .where = dbg_where,
+    .reset = gs_reset,
+    .screen = dbg_screen,
+    .render_line = dbg_render_line,
+    .type = gs_type,
+};
+
 bool gs_ram_free(uint32_t *free_bytes, uint32_t *largest)
 {
     uint32_t rec, prev = 0, end = 0, sum = 0, big = 0, last_addr = 0;
@@ -1052,6 +1119,7 @@ bool gs_init(const gs_config_t *cfg)
     gs.frames = 0;
     video_init();
     cpu_reset();
+    emudbg_set_machine(&s_dbg);
     return true;
 }
 
