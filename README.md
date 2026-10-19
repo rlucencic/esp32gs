@@ -15,6 +15,11 @@
 </p>
 
 <p align="center">
+  <b>Work in progress:</b> not everything has been tested, and games and demos may or may not
+  work satisfactorily.
+</p>
+
+<p align="center">
   <img alt="GS/OS 6.0.4's Finder: the Live.Install hard disk's window open, with ProDOS, System, Icons, the Installer, Scripts and Advanced Disk Utility" src="docs/images/finder.png" width="49%">
   <img alt="About This Apple IIgs: System Software 6.0.4, total memory 1152K, 161K available" src="docs/images/about.png" width="49%">
   <br>
