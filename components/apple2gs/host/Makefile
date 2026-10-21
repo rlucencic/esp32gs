@@ -5,17 +5,18 @@ GS        := ..
 CLEM      := ../clemens
 W65816    := ../../../../esp32emu/components/w65816
 EMUDBG    := ../../../../esp32emu/components/emudbg
+DISKSPACE := ../../../../esp32emu/components/diskspace
 BUILD     := build
 CFLAGS    := -O2 -g -Wall -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function \
              -Wno-unused-but-set-variable -Wno-sign-compare \
-             -I$(GS)/include -I$(GS) -I$(CLEM) -I$(W65816)/include -I$(EMUDBG)/include
+             -I$(GS)/include -I$(GS) -I$(CLEM) -I$(W65816)/include -I$(EMUDBG)/include -I$(DISKSPACE)/include
 
 GS_SRCS   := $(wildcard $(GS)/*.c)
 CLEM_SRCS := $(wildcard $(CLEM)/*.c)
 OBJS      := $(patsubst $(GS)/%.c,$(BUILD)/gs/%.o,$(GS_SRCS)) \
              $(patsubst $(CLEM)/%.c,$(BUILD)/clem/%.o,$(CLEM_SRCS)) \
              $(BUILD)/w65816.o $(BUILD)/w65816_dis.o $(BUILD)/w65816_dbg.o \
-             $(BUILD)/emudbg.o $(BUILD)/emudbg_posix.o
+             $(BUILD)/emudbg.o $(BUILD)/emudbg_posix.o $(BUILD)/diskspace_apple.o
 
 all: $(BUILD)/gs_host
 
@@ -35,6 +36,10 @@ $(BUILD)/%.o: $(W65816)/%.c $(W65816)/include/w65816.h $(EMUDBG)/include/emudbg.
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(BUILD)/%.o: $(EMUDBG)/%.c $(EMUDBG)/include/emudbg.h
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD)/diskspace_apple.o: $(DISKSPACE)/apple.c $(DISKSPACE)/include/diskspace.h
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 

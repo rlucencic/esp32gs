@@ -294,6 +294,10 @@ stepping on a data register read). The MaTouch's budget is 4,000 a frame.
   through it (the counter in `i`).
 - **Not checked by eye or ear**: sound on the speakers, a Bluetooth keyboard
   and mouse on the IIGS, touch on the MaTouch, games and other programs.
+- **Free disk space** (web page, `storage.c`): ProDOS, HFS, DOS 3.3
+  (either sector order), counted at insert and in each flush. Host:
+  ProDOS writes through the slot 5 and 7 drivers; Tab5 (2026-10-21):
+  a 32 MB System 6.0.4 hard disk 28081152 of 33552384.
 
 ## Open items
 

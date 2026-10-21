@@ -11,11 +11,15 @@
  *
  * Hard disks are ProDOS block images, read and written in place, 512 bytes
  * a block (.2MG: after its header).
+ *
+ * The free space on each disk, for the web page, is read from its file at
+ * insert and once its writes are in the file.
  */
 #include <stdlib.h>
 #include <string.h>
 #include <strings.h>
 #include <unistd.h>
+#include "diskspace.h"
 #include "gs_internal.h"
 #include "clem_mmio_types.h"
 #include "clem_disk.h"
@@ -113,6 +117,102 @@ static bool parse_2mg(FILE *f, uint32_t *offset, uint32_t *bytes, unsigned *form
         *wp = true;
     }
     return *offset >= 64;
+}
+
+/* ---- Free space ----
+ *
+ * As the disk's filesystem counts it, worked out where the file is safe to
+ * read (the emulation task, or with the emulation paused) and kept for the
+ * web page's task. A 5.25" image has its sectors in DOS or ProDOS order:
+ * DOS 3.3's counter reads them in DOS order, ProDOS's in ProDOS order, so
+ * each is found through its physical place on the track.
+ */
+
+typedef struct {
+    volatile bool known;
+    volatile uint64_t free, size;
+} space_t;
+
+typedef struct {
+    FILE *f;
+    uint32_t offset, bytes;
+    const unsigned *sector;         /* a track's sector in the counter's order -> the file's (NULL: the same) */
+} space_file_t;
+
+static space_t s_space[GS_DRIVES];
+
+static bool space_read(void *ctx, uint64_t pos, void *buf, uint32_t len)
+{
+    const space_file_t *sf = ctx;
+    uint8_t *out = buf;
+    if (pos > sf->bytes || len > sf->bytes - pos) {
+        return false;
+    }
+    while (len > 0) {
+        uint32_t at = (uint32_t)pos, n = len;
+        if (sf->sector) {
+            n = 256 - at % 256 < len ? 256 - at % 256 : len;
+            at = at / 4096 * 4096 + sf->sector[at / 256 % 16] * 256 + at % 256;
+        }
+        if (fseek(sf->f, (long)sf->offset + at, SEEK_SET) != 0 || fread(out, 1, n, sf->f) != n) {
+            return false;
+        }
+        pos += n;
+        out += n;
+        len -= n;
+    }
+    return true;
+}
+
+/* map[s]: where a track's sector s in order `want` (DOS or ProDOS) is in a
+ * file of order `file`; NULL if they're the same
+ */
+static const unsigned *sector_map(unsigned *map, unsigned want, unsigned file)
+{
+    if (want == file) {
+        return NULL;
+    }
+    unsigned phys[16];
+    clem_disk_create_logical_to_physical_sector_map(phys, CLEM_DISK_TYPE_5_25, want, 0);
+    _ClemensPhysicalSectorMap to_file = get_physical_to_logical_sector_map(CLEM_DISK_TYPE_5_25, file);
+    for (int s = 0; s < 16; s++) {
+        map[s] = to_file[0][phys[s]];
+    }
+    return map;
+}
+
+/* DOS 3.3 or ProDOS on a 5.25" disk; ProDOS or HFS (GS/OS) on the others */
+static void space_update(int drive, FILE *f, uint32_t offset, uint32_t bytes, unsigned format)
+{
+    space_file_t sf = { f, offset, bytes, NULL };
+    diskspace_disk_t disk = { space_read, &sf, bytes };
+    diskspace_t s = { 0, 0 };
+    bool known;
+    if (drive == GS_DRIVE_525) {
+        unsigned map[16];
+        sf.sector = sector_map(map, CLEM_DISK_FORMAT_DOS, format);
+        known = diskspace_dos33(&disk, &s);
+        if (!known) {
+            sf.sector = sector_map(map, CLEM_DISK_FORMAT_PRODOS, format);
+            known = diskspace_prodos(&disk, 0, &s);
+        }
+    } else {
+        known = diskspace_prodos(&disk, 0, &s) || diskspace_hfs(&disk, 0, &s);
+    }
+    s_space[drive].known = false;
+    s_space[drive].free = s.free;
+    s_space[drive].size = s.size;
+    s_space[drive].known = known;
+}
+
+bool gs_disk_space(int drive, uint64_t *free_bytes, uint64_t *size)
+{
+    if (drive < 0 || drive >= GS_DRIVES || !s_space[drive].known) {
+        return false;
+    }
+    *free_bytes = s_space[drive].free;
+    *size = s_space[drive].size;
+    return true;
 }
 
 /* ---- Floppies ---- */
@@ -249,6 +349,7 @@ static bool floppy_flush(floppy_t *fd)
     }
     fflush(f);
     fsync(fileno(f));
+    space_update(fd - s_fd, f, fd->offset, fd->bytes, fd->format);
     fclose(f);
     drive->disk.is_dirty = false;
     return true;
@@ -294,6 +395,7 @@ static bool floppy_insert(floppy_t *fd, const char *path)
     if (!f) {
         return false;
     }
+    s_space[fd - s_fd].known = false;
     strlcpy(fd->path, path, sizeof(fd->path));
     fd->wp = wp;
     fd->woz = false;
@@ -348,6 +450,9 @@ static bool floppy_insert(floppy_t *fd, const char *path)
             }
         }
     }
+    if (ok && !fd->woz) {
+        space_update(fd - s_fd, f, fd->offset, fd->bytes, fd->format);
+    }
     fclose(f);
     if (!ok) {
         memset(nib, 0, sizeof(*nib));
@@ -372,6 +477,7 @@ static void floppy_eject(floppy_t *fd)
     clemens_eject_disk(gs.mmio, fd->type);
     fd->loaded = false;
     fd->path[0] = 0;
+    s_space[fd - s_fd].known = false;
 }
 
 /* Once a frame: write back after the motor stopped; the computer's own eject */
@@ -442,6 +548,7 @@ static bool hd_flush(hd_t *hd)
         fflush(hd->f);
         fsync(fileno(hd->f));
         hd->dirty = false;
+        space_update(GS_DRIVE_HD1 + (int)(hd - s_hd), hd->f, hd->offset, hd->blocks * 512, CLEM_DISK_FORMAT_PRODOS);
     }
     return true;
 }
@@ -483,6 +590,7 @@ static bool hd_insert(int unit, const char *path)
     hd->hdd.write_block = hd_write;
     clem_card_hdd_mount(&s_card, &hd->hdd, unit + 1);
     clem_card_hdd_lock(&s_card, wp, unit + 1);
+    space_update(GS_DRIVE_HD1 + unit, f, offset, hd->blocks * 512, CLEM_DISK_FORMAT_PRODOS);
     return true;
 }
 
@@ -497,6 +605,7 @@ static void hd_eject(int unit)
     fclose(hd->f);
     hd->f = NULL;
     hd->path[0] = 0;
+    s_space[GS_DRIVE_HD1 + unit].known = false;
 }
 
 /* Blocks read from a floppy: the IWM works on bits, so watch the whole

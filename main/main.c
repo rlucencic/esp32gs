@@ -510,7 +510,10 @@ static void status(emu_json_t *j, int section)
             snprintf(text, sizeof(text), "track %d", s.track[d]);
             detail = text;
         }
-        emu_json_drive(j, drive_names[d], name, write_protected(d), s.busy[d], s.reads[d], s.writes[d], detail);
+        uint64_t free_bytes = 0, size = 0;
+        gs_disk_space(d, &free_bytes, &size);
+        emu_json_drive_space(j, drive_names[d], name, write_protected(d), s.busy[d], s.reads[d], s.writes[d], detail,
+                             free_bytes, size);
     }
 }
 

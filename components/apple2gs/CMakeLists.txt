@@ -10,7 +10,8 @@ set(clemens_srcs
 idf_component_register(SRCS "gs.c" "video.c" "storage.c" ${clemens_srcs}
                        INCLUDE_DIRS "include"
                        PRIV_INCLUDE_DIRS "." "clemens"
-                       REQUIRES w65816)
+                       REQUIRES w65816
+                       PRIV_REQUIRES diskspace)
 
 # Runs in the emulation loop: jump tables for the switches (the IDF turns
 # them off for code that may run with the flash cache disabled; the

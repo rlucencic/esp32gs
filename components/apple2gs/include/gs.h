@@ -70,6 +70,12 @@ bool gs_disk_write_protected(int drive);
 uint32_t gs_disk_ejected(void);
 bool gs_disk_dirty(void);
 bool gs_disk_flush(void);
+/* The free space on the disk in a drive and its volume's size, as its
+ * ProDOS, DOS 3.3 or HFS volume counts them (worked out at insert and once
+ * the drive's writes are in its file); false if not known. Safe to call
+ * from another task.
+ */
+bool gs_disk_space(int drive, uint64_t *free_bytes, uint64_t *size);
 /* A blank image: 800 KB or 140 KB (zeroed: GS/OS or ProDOS formats it), or
  * a hard disk of that many bytes
  */

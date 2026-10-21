@@ -489,6 +489,13 @@ int main(int argc, char **argv)
         }
     }
     gs_disk_flush();
+    for (int d = 0; d < GS_DRIVES; d++) {
+        uint64_t free_bytes, size;
+        if (gs_disk_space(d, &free_bytes, &size)) {
+            printf("%s: %llu bytes free of %llu\n", drive_env[d] + 3, (unsigned long long)free_bytes,
+                   (unsigned long long)size);
+        }
+    }
     if (bram_path && gs_bram_changed()) {
         uint8_t bram[GS_BRAM_SIZE];
         gs_bram_get(bram);
