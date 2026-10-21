@@ -49,8 +49,9 @@ and II, Tab5 only), [esp32mac3](https://github.com/rlucencic/esp32mac3)
 [esp32xl](https://github.com/rlucencic/esp32xl) (Atari 800XL and 130XE),
 [esp32msx](https://github.com/rlucencic/esp32msx) (MSX1 and MSX2),
 [esp32coco](https://github.com/rlucencic/esp32coco) (Tandy Color Computer 2
-and 3) and
-[esp32pc](https://github.com/rlucencic/esp32pc) (IBM PC/XT and PC/AT);
+and 3),
+[esp32pc](https://github.com/rlucencic/esp32pc) (IBM PC/XT and PC/AT) and
+[esp32ami](https://github.com/rlucencic/esp32ami) (Amiga 500, 2000 and 600);
 all are built on the shared runtime
 [esp32emu](https://github.com/rlucencic/esp32emu), which also holds the
 65C816 core. The IIGS's chips around the CPU come from
