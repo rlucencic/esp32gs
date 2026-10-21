@@ -64,15 +64,16 @@ callbacks and n bytes at an address, `R <MB>` restart with that RAM (Tab5).
 on, the sample frames it found missing since power-on (it holds the last
 one: a gap in the sound). Touches: Start
 `t 850 532` (MaTouch), `t 1065 637` (Tab5); the Tab5's Memory buttons
-`t 351|528|706|884 269`; a touch on the picture moves the IIGS pointer there
-(`t x y ms`, one per `send`; a double click needs two within ~0.3 s: write
-to the port directly).
+`t 351|528|706|884 269`. The touch screen is esp32emu's touchpad: `t x y
+ms x2 y2` moves the pointer (anywhere on the panel), `t x y 120` clicks
+where it is (one per `send`; a double click needs two within ~0.3 s:
+write to the port directly).
 
 ## Layout
 
 | Path | What |
 |---|---|
-| `main/main.c` | The IIGS as an `emu_machine_t`: memory, ROMs, Memory choice, key map (HID -> ADB), mouse, touch, drives, battery RAM, status, console |
+| `main/main.c` | The IIGS as an `emu_machine_t`: memory, ROMs, Memory choice, key map (HID -> ADB), mouse, touchpad, drives, battery RAM, status, console |
 | `main/settings.c`, `rom_store.c` | NVS settings (`gs`: `ram_kb`, `bram`), the ROM partition |
 | `components/apple2gs/gs.c` | The glue: CPU page tables from Clemens's page maps, the bus, timing, devices per line, input, sound, battery RAM, free memory |
 | `components/apple2gs/video.c` | The picture: Super Hi-Res, text 40/80, lores, double lores, hires, double hires, border |
@@ -132,9 +133,9 @@ to the port directly).
   header), any size up to 65,535 blocks.
 - **Input**: keys as ADB codes in Clemens's numbering (its 0x10 is T, 0x11 Y:
   its key-to-ASCII table agrees), through a multi-producer queue (BLE task,
-  console, the typing on the emulation task). The mouse is relative; a touch
-  uses Clemens's absolute mode (the toolbox's clamp box and cursor
-  position): desktop programs only.
+  console, the typing on the emulation task). The mouse is relative, and so is
+  the touchpad (`gs_touchpad()`: a count a picture pixel, two across in
+  320 mode, by the toolbox's clamp box).
 - **Battery RAM** (the control panel's settings) in NVS `gs`/`bram`, saved
   when the IIGS changes it.
 - **Free RAM** (web page): the Memory Manager's handle records, 20 bytes each
@@ -287,7 +288,8 @@ stepping on a data register read). The MaTouch's budget is 4,000 a frame.
   columns under DOS 3.3): none missed.
 - Checked on the boards: the setup screen, GS/OS 6.0.1 from 3.5" (MaTouch)
   and hard disk (both), 6.0.4 Live.Install (both), mouse (console) and touch
-  (Tab5: pointer, double click opens a disk), a 3.5" disk mounted while
+  (Tab5, when it put the pointer under the finger: pointer, double click
+  opens a disk), a 3.5" disk mounted while
   running (Tab5), DOS 3.3 SAVE/RUN on the MaTouch with the image on the SD
   card updated, the web page's Free RAM row; the Tour from 3.5" on both
   (its load, the first screen), the Tab5's speaker fed without gaps
@@ -298,6 +300,10 @@ stepping on a data register read). The MaTouch's budget is 4,000 a frame.
   (either sector order), counted at insert and in each flush. Host:
   ProDOS writes through the slot 5 and 7 drivers; Tab5 (2026-10-21):
   a 32 MB System 6.0.4 hard disk 28081152 of 33552384.
+- **Touchpad** (Tab5, 2026-10-21, GS/OS 6.0.4 Live.Install, 640 mode): 150
+  panel pixels move the pointer 108 pixels across and 45 lines down, as far
+  as the finger; a double tap opened Live.Install, the long press held the
+  File menu open. 320 mode not measured.
 
 ## Open items
 
@@ -310,6 +316,11 @@ stepping on a data register read). The MaTouch's budget is 4,000 a frame.
   buffers and the runtime.
 - Public on GitHub (`github.com/rlucencic/esp32gs`, pushed to `main`).
   Licence: MIT (`LICENSE`); Clemens is MIT too (`clemens/LICENSE.txt`).
+- **Clock** (the clock audit, 2026-10-21: `../esp32emu/CLAUDE.md`, To do):
+  the board's time goes into Clemens's RTC at init and every 60 frames
+  (`gs.c`), so a time set in the Control Panel looks taken and is
+  overwritten within a second. Either keep an offset (as the ST, the Macs,
+  the MSX and the Amiga do) or say it can't be set.
 
 ## Working with the user
 

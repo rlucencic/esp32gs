@@ -255,10 +255,12 @@ static void hid_mouse(int dx, int dy, uint8_t buttons)
     gs_mouse(dx, dy, buttons != 0);
 }
 
-/* A finger on the picture is the pointer (desktop programs): down there clicks */
-static void touch(int x, int y, bool pressed)
+/* The touch screen as a touchpad (the runtime's): its moves in the
+ * picture's pixels; one button, held by the long press too
+ */
+static void touchpad(int dx, int dy, uint8_t buttons)
 {
-    gs_mouse_position(x, y, pressed);
+    gs_touchpad(dx, dy, buttons != 0);
 }
 
 /* ---- Setup screen ---- */
@@ -635,7 +637,7 @@ static const emu_machine_t machine = {
     .audio_pending = gs_audio_pending,
     .hid_key = hid_key,
     .hid_mouse = hid_mouse,
-    .touch = touch,
+    .touchpad = touchpad,
     .choices = choices,
     .choice_count = CHOICE_COUNT,
     .disks = &disks,

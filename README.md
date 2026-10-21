@@ -2,7 +2,7 @@
 
 <p align="center">
   <b>An Apple IIGS on a 7-inch ESP32-S3 touch-screen board or an M5Stack Tab5.</b><br>
-  ROM 3, GS/OS 6 from floppies or hard disks, Super Hi-Res and all the Apple II modes, Ensoniq sound, Bluetooth keyboard and mouse, the touch screen as the pointer.
+  ROM 3, GS/OS 6 from floppies or hard disks, Super Hi-Res and all the Apple II modes, Ensoniq sound, Bluetooth keyboard and mouse, the touch screen as a touchpad.
 </p>
 
 <p align="center">
@@ -89,8 +89,10 @@ emulator (MIT).
 - **Bluetooth keyboard and mouse** (BLE HID): keys where Apple's keyboard
   has them; Alt is Option, the Windows or Command key is the open apple, F12
   is Reset
-- **Touch**: the pointer goes where you touch, and a touch clicks (GS/OS and
-  other desktop programs)
+- **The touch screen as a touchpad**, on both boards, for when there's no
+  mouse at hand (a Bluetooth mouse is the better way): drag a finger
+  anywhere to move the pointer, tap to click where it points, tap and
+  touch again to drag, hold still half a second to hold the button down
 - **Web page** at `http://apple2gs.local`: drop disk images or `.ZIP` files
   onto it (with a progress bar), put them into drives, eject, make blank
   disks, and watch the machine (with GS/OS's free memory), drives, board and
@@ -109,7 +111,7 @@ emulator (MIT).
 | Chip | ESP32-S3-WROOM-1-N16R8: 16 MB flash, 8 MB octal PSRAM | ESP32-P4 (RISC-V, 360 MHz): 16 MB flash, 32 MB PSRAM; an ESP32-C6 for WiFi and Bluetooth |
 | Screen | 7" 1024×600 RGB, GT911 capacitive touch | 5" 1280×720 MIPI-DSI, capacitive touch, held landscape |
 | Storage | microSD card (FAT32 or exFAT) | microSD card (FAT32 or exFAT) |
-| Input | BLE keyboard and mouse | BLE keyboard and mouse, or the Tab5 Keyboard |
+| Input | BLE keyboard and mouse; the touch screen as a touchpad | BLE keyboard and mouse, or the Tab5 Keyboard; the touch screen as a touchpad |
 | Sound | a speaker on the MAX98357A output (optional, `menuconfig`) | the built-in speaker (ES8388) |
 
 The picture is 704×216: the 640×200 Super Hi-Res area with the border around
@@ -184,10 +186,11 @@ Ctrl is Control, Alt is Option, the Windows or Command key is the open apple
 (Command); F12 or Pause is Reset (Control-F12: Control-Reset;
 Control-Command-F12 restarts).
 
-**Mouse and touch**: a Bluetooth mouse moves the pointer as usual. A finger
-on the screen puts the pointer there and clicks; tap twice quickly for a
-double click. Touch works in GS/OS and programs that use the toolbox's
-pointer.
+**Mouse and touchpad**: a Bluetooth mouse moves the pointer as usual. Without
+one, the touch screen is a touchpad: a finger moving anywhere on it moves
+the pointer, a tap clicks where the pointer is (tap twice quickly for a
+double click), a tap and touching again drags, and holding still for half
+a second holds the button down. Both are the IIGS's own ADB mouse.
 
 ## Configuration
 
@@ -212,7 +215,7 @@ flowchart LR
     PRES[Presenter<br>704×216 → 816×600]
     UI[Setup screen<br>LVGL]
     NET[WiFi · web page · mDNS]
-    BLE[Bluetooth HID]
+    BLE[Bluetooth HID · touchpad]
   end
   PSRAM[(PSRAM<br>RAM · ROM · picture · disks)]
   SD[(microSD<br>apple2gs/)]
@@ -274,13 +277,11 @@ Clemens, debugging options and the lessons learned along the way.
   floppies and hard disks, the Finder (windows, menus, About), a floppy
   inserted while GS/OS runs, DOS 3.3 (CATALOG, SAVE, RUN), the Tour of the
   Apple IIGS. **Games and most applications haven't been tried yet.**
-- Not tried by hand yet: a Bluetooth keyboard and mouse on the IIGS, touch on
-  the MaTouch's panel itself (driven remotely only). Sound was heard on the
+- Not tried by hand yet: a Bluetooth keyboard and mouse on the IIGS, the
+  touchpad on the panels themselves (driven remotely only). Sound was heard on the
   Tab5 and sounds right; some artefacts are being looked into.
 - No serial ports, printer, AppleTalk or MIDI; one 3.5" and one 5.25" drive
   (no second ones); no nibble (`.nib`) images; `.woz` read-only.
-- Touch follows the GS/OS pointer only: ProDOS 8 programs that read the mouse
-  themselves need a Bluetooth mouse.
 
 ## Credits
 

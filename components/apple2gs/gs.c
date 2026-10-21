@@ -538,23 +538,20 @@ static void input_reset(void)
     }
 }
 
-/* The pointer to a place in the picture (touch): through Clemens's tracking
- * of the toolbox's cursor, in the clamp box's coordinates (640 or 320 wide)
+/* Touch as a touchpad: the firmware adds a count to the pointer in the
+ * clamp box's coordinates, 640 wide (a picture pixel) or 320 (two)
  */
-void gs_mouse_position(int x, int y, bool button)
+void gs_touchpad(int dx, int dy, bool button)
 {
+    static int odd;                                 /* a half count left over */
     const uint8_t *e1 = gs.mmio->e1_bank;
     int x1 = e1[0x2BC] | e1[0x2BD] << 8;
-    x -= GS_BORDER_X;
-    y -= GS_BORDER_Y;
     if (x1 > 0 && x1 < 400) {
-        x /= 2;                                     /* 320 mode */
+        odd += dx;
+        dx = odd / 2;
+        odd -= dx * 2;
     }
-    input_push(kClemensInputType_MouseMoveAbsolute, x < 0 ? 0 : x, y < 0 ? 0 : y);
-    if (button != s_button_held) {
-        s_button_held = button;
-        input_push(button ? kClemensInputType_MouseButtonDown : kClemensInputType_MouseButtonUp, 0, 0);
-    }
+    gs_mouse(dx, dy, button);
 }
 
 /* The US keyboard's characters as ADB codes */

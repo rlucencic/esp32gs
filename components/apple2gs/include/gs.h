@@ -56,8 +56,10 @@ const uint16_t *gs_line(int y);
 /* Keys as ADB key codes (Clemens's CLEM_ADB_KEY_*: Control $36, the arrows $3B-$3E, Reset $7F), from any task */
 void gs_key(uint8_t adb_code, bool down);
 void gs_mouse(int dx, int dy, bool button);
-/* The pointer to picture pixel x, y (touch); desktop programs only */
-void gs_mouse_position(int x, int y, bool button);
+/* Touch as a touchpad: a move in the picture's pixels (half as many counts
+ * across in 320 mode)
+ */
+void gs_touchpad(int dx, int dy, bool button);
 /* The ADB code for an ASCII character and whether it needs Shift; -1 if none */
 int gs_ascii_key(char c, bool *shift);
 void gs_type(const char *text);
