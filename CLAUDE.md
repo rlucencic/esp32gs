@@ -246,6 +246,19 @@ stepping on a data register read). The MaTouch's budget is 4,000 a frame.
 
 ## Testing
 
+- **DOC normalization trial (2026-11-08)**:
+  [report](docs/doc-normalization-experiment-2026-11-08.md). Shared 1 KB and
+  dual 2 KB float tables pass 524,288 exact mixer cases each on native
+  ASan/UBSan and P4; complete DOC mode/IRQ/state checks and six native
+  PCM/CPU/RAM/pixel replays per form match. 216 P4 ABBA kernel cases select
+  the shared form for integration: about 43% fewer cycles at 32 voices,
+  27% at eight, 31% with AM; the larger form is slightly faster active.
+  Both remove two P4 FP divides / S3 software-divide call sites, and add
+  16 stack bytes. Shared object text is +6 P4 / -25 S3 bytes, plus 1024
+  read-only bytes. Production is unchanged: next do full-app candidate
+  builds and P4 A/B before retaining it. No full-app or S3 runtime gain
+  is established by this kernel trial.
+
 - **DOC pointer integration (2026-11-08)**:
   [report](docs/doc-pointer-integration-2026-11-08.md). Retain mask-select C:
   six native reference/candidate replays match PCM, RGB565, E1, CPU fields,
