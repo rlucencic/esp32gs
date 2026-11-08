@@ -164,7 +164,9 @@ write to the port directly).
 - `clem_adb.c`: absolute mouse tracking started with `mx0 = my` (typo).
 - `clem_audio.c`: the DOC's sync skips over halted oscillators in one step
   (and does nothing until a register is written), doesn't mix silence, the
-  mix's gain is worked out once (no FP divide on the S3).
+  mix's gain is worked out once (no FP divide on the S3). Waveform-pointer
+  arithmetic combines the shifts and selects offset bits without a mask
+  table, preserving size/resolution, base alignment and 24-bit behavior.
 - `clem_iwm.c`: with the drive off (and no SmartPort units) a step moves time
   on in one go; the reset puts the scanline grid on the machine's grid
   (Clemens started it at time 0: after a later reset the IWM stretched nearly
@@ -243,6 +245,20 @@ stepping on a data register read). The MaTouch's budget is 4,000 a frame.
   of sound lost at once). Mark what moves; `GS_CHECK_MAPS` checks it.
 
 ## Testing
+
+- **DOC pointer integration (2026-11-08)**:
+  [report](docs/doc-pointer-integration-2026-11-08.md). Retain mask-select C:
+  six native reference/candidate replays match PCM, RGB565, E1, CPU fields,
+  full DOC state and RAM. Production passes 6,242,880 bit-oracle cases and
+  historical-reference ASan/UBSan DOC mode/IRQ/mixing checks. Normal S3/P4
+  and isolated P4 builds pass. Ten board checkpoints match pixels/VRAM;
+  42 full captures and 24 timing windows show near-60 FPS with no new
+  missing speaker frames during timing. Dense static core-1 idle rises
+  27.0–27.4% to 31.4–33.4%, animated 7.3–7.8% to 12.8–13.8%, with references
+  before/after. Linked P4 hot functions save 50 text bytes; oscillator stack
+  falls 16 to 0 bytes. S3 object text saves 18 bytes, stack unchanged;
+  S3 runtime and real-program speed remain unmeasured. Next test bit-exact
+  normalization lookup in `clem_ensoniq_voices` (10.74–10.88% of core 1).
 
 - **DOC pointer arithmetic trial (2026-11-08)**:
   [report](docs/doc-pointer-experiment-2026-11-08.md). Three C variants pass

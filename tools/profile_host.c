@@ -62,6 +62,14 @@ int main(int argc,char **argv) {
     for(int i=0;i<32;i++)assert(((doc->reg[0xa0+i]&1)==0)==(i<voices));
     assert(total>0);assert(voices?(nonzero>0&&peak<24000):(nonzero==0));
     assert((gs_screen_signature()!=signature)==(animate!=0));
+    /* Pointer-free state for exact reference/candidate replay comparisons. */
+    uint64_t state[] = {gs.cpu.a,gs.cpu.x,gs.cpu.y,gs.cpu.s,gs.cpu.d,gs.cpu.pc,
+        gs.cpu.pbr,gs.cpu.dbr,gs.cpu.p,gs.cpu.e,gs.cpu.stopped,gs.cpu.waiting,
+        gs.cpu.irq,gs.cpu.nmi,(uint64_t)gs.cpu.penalty,gs.cpu.vector_bank,gs.cpu.cycles};
+    save(argv[5],".cpu",state,sizeof(state));
+    save(argv[5],".doc",doc,sizeof(*doc));
+    save(argv[5],".ram",cfg.ram,1024*1024);
+    save(argv[5],".mega2",cfg.mega2,128*1024);
     save(argv[5],".vram",gs.mmio->e1_bank+0x2000,0x8000);
     save(argv[5],".rgb565",cfg.frame,GS_SCREEN_WIDTH*GS_SCREEN_HEIGHT*2);
     printf("FIXTURE PASS voices=%d animate=%d mode=%d bytes=%u frames=600 samples=%llu nonzero=%llu peak=%d signature=%u\n",

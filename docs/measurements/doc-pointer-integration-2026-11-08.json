@@ -1,0 +1,1705 @@
+{
+  "date": "2026-11-08",
+  "reference_revision": "8c6b241",
+  "shared_revision": "ec29bbbbe5d61293e8fbc8441384fdba50f9ecfe",
+  "decision": "retain select mask merge in production",
+  "hardware": {
+    "board": "Tab5",
+    "cpu": "ESP32-P4",
+    "cpu_mhz": 360,
+    "psram_mhz": 200,
+    "idf": "5.5.6",
+    "gcc": "14.2",
+    "ram_kb": 1024,
+    "rom": "ROM 3",
+    "speaker_enabled": true,
+    "user_media_mounted": false,
+    "settings_isolated": true,
+    "original_nvs_restored_each_round": true,
+    "s3_runtime_tested": false
+  },
+  "builds": {
+    "reference_p4_isolated": true,
+    "candidate_p4_isolated": true,
+    "candidate_p4_normal": true,
+    "candidate_s3_normal": true
+  },
+  "source_sha256": "1b21efb3e444c0e124a0ac41cbe5db69f7ce88e0d2d73f92c9c68e3798fe1cd8",
+  "elf_sha256": {
+    "reference": "20e5cc37b819a679fb83e3210bca0174319f244a4ed691dc9a85e89014463dc4",
+    "candidate": "82bd0a11d56be645d4d8927cc93206ebce75c23851b185061294418f2d12f161"
+  },
+  "native_platform": "x86_64",
+  "native": {
+    "reference": {
+      "static-0": {
+        "hashes": {
+          "pcm": "920f495dfc5719491842589d55cdbe7ce673660cd863ae301db65af7ed46e89f",
+          "vram": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+          "rgb565": "6fa6cd1779fabf4aa5b93dab71718fe82385aeb7140b4a1b1827cfc7eada683c",
+          "cpu": "3450904ccc0c0276c237bd24b4590fc190b9b2da7a3672d011d4ea9d27af2260",
+          "doc": "9b22866436d57fd4ea2f7d15f607a16fc35935bbd8d6bfb0f83ff84c69d6e885",
+          "ram": "c8be404f356447a6d5b40f47bb09669e0bb7582c08789243e1eaab6804437836",
+          "mega2": "02c1df7e026046f1940c284213b5b9fc1f173d0625f09dcda22cf70388d3fa8b"
+        },
+        "status": "FIXTURE PASS voices=0 animate=0 mode=320 bytes=2444 frames=600 samples=642766 nonzero=0 peak=0 signature=45"
+      },
+      "static-1": {
+        "hashes": {
+          "pcm": "6287155e3dd5516f94bf6f55de5a78243f986c5de993ed8096de61d2e3c58d2c",
+          "vram": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+          "rgb565": "6fa6cd1779fabf4aa5b93dab71718fe82385aeb7140b4a1b1827cfc7eada683c",
+          "cpu": "14853e8c70edb0037561514a1c5673f3fdc9aeed5dbc83397fc176f69ab0e32a",
+          "doc": "7e01a3ca4cb91aa24701e196ac84aabfde306ec02170da9c980645e0bedc07e9",
+          "ram": "f768808fe52418afa402d890eadc208d6bf53a5511c1fe77e05565bdaa92b1ad",
+          "mega2": "02c1df7e026046f1940c284213b5b9fc1f173d0625f09dcda22cf70388d3fa8b"
+        },
+        "status": "FIXTURE PASS voices=1 animate=0 mode=320 bytes=2454 frames=600 samples=642764 nonzero=637734 peak=131 signature=45"
+      },
+      "static-8": {
+        "hashes": {
+          "pcm": "a10fda7aebe83295215008525961103d18489593bbfc4ac50c14b479551d8ed1",
+          "vram": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+          "rgb565": "6fa6cd1779fabf4aa5b93dab71718fe82385aeb7140b4a1b1827cfc7eada683c",
+          "cpu": "84f67f317d76936b7bfae5b6fcef610c7770aea1a1c92d117e475a341ac028e5",
+          "doc": "52ef9417f9aafb42acc92c1075b017cb6989e7cab376172579cb5c67148014fc",
+          "ram": "8f73b53984e6a4cc6eeb0703a706b6e40d864d3fb5785558f938d193bf27a9eb",
+          "mega2": "02c1df7e026046f1940c284213b5b9fc1f173d0625f09dcda22cf70388d3fa8b"
+        },
+        "status": "FIXTURE PASS voices=8 animate=0 mode=320 bytes=2524 frames=600 samples=642766 nonzero=636032 peak=992 signature=45"
+      },
+      "static-32": {
+        "hashes": {
+          "pcm": "c5b42939135b07371a38e406c77163aec2eb49fc5086f9181c2c7e3126566fb6",
+          "vram": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+          "rgb565": "6fa6cd1779fabf4aa5b93dab71718fe82385aeb7140b4a1b1827cfc7eada683c",
+          "cpu": "aa628143a01a5b36aa4b160badf038fe42f1aae792b1a7c20c5b2416f79743e3",
+          "doc": "093115a9726459fa377fad79654bcc58d681b4ba911b1ef06763270d551cf27b",
+          "ram": "b380a18e6782a445ef1a3bab4ecfaeaedaf6c199bd010d12e01ac5b8bbb20d2e",
+          "mega2": "02c1df7e026046f1940c284213b5b9fc1f173d0625f09dcda22cf70388d3fa8b"
+        },
+        "status": "FIXTURE PASS voices=32 animate=0 mode=320 bytes=2764 frames=600 samples=642766 nonzero=638938 peak=3441 signature=45"
+      },
+      "animated-320": {
+        "hashes": {
+          "pcm": "432eec965bd4a6e204d8002c5366daeac8a7760d4c9ddbaf466ac80d1e51d7ca",
+          "vram": "1b1570d69b2e690d42d6787eb29efed75e74586ee70d52b3bfb69a418a132e58",
+          "rgb565": "c26b1276fe7daef2d0d70fb17e923b22e5b3c5f26506faba2d3de015c8dfbdcb",
+          "cpu": "807a5f3f11728b23d027422be10aded9965a6f9b2c32bd2122bd3f5bc1abdfc6",
+          "doc": "5ee1b5534729acce52769f245f8a69c0235553a4d2635d369f276510231338c1",
+          "ram": "25e1132befd16f8ec66b98dbbd8d9a605ffdeef37ff7daefe9aab35465463508",
+          "mega2": "14f78d711957c5937581c4ea40d1a551e561d70f0faa0b2a5ad26fc7a1186880"
+        },
+        "status": "FIXTURE PASS voices=32 animate=1 mode=320 bytes=2784 frames=600 samples=643942 nonzero=640258 peak=3410 signature=755"
+      },
+      "animated-640": {
+        "hashes": {
+          "pcm": "432eec965bd4a6e204d8002c5366daeac8a7760d4c9ddbaf466ac80d1e51d7ca",
+          "vram": "8fe772a4582fdc4fdefa12d55408cedd08be03e251edf4f42f98529ab4498430",
+          "rgb565": "98c9811dc60b827499f751674987972598df094bd3275590d37224f74e0edee7",
+          "cpu": "807a5f3f11728b23d027422be10aded9965a6f9b2c32bd2122bd3f5bc1abdfc6",
+          "doc": "5ee1b5534729acce52769f245f8a69c0235553a4d2635d369f276510231338c1",
+          "ram": "99dbcd921d4a940838a3f12f781dcd2dbd3c3774ad2a748658dc8db21df196bf",
+          "mega2": "fe3f9f7af78ce1ec06a85750c2f85befc157b5d80e004fd28f221355d1ff8b4c"
+        },
+        "status": "FIXTURE PASS voices=32 animate=1 mode=640 bytes=2784 frames=600 samples=643942 nonzero=640258 peak=3410 signature=755"
+      }
+    },
+    "candidate": {
+      "static-0": {
+        "hashes": {
+          "pcm": "920f495dfc5719491842589d55cdbe7ce673660cd863ae301db65af7ed46e89f",
+          "vram": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+          "rgb565": "6fa6cd1779fabf4aa5b93dab71718fe82385aeb7140b4a1b1827cfc7eada683c",
+          "cpu": "3450904ccc0c0276c237bd24b4590fc190b9b2da7a3672d011d4ea9d27af2260",
+          "doc": "9b22866436d57fd4ea2f7d15f607a16fc35935bbd8d6bfb0f83ff84c69d6e885",
+          "ram": "c8be404f356447a6d5b40f47bb09669e0bb7582c08789243e1eaab6804437836",
+          "mega2": "02c1df7e026046f1940c284213b5b9fc1f173d0625f09dcda22cf70388d3fa8b"
+        },
+        "status": "FIXTURE PASS voices=0 animate=0 mode=320 bytes=2444 frames=600 samples=642766 nonzero=0 peak=0 signature=45"
+      },
+      "static-1": {
+        "hashes": {
+          "pcm": "6287155e3dd5516f94bf6f55de5a78243f986c5de993ed8096de61d2e3c58d2c",
+          "vram": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+          "rgb565": "6fa6cd1779fabf4aa5b93dab71718fe82385aeb7140b4a1b1827cfc7eada683c",
+          "cpu": "14853e8c70edb0037561514a1c5673f3fdc9aeed5dbc83397fc176f69ab0e32a",
+          "doc": "7e01a3ca4cb91aa24701e196ac84aabfde306ec02170da9c980645e0bedc07e9",
+          "ram": "f768808fe52418afa402d890eadc208d6bf53a5511c1fe77e05565bdaa92b1ad",
+          "mega2": "02c1df7e026046f1940c284213b5b9fc1f173d0625f09dcda22cf70388d3fa8b"
+        },
+        "status": "FIXTURE PASS voices=1 animate=0 mode=320 bytes=2454 frames=600 samples=642764 nonzero=637734 peak=131 signature=45"
+      },
+      "static-8": {
+        "hashes": {
+          "pcm": "a10fda7aebe83295215008525961103d18489593bbfc4ac50c14b479551d8ed1",
+          "vram": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+          "rgb565": "6fa6cd1779fabf4aa5b93dab71718fe82385aeb7140b4a1b1827cfc7eada683c",
+          "cpu": "84f67f317d76936b7bfae5b6fcef610c7770aea1a1c92d117e475a341ac028e5",
+          "doc": "52ef9417f9aafb42acc92c1075b017cb6989e7cab376172579cb5c67148014fc",
+          "ram": "8f73b53984e6a4cc6eeb0703a706b6e40d864d3fb5785558f938d193bf27a9eb",
+          "mega2": "02c1df7e026046f1940c284213b5b9fc1f173d0625f09dcda22cf70388d3fa8b"
+        },
+        "status": "FIXTURE PASS voices=8 animate=0 mode=320 bytes=2524 frames=600 samples=642766 nonzero=636032 peak=992 signature=45"
+      },
+      "static-32": {
+        "hashes": {
+          "pcm": "c5b42939135b07371a38e406c77163aec2eb49fc5086f9181c2c7e3126566fb6",
+          "vram": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+          "rgb565": "6fa6cd1779fabf4aa5b93dab71718fe82385aeb7140b4a1b1827cfc7eada683c",
+          "cpu": "aa628143a01a5b36aa4b160badf038fe42f1aae792b1a7c20c5b2416f79743e3",
+          "doc": "093115a9726459fa377fad79654bcc58d681b4ba911b1ef06763270d551cf27b",
+          "ram": "b380a18e6782a445ef1a3bab4ecfaeaedaf6c199bd010d12e01ac5b8bbb20d2e",
+          "mega2": "02c1df7e026046f1940c284213b5b9fc1f173d0625f09dcda22cf70388d3fa8b"
+        },
+        "status": "FIXTURE PASS voices=32 animate=0 mode=320 bytes=2764 frames=600 samples=642766 nonzero=638938 peak=3441 signature=45"
+      },
+      "animated-320": {
+        "hashes": {
+          "pcm": "432eec965bd4a6e204d8002c5366daeac8a7760d4c9ddbaf466ac80d1e51d7ca",
+          "vram": "1b1570d69b2e690d42d6787eb29efed75e74586ee70d52b3bfb69a418a132e58",
+          "rgb565": "c26b1276fe7daef2d0d70fb17e923b22e5b3c5f26506faba2d3de015c8dfbdcb",
+          "cpu": "807a5f3f11728b23d027422be10aded9965a6f9b2c32bd2122bd3f5bc1abdfc6",
+          "doc": "5ee1b5534729acce52769f245f8a69c0235553a4d2635d369f276510231338c1",
+          "ram": "25e1132befd16f8ec66b98dbbd8d9a605ffdeef37ff7daefe9aab35465463508",
+          "mega2": "14f78d711957c5937581c4ea40d1a551e561d70f0faa0b2a5ad26fc7a1186880"
+        },
+        "status": "FIXTURE PASS voices=32 animate=1 mode=320 bytes=2784 frames=600 samples=643942 nonzero=640258 peak=3410 signature=755"
+      },
+      "animated-640": {
+        "hashes": {
+          "pcm": "432eec965bd4a6e204d8002c5366daeac8a7760d4c9ddbaf466ac80d1e51d7ca",
+          "vram": "8fe772a4582fdc4fdefa12d55408cedd08be03e251edf4f42f98529ab4498430",
+          "rgb565": "98c9811dc60b827499f751674987972598df094bd3275590d37224f74e0edee7",
+          "cpu": "807a5f3f11728b23d027422be10aded9965a6f9b2c32bd2122bd3f5bc1abdfc6",
+          "doc": "5ee1b5534729acce52769f245f8a69c0235553a4d2635d369f276510231338c1",
+          "ram": "99dbcd921d4a940838a3f12f781dcd2dbd3c3774ad2a748658dc8db21df196bf",
+          "mega2": "fe3f9f7af78ce1ec06a85750c2f85befc157b5d80e004fd28f221355d1ff8b4c"
+        },
+        "status": "FIXTURE PASS voices=32 animate=1 mode=640 bytes=2784 frames=600 samples=643942 nonzero=640258 peak=3410 signature=755"
+      }
+    }
+  },
+  "fixtures": {
+    "static-0": {
+      "entry": "0x022000",
+      "sentinel": "0x023ff0",
+      "bytes": 2444,
+      "voices": 0,
+      "enabled_oscillators": 32,
+      "animate": false,
+      "mode": 320,
+      "sha256": "ff0c304f123b27b8a630ca442254b9c53559d2221d209bffc41617a0a3b7c8eb"
+    },
+    "static-1": {
+      "entry": "0x022000",
+      "sentinel": "0x023ff0",
+      "bytes": 2454,
+      "voices": 1,
+      "enabled_oscillators": 32,
+      "animate": false,
+      "mode": 320,
+      "sha256": "97791a7b6294215a5ee0ddd0c1917ac3d23012dc03783c37f1ffda2d6baff508"
+    },
+    "static-8": {
+      "entry": "0x022000",
+      "sentinel": "0x023ff0",
+      "bytes": 2524,
+      "voices": 8,
+      "enabled_oscillators": 32,
+      "animate": false,
+      "mode": 320,
+      "sha256": "9eb14d11189d884b9c313a81bfcade3e146910a9373d917c20569811d2f85392"
+    },
+    "static-32": {
+      "entry": "0x022000",
+      "sentinel": "0x023ff0",
+      "bytes": 2764,
+      "voices": 32,
+      "enabled_oscillators": 32,
+      "animate": false,
+      "mode": 320,
+      "sha256": "866ae2ff5405f78b2c67ba836a896982239795ab61a3391df1439349ef4e9fa3"
+    },
+    "animated-320": {
+      "entry": "0x022000",
+      "sentinel": "0x023ff0",
+      "bytes": 2784,
+      "voices": 32,
+      "enabled_oscillators": 32,
+      "animate": true,
+      "mode": 320,
+      "sha256": "5f1c7a5264fb1166eff65152dde0e4bfcd7e9057235bc3594cc1f1c68658da33"
+    },
+    "animated-640": {
+      "entry": "0x022000",
+      "sentinel": "0x023ff0",
+      "bytes": 2784,
+      "voices": 32,
+      "enabled_oscillators": 32,
+      "animate": true,
+      "mode": 640,
+      "sha256": "2adb8f1b0dd0a9ca4bf483a369945bd3b42ba976f04eeec1bc4ae7651d4ee098"
+    }
+  },
+  "bit_oracle": {
+    "cases_per_implementation": 6242880,
+    "production_and_three_experimental_forms_pass": true
+  },
+  "sanitized_audio_differential": {
+    "historical_reference": "8c6b241",
+    "production_and_three_forms_pass": true,
+    "states_per_variant": 224,
+    "sync_mix_events_per_variant": 57344,
+    "irq_events_per_variant": 11866,
+    "halted_observations_per_variant": 327629,
+    "full_doc_state_and_float_bits_match": true
+  },
+  "board": {
+    "reference-a": {
+      "rom": {
+        "fps_windows": [
+          59.30155877986641,
+          59.22365329104435
+        ],
+        "speaker_missing_checkpoints": [
+          1926,
+          1926,
+          1926
+        ],
+        "speaker_missing_delta": 0,
+        "core1_profiles": [
+          {
+            "esp_cpu_wait_for_intr": 15.5,
+            "clem_ensoniq_sync": 0.2,
+            "clem_sound_glu_sync": 1.6,
+            "w65816_run": 9.8,
+            "fetch": 10.5,
+            "branch": 3.0,
+            "line_same.constprop.0": 0.3,
+            "video_frame": 0.9,
+            "__umoddi3": 1.3
+          },
+          {
+            "esp_cpu_wait_for_intr": 16.1,
+            "clem_ensoniq_sync": 0.2,
+            "clem_sound_glu_sync": 1.6,
+            "w65816_run": 9.8,
+            "fetch": 10.3,
+            "branch": 3.3,
+            "line_same.constprop.0": 0.4,
+            "video_frame": 0.8,
+            "__umoddi3": 1.2
+          },
+          {
+            "esp_cpu_wait_for_intr": 16.0,
+            "clem_ensoniq_sync": 0.2,
+            "clem_sound_glu_sync": 1.5,
+            "w65816_run": 10.0,
+            "fetch": 10.2,
+            "branch": 3.2,
+            "line_same.constprop.0": 0.3,
+            "video_frame": 0.9,
+            "__umoddi3": 1.1
+          }
+        ]
+      },
+      "static-0": {
+        "fps_windows": [
+          59.77728101287557,
+          59.69193769943362
+        ],
+        "speaker_missing_checkpoints": [
+          32066,
+          32066,
+          32066
+        ],
+        "speaker_missing_delta": 0,
+        "core1_profiles": [
+          {
+            "esp_cpu_wait_for_intr": 60.2,
+            "clem_ensoniq_sync": 0.2,
+            "clem_sound_glu_sync": 1.3,
+            "w65816_run": 6.6,
+            "fetch": 10.2,
+            "branch": 9.4,
+            "line_same.constprop.0": 1.5,
+            "video_frame": 0.2,
+            "__umoddi3": 1.2
+          },
+          {
+            "esp_cpu_wait_for_intr": 63.0,
+            "clem_ensoniq_sync": 0.2,
+            "clem_sound_glu_sync": 1.2,
+            "w65816_run": 6.6,
+            "fetch": 10.0,
+            "branch": 9.4,
+            "line_same.constprop.0": 1.5,
+            "video_frame": 0.1,
+            "__umoddi3": 1.3
+          },
+          {
+            "esp_cpu_wait_for_intr": 63.0,
+            "clem_ensoniq_sync": 0.2,
+            "clem_sound_glu_sync": 1.2,
+            "w65816_run": 6.5,
+            "fetch": 10.2,
+            "branch": 9.2,
+            "line_same.constprop.0": 1.5,
+            "video_frame": 0.1,
+            "__umoddi3": 1.2
+          }
+        ]
+      },
+      "static-1": {
+        "fps_windows": [
+          59.76040970209132,
+          59.684543958091574
+        ],
+        "speaker_missing_checkpoints": [
+          59731,
+          59731,
+          59731
+        ],
+        "speaker_missing_delta": 0,
+        "core1_profiles": [
+          {
+            "esp_cpu_wait_for_intr": 54.0,
+            "clem_ensoniq_oscillator_cycle": 0.5,
+            "clem_ensoniq_voices": 1.8,
+            "clem_ensoniq_sync": 6.2,
+            "clem_sound_glu_sync": 1.4,
+            "w65816_run": 6.6,
+            "fetch": 10.1,
+            "branch": 9.3,
+            "line_same.constprop.0": 1.5,
+            "video_frame": 0.2,
+            "__umoddi3": 1.3
+          },
+          {
+            "esp_cpu_wait_for_intr": 54.6,
+            "clem_ensoniq_oscillator_cycle": 0.6,
+            "clem_ensoniq_voices": 1.9,
+            "clem_ensoniq_sync": 6.2,
+            "clem_sound_glu_sync": 1.5,
+            "w65816_run": 6.6,
+            "fetch": 10.1,
+            "branch": 9.0,
+            "line_same.constprop.0": 1.4,
+            "video_frame": 0.2,
+            "__umoddi3": 1.3
+          },
+          {
+            "esp_cpu_wait_for_intr": 54.5,
+            "clem_ensoniq_oscillator_cycle": 0.6,
+            "clem_ensoniq_voices": 1.9,
+            "clem_ensoniq_sync": 6.1,
+            "clem_sound_glu_sync": 1.5,
+            "w65816_run": 6.5,
+            "fetch": 9.8,
+            "branch": 9.3,
+            "line_same.constprop.0": 1.5,
+            "video_frame": 0.1,
+            "__umoddi3": 1.2
+          }
+        ]
+      },
+      "static-32": {
+        "fps_windows": [
+          59.68604230692624,
+          59.75203882934769
+        ],
+        "speaker_missing_checkpoints": [
+          89555,
+          89555,
+          89555
+        ],
+        "speaker_missing_delta": 0,
+        "core1_profiles": [
+          {
+            "esp_cpu_wait_for_intr": 27.1,
+            "clem_ensoniq_oscillator_cycle": 16.4,
+            "clem_ensoniq_voices": 10.4,
+            "clem_ensoniq_sync": 8.9,
+            "clem_sound_glu_sync": 1.3,
+            "w65816_run": 6.8,
+            "fetch": 9.8,
+            "branch": 9.2,
+            "line_same.constprop.0": 1.5,
+            "video_frame": 0.1,
+            "__umoddi3": 1.3
+          },
+          {
+            "esp_cpu_wait_for_intr": 27.2,
+            "clem_ensoniq_oscillator_cycle": 16.1,
+            "clem_ensoniq_voices": 10.5,
+            "clem_ensoniq_sync": 9.2,
+            "clem_sound_glu_sync": 1.3,
+            "w65816_run": 6.6,
+            "fetch": 10.3,
+            "branch": 8.9,
+            "line_same.constprop.0": 1.5,
+            "video_frame": 0.2,
+            "__umoddi3": 1.2
+          },
+          {
+            "esp_cpu_wait_for_intr": 27.0,
+            "clem_ensoniq_oscillator_cycle": 15.8,
+            "clem_ensoniq_voices": 10.2,
+            "clem_ensoniq_sync": 9.1,
+            "clem_sound_glu_sync": 1.4,
+            "w65816_run": 7.0,
+            "fetch": 10.6,
+            "branch": 9.1,
+            "line_same.constprop.0": 1.5,
+            "video_frame": 0.1,
+            "__umoddi3": 1.3
+          }
+        ]
+      },
+      "animated-640": {
+        "fps_windows": [
+          59.630584144150674,
+          59.59076642770666
+        ],
+        "speaker_missing_checkpoints": [
+          123148,
+          123148,
+          123148
+        ],
+        "speaker_missing_delta": 0,
+        "core1_profiles": [
+          {
+            "esp_cpu_wait_for_intr": 7.7,
+            "clem_ensoniq_oscillator_cycle": 16.9,
+            "clem_ensoniq_voices": 9.8,
+            "clem_ensoniq_sync": 8.8,
+            "clem_sound_glu_sync": 2.1,
+            "w65816_run": 9.7,
+            "fetch": 15.0,
+            "branch": 1.5,
+            "line_same.constprop.0": 2.4,
+            "video_frame": 2.9,
+            "__umoddi3": 1.3
+          },
+          {
+            "esp_cpu_wait_for_intr": 7.8,
+            "clem_ensoniq_oscillator_cycle": 16.1,
+            "clem_ensoniq_voices": 9.5,
+            "clem_ensoniq_sync": 8.3,
+            "clem_sound_glu_sync": 2.0,
+            "w65816_run": 10.1,
+            "fetch": 15.8,
+            "branch": 1.6,
+            "line_same.constprop.0": 2.5,
+            "video_frame": 2.7,
+            "__umoddi3": 1.2
+          },
+          {
+            "esp_cpu_wait_for_intr": 7.6,
+            "clem_ensoniq_oscillator_cycle": 17.3,
+            "clem_ensoniq_voices": 9.4,
+            "clem_ensoniq_sync": 9.3,
+            "clem_sound_glu_sync": 2.1,
+            "w65816_run": 9.8,
+            "fetch": 14.5,
+            "branch": 1.4,
+            "line_same.constprop.0": 2.5,
+            "video_frame": 2.7,
+            "__umoddi3": 1.4
+          }
+        ]
+      }
+    },
+    "candidate-b": {
+      "rom": {
+        "fps_windows": [
+          59.2764121424632,
+          59.21887468568367
+        ],
+        "speaker_missing_checkpoints": [
+          1926,
+          1926,
+          1926
+        ],
+        "speaker_missing_delta": 0,
+        "core1_profiles": [
+          {
+            "esp_cpu_wait_for_intr": 15.6,
+            "clem_ensoniq_sync": 0.2,
+            "clem_sound_glu_sync": 1.5,
+            "w65816_run": 9.5,
+            "fetch": 9.9,
+            "branch": 3.1,
+            "line_same.constprop.0": 0.4,
+            "video_frame": 0.9,
+            "__umoddi3": 1.2
+          },
+          {
+            "esp_cpu_wait_for_intr": 16.2,
+            "clem_ensoniq_sync": 0.2,
+            "clem_sound_glu_sync": 1.5,
+            "w65816_run": 9.2,
+            "fetch": 10.0,
+            "branch": 3.1,
+            "line_same.constprop.0": 0.4,
+            "video_frame": 0.8,
+            "__umoddi3": 1.2
+          },
+          {
+            "esp_cpu_wait_for_intr": 16.2,
+            "clem_ensoniq_sync": 0.2,
+            "clem_sound_glu_sync": 1.6,
+            "w65816_run": 9.1,
+            "fetch": 10.0,
+            "branch": 3.0,
+            "line_same.constprop.0": 0.4,
+            "video_frame": 0.8,
+            "__umoddi3": 1.3
+          }
+        ]
+      },
+      "static-0": {
+        "fps_windows": [
+          59.76419061071598,
+          59.69127566421261
+        ],
+        "speaker_missing_checkpoints": [
+          31894,
+          31894,
+          31894
+        ],
+        "speaker_missing_delta": 0,
+        "core1_profiles": [
+          {
+            "esp_cpu_wait_for_intr": 63.1,
+            "clem_ensoniq_sync": 0.2,
+            "clem_sound_glu_sync": 1.2,
+            "w65816_run": 6.7,
+            "fetch": 10.1,
+            "branch": 9.4,
+            "line_same.constprop.0": 1.5,
+            "video_frame": 0.2,
+            "__umoddi3": 1.3
+          },
+          {
+            "esp_cpu_wait_for_intr": 63.4,
+            "clem_ensoniq_sync": 0.2,
+            "clem_sound_glu_sync": 1.2,
+            "w65816_run": 6.3,
+            "fetch": 10.4,
+            "branch": 9.2,
+            "line_same.constprop.0": 1.5,
+            "video_frame": 0.2,
+            "__umoddi3": 1.2
+          },
+          {
+            "esp_cpu_wait_for_intr": 62.8,
+            "clem_ensoniq_sync": 0.2,
+            "clem_sound_glu_sync": 1.1,
+            "w65816_run": 6.7,
+            "fetch": 10.1,
+            "branch": 9.4,
+            "line_same.constprop.0": 1.5,
+            "video_frame": 0.1,
+            "__umoddi3": 1.2
+          }
+        ]
+      },
+      "static-1": {
+        "fps_windows": [
+          59.7647475556709,
+          59.69044311409202
+        ],
+        "speaker_missing_checkpoints": [
+          62465,
+          62465,
+          62465
+        ],
+        "speaker_missing_delta": 0,
+        "core1_profiles": [
+          {
+            "esp_cpu_wait_for_intr": 55.0,
+            "clem_ensoniq_oscillator_cycle": 0.4,
+            "clem_ensoniq_voices": 1.9,
+            "clem_ensoniq_sync": 5.7,
+            "clem_sound_glu_sync": 1.5,
+            "w65816_run": 6.8,
+            "fetch": 9.8,
+            "branch": 9.2,
+            "line_same.constprop.0": 1.5,
+            "video_frame": 0.1,
+            "__umoddi3": 1.2
+          },
+          {
+            "esp_cpu_wait_for_intr": 54.9,
+            "clem_ensoniq_oscillator_cycle": 0.4,
+            "clem_ensoniq_voices": 1.8,
+            "clem_ensoniq_sync": 5.8,
+            "clem_sound_glu_sync": 1.3,
+            "w65816_run": 6.4,
+            "fetch": 9.8,
+            "branch": 9.5,
+            "line_same.constprop.0": 1.5,
+            "video_frame": 0.1,
+            "__umoddi3": 1.4
+          },
+          {
+            "esp_cpu_wait_for_intr": 55.0,
+            "clem_ensoniq_oscillator_cycle": 0.4,
+            "clem_ensoniq_voices": 1.9,
+            "clem_ensoniq_sync": 5.7,
+            "clem_sound_glu_sync": 1.4,
+            "w65816_run": 6.4,
+            "fetch": 9.7,
+            "branch": 9.6,
+            "line_same.constprop.0": 1.5,
+            "video_frame": 0.1,
+            "__umoddi3": 1.3
+          }
+        ]
+      },
+      "static-32": {
+        "fps_windows": [
+          59.74231037914806,
+          59.74168347636332
+        ],
+        "speaker_missing_checkpoints": [
+          92545,
+          92545,
+          92545
+        ],
+        "speaker_missing_delta": 0,
+        "core1_profiles": [
+          {
+            "esp_cpu_wait_for_intr": 32.4,
+            "clem_ensoniq_oscillator_cycle": 12.5,
+            "clem_ensoniq_voices": 10.5,
+            "clem_ensoniq_sync": 7.4,
+            "clem_sound_glu_sync": 1.4,
+            "w65816_run": 6.3,
+            "fetch": 10.0,
+            "branch": 9.4,
+            "line_same.constprop.0": 1.5,
+            "video_frame": 0.1,
+            "__umoddi3": 1.3
+          },
+          {
+            "esp_cpu_wait_for_intr": 33.4,
+            "clem_ensoniq_oscillator_cycle": 12.4,
+            "clem_ensoniq_voices": 10.4,
+            "clem_ensoniq_sync": 7.1,
+            "clem_sound_glu_sync": 1.4,
+            "w65816_run": 6.5,
+            "fetch": 10.1,
+            "branch": 9.4,
+            "line_same.constprop.0": 1.5,
+            "video_frame": 0.1,
+            "__umoddi3": 1.2
+          },
+          {
+            "esp_cpu_wait_for_intr": 31.4,
+            "clem_ensoniq_oscillator_cycle": 12.5,
+            "clem_ensoniq_voices": 10.1,
+            "clem_ensoniq_sync": 7.2,
+            "clem_sound_glu_sync": 1.4,
+            "w65816_run": 6.5,
+            "fetch": 10.0,
+            "branch": 9.6,
+            "line_same.constprop.0": 1.5,
+            "video_frame": 0.1,
+            "__umoddi3": 1.2
+          }
+        ]
+      },
+      "animated-640": {
+        "fps_windows": [
+          59.55346946076417,
+          59.68993644085567
+        ],
+        "speaker_missing_checkpoints": [
+          122554,
+          122554,
+          122554
+        ],
+        "speaker_missing_delta": 0,
+        "core1_profiles": [
+          {
+            "esp_cpu_wait_for_intr": 13.7,
+            "clem_ensoniq_oscillator_cycle": 14.5,
+            "clem_ensoniq_voices": 10.9,
+            "clem_ensoniq_sync": 7.6,
+            "clem_sound_glu_sync": 2.0,
+            "w65816_run": 10.0,
+            "fetch": 12.9,
+            "branch": 1.3,
+            "line_same.constprop.0": 2.6,
+            "video_frame": 2.8,
+            "__umoddi3": 1.3
+          },
+          {
+            "esp_cpu_wait_for_intr": 13.8,
+            "clem_ensoniq_oscillator_cycle": 14.5,
+            "clem_ensoniq_voices": 10.9,
+            "clem_ensoniq_sync": 7.4,
+            "clem_sound_glu_sync": 1.8,
+            "w65816_run": 10.1,
+            "fetch": 13.0,
+            "branch": 1.4,
+            "line_same.constprop.0": 2.4,
+            "video_frame": 2.8,
+            "__umoddi3": 1.3
+          },
+          {
+            "esp_cpu_wait_for_intr": 12.8,
+            "clem_ensoniq_oscillator_cycle": 14.6,
+            "clem_ensoniq_voices": 11.0,
+            "clem_ensoniq_sync": 7.4,
+            "clem_sound_glu_sync": 1.9,
+            "w65816_run": 9.9,
+            "fetch": 13.0,
+            "branch": 1.4,
+            "line_same.constprop.0": 2.4,
+            "video_frame": 2.8,
+            "__umoddi3": 1.3
+          }
+        ]
+      }
+    },
+    "reference-c": {
+      "static-32": {
+        "fps_windows": [
+          59.74516062734416,
+          59.757965183058715
+        ],
+        "speaker_missing_checkpoints": [
+          32099,
+          32099,
+          32099
+        ],
+        "speaker_missing_delta": 0,
+        "core1_profiles": [
+          {
+            "esp_cpu_wait_for_intr": 27.4,
+            "clem_ensoniq_oscillator_cycle": 16.3,
+            "clem_ensoniq_voices": 10.3,
+            "clem_ensoniq_sync": 8.8,
+            "clem_sound_glu_sync": 1.4,
+            "w65816_run": 6.5,
+            "fetch": 9.9,
+            "branch": 9.5,
+            "line_same.constprop.0": 1.5,
+            "video_frame": 0.2,
+            "__umoddi3": 1.2
+          },
+          {
+            "esp_cpu_wait_for_intr": 27.4,
+            "clem_ensoniq_oscillator_cycle": 15.9,
+            "clem_ensoniq_voices": 10.4,
+            "clem_ensoniq_sync": 9.1,
+            "clem_sound_glu_sync": 1.4,
+            "w65816_run": 6.5,
+            "fetch": 10.2,
+            "branch": 9.3,
+            "line_same.constprop.0": 1.5,
+            "video_frame": 0.2,
+            "__umoddi3": 1.2
+          },
+          {
+            "esp_cpu_wait_for_intr": 27.1,
+            "clem_ensoniq_oscillator_cycle": 15.8,
+            "clem_ensoniq_voices": 10.3,
+            "clem_ensoniq_sync": 9.2,
+            "clem_sound_glu_sync": 1.4,
+            "w65816_run": 6.8,
+            "fetch": 10.1,
+            "branch": 9.3,
+            "line_same.constprop.0": 1.5,
+            "video_frame": 0.2,
+            "__umoddi3": 1.2
+          }
+        ]
+      },
+      "animated-640": {
+        "fps_windows": [
+          59.60905895094813,
+          59.6588126429966
+        ],
+        "speaker_missing_checkpoints": [
+          62307,
+          62307,
+          62307
+        ],
+        "speaker_missing_delta": 0,
+        "core1_profiles": [
+          {
+            "esp_cpu_wait_for_intr": 7.3,
+            "clem_ensoniq_oscillator_cycle": 19.3,
+            "clem_ensoniq_voices": 10.3,
+            "clem_ensoniq_sync": 10.3,
+            "clem_sound_glu_sync": 2.2,
+            "w65816_run": 9.1,
+            "fetch": 12.3,
+            "branch": 1.2,
+            "line_same.constprop.0": 2.5,
+            "video_frame": 2.9,
+            "__umoddi3": 1.3
+          },
+          {
+            "esp_cpu_wait_for_intr": 7.6,
+            "clem_ensoniq_oscillator_cycle": 18.0,
+            "clem_ensoniq_voices": 9.5,
+            "clem_ensoniq_sync": 9.6,
+            "clem_sound_glu_sync": 2.0,
+            "w65816_run": 10.0,
+            "fetch": 14.0,
+            "branch": 1.4,
+            "line_same.constprop.0": 2.4,
+            "video_frame": 2.8,
+            "__umoddi3": 1.3
+          },
+          {
+            "esp_cpu_wait_for_intr": 7.5,
+            "clem_ensoniq_oscillator_cycle": 18.1,
+            "clem_ensoniq_voices": 10.8,
+            "clem_ensoniq_sync": 9.2,
+            "clem_sound_glu_sync": 2.1,
+            "w65816_run": 9.9,
+            "fetch": 13.3,
+            "branch": 1.3,
+            "line_same.constprop.0": 2.4,
+            "video_frame": 2.8,
+            "__umoddi3": 1.4
+          }
+        ]
+      }
+    }
+  },
+  "pixel_validation": {
+    "reference-a/static-0": {
+      "readback_pass": true,
+      "vram_picture_match": true,
+      "picture_sha256": "fbbe265027daa12618b8e6c0c48102c5975b407b31eb61bcec60db38589c4ee5",
+      "vram_sha256": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+      "native_picture_match": true
+    },
+    "reference-a/static-1": {
+      "readback_pass": true,
+      "vram_picture_match": true,
+      "picture_sha256": "fbbe265027daa12618b8e6c0c48102c5975b407b31eb61bcec60db38589c4ee5",
+      "vram_sha256": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+      "native_picture_match": true
+    },
+    "reference-a/static-32": {
+      "readback_pass": true,
+      "vram_picture_match": true,
+      "picture_sha256": "fbbe265027daa12618b8e6c0c48102c5975b407b31eb61bcec60db38589c4ee5",
+      "vram_sha256": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+      "native_picture_match": true
+    },
+    "reference-a/animated-640": {
+      "readback_pass": true,
+      "vram_picture_match": true,
+      "picture_sha256": "d6095b05b517dc344fec5e0bd177a14d3769695ada7e6a6358cbe2f5fd4b0be6",
+      "vram_sha256": "5050348d06748ddf83c14e1259766ac7229fa6c428fe05336e81421f1c4b7b16"
+    },
+    "candidate-b/static-0": {
+      "readback_pass": true,
+      "vram_picture_match": true,
+      "picture_sha256": "fbbe265027daa12618b8e6c0c48102c5975b407b31eb61bcec60db38589c4ee5",
+      "vram_sha256": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+      "native_picture_match": true,
+      "vram_reference_match": true,
+      "picture_reference_match": true,
+      "differing_register_fields": [
+        "cycles"
+      ],
+      "registers_reference_match": false,
+      "registers_except_cumulative_cycles_match": true,
+      "initialized_registers_reference_match": true
+    },
+    "candidate-b/static-1": {
+      "readback_pass": true,
+      "vram_picture_match": true,
+      "picture_sha256": "fbbe265027daa12618b8e6c0c48102c5975b407b31eb61bcec60db38589c4ee5",
+      "vram_sha256": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+      "native_picture_match": true,
+      "vram_reference_match": true,
+      "picture_reference_match": true,
+      "differing_register_fields": [
+        "cycles"
+      ],
+      "registers_reference_match": false,
+      "registers_except_cumulative_cycles_match": true,
+      "initialized_registers_reference_match": true
+    },
+    "candidate-b/static-32": {
+      "readback_pass": true,
+      "vram_picture_match": true,
+      "picture_sha256": "fbbe265027daa12618b8e6c0c48102c5975b407b31eb61bcec60db38589c4ee5",
+      "vram_sha256": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+      "native_picture_match": true,
+      "vram_reference_match": true,
+      "picture_reference_match": true,
+      "differing_register_fields": [
+        "cycles"
+      ],
+      "registers_reference_match": false,
+      "registers_except_cumulative_cycles_match": true,
+      "initialized_registers_reference_match": true
+    },
+    "candidate-b/animated-640": {
+      "readback_pass": true,
+      "vram_picture_match": true,
+      "picture_sha256": "d6095b05b517dc344fec5e0bd177a14d3769695ada7e6a6358cbe2f5fd4b0be6",
+      "vram_sha256": "5050348d06748ddf83c14e1259766ac7229fa6c428fe05336e81421f1c4b7b16",
+      "vram_reference_match": true,
+      "picture_reference_match": true,
+      "differing_register_fields": [
+        "cycles"
+      ],
+      "registers_reference_match": false,
+      "registers_except_cumulative_cycles_match": true,
+      "initialized_registers_reference_match": true
+    },
+    "reference-c/static-32": {
+      "readback_pass": true,
+      "vram_picture_match": true,
+      "picture_sha256": "fbbe265027daa12618b8e6c0c48102c5975b407b31eb61bcec60db38589c4ee5",
+      "vram_sha256": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+      "native_picture_match": true,
+      "vram_reference_match": true,
+      "picture_reference_match": true,
+      "differing_register_fields": [
+        "Y",
+        "cycles"
+      ],
+      "registers_reference_match": false,
+      "registers_except_cumulative_cycles_match": false,
+      "initialized_registers_reference_match": true
+    },
+    "reference-c/animated-640": {
+      "readback_pass": true,
+      "vram_picture_match": true,
+      "picture_sha256": "d6095b05b517dc344fec5e0bd177a14d3769695ada7e6a6358cbe2f5fd4b0be6",
+      "vram_sha256": "5050348d06748ddf83c14e1259766ac7229fa6c428fe05336e81421f1c4b7b16",
+      "vram_reference_match": true,
+      "picture_reference_match": true,
+      "differing_register_fields": [
+        "cycles"
+      ],
+      "registers_reference_match": false,
+      "registers_except_cumulative_cycles_match": true,
+      "initialized_registers_reference_match": true
+    }
+  },
+  "inline_profiles": {
+    "reference-a": [
+      {
+        "samples": 32000,
+        "inclusive_percent": {
+          "_clem_ensoniq_calc_waveform_ptr": 9.4688,
+          "clem_ensoniq_oscillator_cycle": 18.3188,
+          "clem_ensoniq_sync": 10.0531,
+          "clem_ensoniq_voices": 9.6781,
+          "clem_sound_glu_sync": 1.9531,
+          "shr_line": 2.4062,
+          "hash_words": 2.3875,
+          "line_same": 2.4219,
+          "video_frame": 2.7563,
+          "audio_frame": 0.675,
+          "w65816_run": 8.9844
+        },
+        "leaf_percent": {
+          "fetch": 13.4906,
+          "clem_ensoniq_sync": 10.0031,
+          "clem_ensoniq_voices": 9.6781,
+          "_clem_ensoniq_calc_waveform_ptr": 9.4688,
+          "w65816_run": 8.9688,
+          "clem_ensoniq_oscillator_cycle": 8.85,
+          "esp_cpu_wait_for_intr": 8.1438,
+          "fetch16": 3.225,
+          "hash_words": 2.3875,
+          "shr_line": 2.3438,
+          "am_long": 2.3188,
+          "op_adc": 2.3031,
+          "??": 2.0344,
+          "clem_sound_glu_sync": 1.85,
+          "branch": 1.4187,
+          "wr": 1.2688,
+          "devices_sync": 1.1687,
+          "rd": 1.0188,
+          "_clem_vgc_scanline_build_rgb_palette": 0.8531,
+          "_clem_iwm_step": 0.7719,
+          "nz16": 0.7031,
+          "audio_frame": 0.675,
+          "compare": 0.6188,
+          "nz": 0.4469,
+          "clem_scc_sync_channel_uart": 0.4437,
+          "clem_vgc_sync": 0.4094,
+          "op_lda": 0.4031,
+          "gs_run_frame": 0.3781,
+          "vPortExitCriticalMultiCore": 0.375,
+          "clem_gameport_sync": 0.275
+        }
+      },
+      {
+        "samples": 32000,
+        "inclusive_percent": {
+          "_clem_ensoniq_calc_waveform_ptr": 9.3625,
+          "clem_ensoniq_oscillator_cycle": 18.175,
+          "clem_ensoniq_sync": 9.6906,
+          "clem_ensoniq_voices": 10.7719,
+          "clem_sound_glu_sync": 1.9,
+          "shr_line": 2.3656,
+          "hash_words": 2.3375,
+          "line_same": 2.3906,
+          "video_frame": 2.7469,
+          "audio_frame": 0.6687,
+          "w65816_run": 9.0719
+        },
+        "leaf_percent": {
+          "fetch": 13.5437,
+          "clem_ensoniq_voices": 10.7719,
+          "clem_ensoniq_sync": 9.6625,
+          "_clem_ensoniq_calc_waveform_ptr": 9.3625,
+          "w65816_run": 9.0594,
+          "clem_ensoniq_oscillator_cycle": 8.8125,
+          "esp_cpu_wait_for_intr": 8.4594,
+          "fetch16": 3.1437,
+          "hash_words": 2.3375,
+          "shr_line": 2.3188,
+          "am_long": 2.2469,
+          "??": 2.1906,
+          "op_adc": 2.1,
+          "clem_sound_glu_sync": 1.8094,
+          "branch": 1.3531,
+          "wr": 1.1344,
+          "devices_sync": 1.0781,
+          "rd": 1.0344,
+          "_clem_vgc_scanline_build_rgb_palette": 0.8344,
+          "_clem_iwm_step": 0.7406,
+          "audio_frame": 0.6687,
+          "compare": 0.6438,
+          "nz16": 0.625,
+          "op_lda": 0.4219,
+          "nz": 0.4188,
+          "clem_scc_sync_channel_uart": 0.3719,
+          "clem_vgc_sync": 0.3719,
+          "gs_run_frame": 0.3625,
+          "vPortExitCriticalMultiCore": 0.3312,
+          "load": 0.3187
+        }
+      },
+      {
+        "samples": 32000,
+        "inclusive_percent": {
+          "_clem_ensoniq_calc_waveform_ptr": 8.5906,
+          "clem_ensoniq_oscillator_cycle": 16.5906,
+          "clem_ensoniq_sync": 9.1937,
+          "clem_ensoniq_voices": 9.7625,
+          "clem_sound_glu_sync": 2.2219,
+          "shr_line": 2.4,
+          "hash_words": 2.4813,
+          "line_same": 2.5281,
+          "video_frame": 2.7156,
+          "audio_frame": 0.6719,
+          "w65816_run": 9.6406
+        },
+        "leaf_percent": {
+          "fetch": 14.7438,
+          "clem_ensoniq_voices": 9.7625,
+          "w65816_run": 9.6219,
+          "clem_ensoniq_sync": 9.1531,
+          "_clem_ensoniq_calc_waveform_ptr": 8.5906,
+          "clem_ensoniq_oscillator_cycle": 8.0,
+          "esp_cpu_wait_for_intr": 7.3875,
+          "fetch16": 3.25,
+          "hash_words": 2.4813,
+          "am_long": 2.4062,
+          "shr_line": 2.3438,
+          "op_adc": 2.2938,
+          "??": 2.2375,
+          "clem_sound_glu_sync": 2.0344,
+          "branch": 1.5188,
+          "wr": 1.2937,
+          "rd": 1.2188,
+          "devices_sync": 1.1062,
+          "_clem_vgc_scanline_build_rgb_palette": 0.85,
+          "audio_frame": 0.6719,
+          "compare": 0.6687,
+          "nz16": 0.65,
+          "_clem_iwm_step": 0.6375,
+          "esp_crosscore_int_send": 0.575,
+          "nz": 0.4437,
+          "gs_run_frame": 0.3937,
+          "clem_scc_sync_channel_uart": 0.3812,
+          "op_lda": 0.3812,
+          "vPortExitCriticalMultiCore": 0.3531,
+          "phi0_next": 0.3469
+        }
+      }
+    ],
+    "candidate-b": [
+      {
+        "samples": 32000,
+        "inclusive_percent": {
+          "_clem_ensoniq_calc_waveform_ptr": 7.3688,
+          "clem_ensoniq_oscillator_cycle": 14.5062,
+          "clem_ensoniq_sync": 7.3031,
+          "clem_ensoniq_voices": 10.8063,
+          "clem_sound_glu_sync": 1.9563,
+          "shr_line": 2.4,
+          "hash_words": 2.4688,
+          "line_same": 2.5125,
+          "video_frame": 2.8094,
+          "audio_frame": 0.6719,
+          "w65816_run": 9.9844
+        },
+        "leaf_percent": {
+          "fetch": 13.2937,
+          "esp_cpu_wait_for_intr": 13.1562,
+          "clem_ensoniq_voices": 10.8063,
+          "w65816_run": 9.9719,
+          "_clem_ensoniq_calc_waveform_ptr": 7.3688,
+          "clem_ensoniq_sync": 7.2281,
+          "clem_ensoniq_oscillator_cycle": 7.1375,
+          "fetch16": 3.2,
+          "hash_words": 2.4688,
+          "shr_line": 2.3531,
+          "op_adc": 2.3281,
+          "am_long": 2.3188,
+          "??": 2.0094,
+          "clem_sound_glu_sync": 1.8188,
+          "branch": 1.3969,
+          "devices_sync": 1.175,
+          "wr": 1.0625,
+          "rd": 1.0063,
+          "_clem_vgc_scanline_build_rgb_palette": 0.9125,
+          "_clem_iwm_step": 0.6781,
+          "audio_frame": 0.6719,
+          "compare": 0.5969,
+          "nz16": 0.5813,
+          "op_lda": 0.4625,
+          "nz": 0.4313,
+          "gs_run_frame": 0.4188,
+          "vPortExitCriticalMultiCore": 0.4,
+          "clem_scc_sync_channel_uart": 0.3531,
+          "clem_vgc_sync": 0.3375,
+          "phi0_next": 0.2844
+        }
+      },
+      {
+        "samples": 32000,
+        "inclusive_percent": {
+          "_clem_ensoniq_calc_waveform_ptr": 7.3875,
+          "clem_ensoniq_oscillator_cycle": 14.5844,
+          "clem_ensoniq_sync": 7.3031,
+          "clem_ensoniq_voices": 10.7406,
+          "clem_sound_glu_sync": 2.0312,
+          "shr_line": 2.4781,
+          "hash_words": 2.4625,
+          "line_same": 2.5094,
+          "video_frame": 2.8281,
+          "audio_frame": 0.6562,
+          "w65816_run": 10.175
+        },
+        "leaf_percent": {
+          "esp_cpu_wait_for_intr": 13.0031,
+          "fetch": 12.9531,
+          "clem_ensoniq_voices": 10.7406,
+          "w65816_run": 10.1562,
+          "_clem_ensoniq_calc_waveform_ptr": 7.3875,
+          "clem_ensoniq_sync": 7.2562,
+          "clem_ensoniq_oscillator_cycle": 7.1969,
+          "fetch16": 3.0375,
+          "op_adc": 2.5406,
+          "hash_words": 2.4625,
+          "shr_line": 2.3969,
+          "am_long": 2.2875,
+          "??": 2.1187,
+          "clem_sound_glu_sync": 1.8531,
+          "branch": 1.4563,
+          "devices_sync": 1.1781,
+          "wr": 1.0156,
+          "rd": 0.9969,
+          "_clem_vgc_scanline_build_rgb_palette": 0.7969,
+          "compare": 0.7375,
+          "audio_frame": 0.6562,
+          "_clem_iwm_step": 0.6531,
+          "nz16": 0.6062,
+          "op_lda": 0.4906,
+          "nz": 0.45,
+          "gs_run_frame": 0.4469,
+          "vPortExitCriticalMultiCore": 0.4406,
+          "clem_scc_sync_channel_uart": 0.4375,
+          "clem_vgc_sync": 0.2812,
+          "load": 0.2781
+        }
+      },
+      {
+        "samples": 32000,
+        "inclusive_percent": {
+          "_clem_ensoniq_calc_waveform_ptr": 7.2719,
+          "clem_ensoniq_oscillator_cycle": 14.7469,
+          "clem_ensoniq_sync": 7.4656,
+          "clem_ensoniq_voices": 10.8812,
+          "clem_sound_glu_sync": 1.9438,
+          "shr_line": 2.3563,
+          "hash_words": 2.4656,
+          "line_same": 2.5,
+          "video_frame": 2.7125,
+          "audio_frame": 0.6469,
+          "w65816_run": 9.65
+        },
+        "leaf_percent": {
+          "fetch": 13.2219,
+          "esp_cpu_wait_for_intr": 12.9875,
+          "clem_ensoniq_voices": 10.8812,
+          "w65816_run": 9.6438,
+          "clem_ensoniq_oscillator_cycle": 7.475,
+          "clem_ensoniq_sync": 7.4188,
+          "_clem_ensoniq_calc_waveform_ptr": 7.2719,
+          "fetch16": 2.9344,
+          "hash_words": 2.4656,
+          "op_adc": 2.4625,
+          "shr_line": 2.3094,
+          "am_long": 2.2156,
+          "??": 2.0531,
+          "clem_sound_glu_sync": 1.7969,
+          "branch": 1.4812,
+          "devices_sync": 1.3594,
+          "rd": 1.1656,
+          "wr": 1.0531,
+          "_clem_vgc_scanline_build_rgb_palette": 0.8094,
+          "_clem_iwm_step": 0.6781,
+          "nz16": 0.6656,
+          "audio_frame": 0.6469,
+          "compare": 0.5906,
+          "nz": 0.5312,
+          "op_lda": 0.4781,
+          "gs_run_frame": 0.3937,
+          "clem_scc_sync_channel_uart": 0.3563,
+          "phi0_next": 0.3531,
+          "vPortExitCriticalMultiCore": 0.325,
+          "load": 0.275
+        }
+      }
+    ]
+  },
+  "linked_p4_sizes": {
+    "reference": {
+      "clem_ensoniq_oscillator_cycle": 302,
+      "clem_ensoniq_write_data": 314,
+      "s_ensoniq_ptr_bits_mask": 16,
+      "binary_bytes": 2008080
+    },
+    "candidate": {
+      "clem_ensoniq_oscillator_cycle": 274,
+      "clem_ensoniq_write_data": 292,
+      "s_ensoniq_ptr_bits_mask": null,
+      "binary_bytes": 2008064
+    }
+  },
+  "audio_module_object_sizes": {
+    "p4": {
+      "reference": {
+        "text_symbols": {
+          "_clem_ensoniq_reset_osc": 52,
+          "_clem_sound_do_tone": 88,
+          "clem_ensoniq_mono": 76,
+          "clem_ensoniq_oscillator_cycle": 302,
+          "clem_ensoniq_read_ctl": 32,
+          "clem_ensoniq_read_data": 36,
+          "clem_ensoniq_read_data.part.0": 200,
+          "clem_ensoniq_reset": 182,
+          "clem_ensoniq_sync": 614,
+          "clem_ensoniq_voices": 264,
+          "clem_ensoniq_write_ctl": 52,
+          "clem_ensoniq_write_data": 326,
+          "clem_sound_consume_frames": 90,
+          "clem_sound_glu_sync": 666,
+          "clem_sound_read_switch": 180,
+          "clem_sound_reset": 124,
+          "clem_sound_write_switch": 222
+        },
+        "text_symbol_total": 3506,
+        "stack_bytes": {
+          "clem_ensoniq_read_data.part.0": 0,
+          "clem_ensoniq_reset": 16,
+          "_clem_ensoniq_reset_osc": 0,
+          "clem_ensoniq_oscillator_cycle": 16,
+          "clem_ensoniq_sync": 48,
+          "clem_ensoniq_voices": 64,
+          "clem_ensoniq_mono": 0,
+          "clem_ensoniq_write_ctl": 0,
+          "clem_ensoniq_write_data": 16,
+          "clem_ensoniq_read_ctl": 0,
+          "clem_ensoniq_read_data": 16,
+          "clem_sound_reset": 16,
+          "clem_sound_consume_frames": 16,
+          "_clem_sound_do_tone": 16,
+          "clem_sound_glu_sync": 128,
+          "clem_sound_write_switch": 16,
+          "clem_sound_read_switch": 16
+        }
+      },
+      "combined": {
+        "text_symbols": {
+          "_clem_ensoniq_reset_osc": 52,
+          "_clem_sound_do_tone": 88,
+          "clem_ensoniq_mono": 76,
+          "clem_ensoniq_oscillator_cycle": 268,
+          "clem_ensoniq_read_ctl": 32,
+          "clem_ensoniq_read_data": 36,
+          "clem_ensoniq_read_data.part.0": 200,
+          "clem_ensoniq_reset": 182,
+          "clem_ensoniq_sync": 614,
+          "clem_ensoniq_voices": 264,
+          "clem_ensoniq_write_ctl": 52,
+          "clem_ensoniq_write_data": 300,
+          "clem_sound_consume_frames": 90,
+          "clem_sound_glu_sync": 666,
+          "clem_sound_read_switch": 180,
+          "clem_sound_reset": 124,
+          "clem_sound_write_switch": 222
+        },
+        "text_symbol_total": 3446,
+        "stack_bytes": {
+          "clem_ensoniq_read_data.part.0": 0,
+          "clem_ensoniq_reset": 16,
+          "_clem_ensoniq_reset_osc": 0,
+          "clem_ensoniq_oscillator_cycle": 0,
+          "clem_ensoniq_sync": 48,
+          "clem_ensoniq_voices": 64,
+          "clem_ensoniq_mono": 0,
+          "clem_ensoniq_write_ctl": 0,
+          "clem_ensoniq_write_data": 16,
+          "clem_ensoniq_read_ctl": 0,
+          "clem_ensoniq_read_data": 16,
+          "clem_sound_reset": 16,
+          "clem_sound_consume_frames": 16,
+          "_clem_sound_do_tone": 16,
+          "clem_sound_glu_sync": 128,
+          "clem_sound_write_switch": 16,
+          "clem_sound_read_switch": 16
+        }
+      },
+      "select": {
+        "text_symbols": {
+          "_clem_ensoniq_reset_osc": 52,
+          "_clem_sound_do_tone": 88,
+          "clem_ensoniq_mono": 76,
+          "clem_ensoniq_oscillator_cycle": 274,
+          "clem_ensoniq_read_ctl": 32,
+          "clem_ensoniq_read_data": 36,
+          "clem_ensoniq_read_data.part.0": 200,
+          "clem_ensoniq_reset": 182,
+          "clem_ensoniq_sync": 614,
+          "clem_ensoniq_voices": 264,
+          "clem_ensoniq_write_ctl": 52,
+          "clem_ensoniq_write_data": 304,
+          "clem_sound_consume_frames": 90,
+          "clem_sound_glu_sync": 666,
+          "clem_sound_read_switch": 180,
+          "clem_sound_reset": 124,
+          "clem_sound_write_switch": 222
+        },
+        "text_symbol_total": 3456,
+        "stack_bytes": {
+          "clem_ensoniq_read_data.part.0": 0,
+          "clem_ensoniq_reset": 16,
+          "_clem_ensoniq_reset_osc": 0,
+          "clem_ensoniq_oscillator_cycle": 0,
+          "clem_ensoniq_sync": 48,
+          "clem_ensoniq_voices": 64,
+          "clem_ensoniq_mono": 0,
+          "clem_ensoniq_write_ctl": 0,
+          "clem_ensoniq_write_data": 16,
+          "clem_ensoniq_read_ctl": 0,
+          "clem_ensoniq_read_data": 16,
+          "clem_sound_reset": 16,
+          "clem_sound_consume_frames": 16,
+          "_clem_sound_do_tone": 16,
+          "clem_sound_glu_sync": 128,
+          "clem_sound_write_switch": 16,
+          "clem_sound_read_switch": 16
+        }
+      },
+      "table": {
+        "text_symbols": {
+          "_clem_ensoniq_reset_osc": 52,
+          "_clem_sound_do_tone": 88,
+          "clem_ensoniq_mono": 76,
+          "clem_ensoniq_oscillator_cycle": 272,
+          "clem_ensoniq_read_ctl": 32,
+          "clem_ensoniq_read_data": 36,
+          "clem_ensoniq_read_data.part.0": 200,
+          "clem_ensoniq_reset": 182,
+          "clem_ensoniq_sync": 614,
+          "clem_ensoniq_voices": 264,
+          "clem_ensoniq_write_ctl": 52,
+          "clem_ensoniq_write_data": 306,
+          "clem_sound_consume_frames": 90,
+          "clem_sound_glu_sync": 666,
+          "clem_sound_read_switch": 180,
+          "clem_sound_reset": 124,
+          "clem_sound_write_switch": 222
+        },
+        "text_symbol_total": 3456,
+        "stack_bytes": {
+          "clem_ensoniq_read_data.part.0": 0,
+          "clem_ensoniq_reset": 16,
+          "_clem_ensoniq_reset_osc": 0,
+          "clem_ensoniq_oscillator_cycle": 0,
+          "clem_ensoniq_sync": 48,
+          "clem_ensoniq_voices": 64,
+          "clem_ensoniq_mono": 0,
+          "clem_ensoniq_write_ctl": 0,
+          "clem_ensoniq_write_data": 16,
+          "clem_ensoniq_read_ctl": 0,
+          "clem_ensoniq_read_data": 16,
+          "clem_sound_reset": 16,
+          "clem_sound_consume_frames": 16,
+          "_clem_sound_do_tone": 16,
+          "clem_sound_glu_sync": 128,
+          "clem_sound_write_switch": 16,
+          "clem_sound_read_switch": 16
+        }
+      }
+    },
+    "s3": {
+      "reference": {
+        "text_symbols": {
+          "_clem_ensoniq_reset_osc": 46,
+          "_clem_sound_do_tone": 56,
+          "clem_ensoniq_mono": 89,
+          "clem_ensoniq_oscillator_cycle": 277,
+          "clem_ensoniq_read_ctl": 47,
+          "clem_ensoniq_read_data": 24,
+          "clem_ensoniq_read_data$part$0": 208,
+          "clem_ensoniq_reset": 144,
+          "clem_ensoniq_sync": 544,
+          "clem_ensoniq_voices": 216,
+          "clem_ensoniq_write_ctl": 64,
+          "clem_ensoniq_write_data": 276,
+          "clem_sound_consume_frames": 59,
+          "clem_sound_glu_sync": 617,
+          "clem_sound_read_switch": 158,
+          "clem_sound_reset": 143,
+          "clem_sound_write_switch": 170
+        },
+        "text_symbol_total": 3138,
+        "stack_bytes": {
+          "clem_ensoniq_read_data$part$0": 32,
+          "clem_ensoniq_reset": 32,
+          "_clem_ensoniq_reset_osc": 32,
+          "clem_ensoniq_oscillator_cycle": 32,
+          "clem_ensoniq_sync": 48,
+          "clem_ensoniq_voices": 48,
+          "clem_ensoniq_mono": 32,
+          "clem_ensoniq_write_ctl": 32,
+          "clem_ensoniq_write_data": 32,
+          "clem_ensoniq_read_ctl": 32,
+          "clem_ensoniq_read_data": 32,
+          "clem_sound_reset": 32,
+          "clem_sound_consume_frames": 32,
+          "_clem_sound_do_tone": 32,
+          "clem_sound_glu_sync": 80,
+          "clem_sound_write_switch": 32,
+          "clem_sound_read_switch": 32
+        }
+      },
+      "combined": {
+        "text_symbols": {
+          "_clem_ensoniq_reset_osc": 46,
+          "_clem_sound_do_tone": 56,
+          "clem_ensoniq_mono": 89,
+          "clem_ensoniq_oscillator_cycle": 262,
+          "clem_ensoniq_read_ctl": 47,
+          "clem_ensoniq_read_data": 24,
+          "clem_ensoniq_read_data$part$0": 208,
+          "clem_ensoniq_reset": 144,
+          "clem_ensoniq_sync": 544,
+          "clem_ensoniq_voices": 216,
+          "clem_ensoniq_write_ctl": 64,
+          "clem_ensoniq_write_data": 264,
+          "clem_sound_consume_frames": 59,
+          "clem_sound_glu_sync": 617,
+          "clem_sound_read_switch": 158,
+          "clem_sound_reset": 143,
+          "clem_sound_write_switch": 170
+        },
+        "text_symbol_total": 3111,
+        "stack_bytes": {
+          "clem_ensoniq_read_data$part$0": 32,
+          "clem_ensoniq_reset": 32,
+          "_clem_ensoniq_reset_osc": 32,
+          "clem_ensoniq_oscillator_cycle": 32,
+          "clem_ensoniq_sync": 48,
+          "clem_ensoniq_voices": 48,
+          "clem_ensoniq_mono": 32,
+          "clem_ensoniq_write_ctl": 32,
+          "clem_ensoniq_write_data": 32,
+          "clem_ensoniq_read_ctl": 32,
+          "clem_ensoniq_read_data": 32,
+          "clem_sound_reset": 32,
+          "clem_sound_consume_frames": 32,
+          "_clem_sound_do_tone": 32,
+          "clem_sound_glu_sync": 80,
+          "clem_sound_write_switch": 32,
+          "clem_sound_read_switch": 32
+        }
+      },
+      "select": {
+        "text_symbols": {
+          "_clem_ensoniq_reset_osc": 46,
+          "_clem_sound_do_tone": 56,
+          "clem_ensoniq_mono": 89,
+          "clem_ensoniq_oscillator_cycle": 269,
+          "clem_ensoniq_read_ctl": 47,
+          "clem_ensoniq_read_data": 24,
+          "clem_ensoniq_read_data$part$0": 208,
+          "clem_ensoniq_reset": 144,
+          "clem_ensoniq_sync": 544,
+          "clem_ensoniq_voices": 216,
+          "clem_ensoniq_write_ctl": 64,
+          "clem_ensoniq_write_data": 266,
+          "clem_sound_consume_frames": 59,
+          "clem_sound_glu_sync": 617,
+          "clem_sound_read_switch": 158,
+          "clem_sound_reset": 143,
+          "clem_sound_write_switch": 170
+        },
+        "text_symbol_total": 3120,
+        "stack_bytes": {
+          "clem_ensoniq_read_data$part$0": 32,
+          "clem_ensoniq_reset": 32,
+          "_clem_ensoniq_reset_osc": 32,
+          "clem_ensoniq_oscillator_cycle": 32,
+          "clem_ensoniq_sync": 48,
+          "clem_ensoniq_voices": 48,
+          "clem_ensoniq_mono": 32,
+          "clem_ensoniq_write_ctl": 32,
+          "clem_ensoniq_write_data": 32,
+          "clem_ensoniq_read_ctl": 32,
+          "clem_ensoniq_read_data": 32,
+          "clem_sound_reset": 32,
+          "clem_sound_consume_frames": 32,
+          "_clem_sound_do_tone": 32,
+          "clem_sound_glu_sync": 80,
+          "clem_sound_write_switch": 32,
+          "clem_sound_read_switch": 32
+        }
+      },
+      "table": {
+        "text_symbols": {
+          "_clem_ensoniq_reset_osc": 46,
+          "_clem_sound_do_tone": 56,
+          "clem_ensoniq_mono": 89,
+          "clem_ensoniq_oscillator_cycle": 262,
+          "clem_ensoniq_read_ctl": 47,
+          "clem_ensoniq_read_data": 24,
+          "clem_ensoniq_read_data$part$0": 208,
+          "clem_ensoniq_reset": 144,
+          "clem_ensoniq_sync": 544,
+          "clem_ensoniq_voices": 216,
+          "clem_ensoniq_write_ctl": 64,
+          "clem_ensoniq_write_data": 264,
+          "clem_sound_consume_frames": 59,
+          "clem_sound_glu_sync": 617,
+          "clem_sound_read_switch": 158,
+          "clem_sound_reset": 143,
+          "clem_sound_write_switch": 170
+        },
+        "text_symbol_total": 3111,
+        "stack_bytes": {
+          "clem_ensoniq_read_data$part$0": 32,
+          "clem_ensoniq_reset": 32,
+          "_clem_ensoniq_reset_osc": 32,
+          "clem_ensoniq_oscillator_cycle": 32,
+          "clem_ensoniq_sync": 48,
+          "clem_ensoniq_voices": 48,
+          "clem_ensoniq_mono": 32,
+          "clem_ensoniq_write_ctl": 32,
+          "clem_ensoniq_write_data": 32,
+          "clem_ensoniq_read_ctl": 32,
+          "clem_ensoniq_read_data": 32,
+          "clem_sound_reset": 32,
+          "clem_sound_consume_frames": 32,
+          "_clem_sound_do_tone": 32,
+          "clem_sound_glu_sync": 80,
+          "clem_sound_write_switch": 32,
+          "clem_sound_read_switch": 32
+        }
+      }
+    }
+  },
+  "sampling": {
+    "frequency_hz": 20000,
+    "flat_captures": 36,
+    "inline_captures": 6,
+    "samples_per_capture": 32000,
+    "total_samples": 1344000,
+    "all_complete": true,
+    "incomplete_attempts": 0,
+    "flat_percent_precision": 0.1,
+    "inclusive_definition": "DWARF inline ancestry only; nested percentages overlap"
+  },
+  "limits": [
+    "Synthetic free-running audio/SHR runtime workloads, no real-software speedup claim",
+    "Frame-capped FPS does not measure maximum throughput",
+    "No S3 runtime result or listening assessment",
+    "Board cumulative cycles and inherited unused Y are not fixed-checkpoint invariants",
+    "640-mode checker validates current-renderer consistency, not independent hardware accuracy"
+  ],
+  "next_target": {
+    "function": "clem_ensoniq_voices",
+    "candidate_inline_percent_range": [
+      10.7406,
+      10.8812
+    ],
+    "p4_fdiv_instructions_per_non_skipped_voice": 2,
+    "s3_divsf3_helper_call_sites": 2,
+    "experiment": "Try a bit-exact 256-float normalization lookup (1 KB), preserving mixed-float/PCM results and checking cache/footprint tradeoffs before assembly"
+  },
+  "restoration": {
+    "fresh_full_flash_backup_bytes": 16777216,
+    "flash_hash_verified": true,
+    "msx_disk_basic_running": true,
+    "pictures": {
+      "guest": {
+        "exact_match": true,
+        "matches_outside_cursor": true,
+        "shape": [
+          480,
+          576,
+          3
+        ],
+        "cursor_rectangle": [
+          48,
+          128,
+          60,
+          144
+        ],
+        "masked_rgb_sha256": "256b44d1b79b9e8d2e1ff807a9016c05277391b9bf5994c3ed2c4cc1777cf23a"
+      },
+      "lcd": {
+        "exact_match": true,
+        "matches_outside_cursor": true,
+        "shape": [
+          720,
+          1280,
+          3
+        ],
+        "cursor_rectangle": [
+          240,
+          192,
+          260,
+          216
+        ],
+        "masked_rgb_sha256": "39398541246e9b99c65289a5d7b6839eac8da48f4c922c582927ed2115ff56a7"
+      }
+    }
+  }
+}

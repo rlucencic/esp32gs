@@ -24,8 +24,10 @@ def main():
         depth += (source[end] == '{') - (source[end] == '}')
         end += 1
     helper = source[start:end]
-    table_start = source.index('static uint16_t s_ensoniq_ptr_bits_mask[')
-    table = source[table_start:source.index(';', table_start)+1]
+    table = ''
+    if 's_ensoniq_ptr_bits_mask[' in source:
+        table_start = source.index('static uint16_t s_ensoniq_ptr_bits_mask[')
+        table = source[table_start:source.index(';', table_start)+1]
     args.output.mkdir(parents=True, exist_ok=True)
     files = []
     for variant in ['reference', 'combined', 'select', 'table']:

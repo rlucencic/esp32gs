@@ -105,8 +105,6 @@
 #define CLEM_ENSONIQ_OSC_LIMIT        32
 #define CLEM_ENSONIQ_REG_OSC_OIR_MASK 0xbe // ~(01000001) are always on and unchanged
 
-static uint16_t s_ensoniq_ptr_bits_mask[8] = {0xff00, 0xfe00, 0xfc00, 0xf800,
-                                              0xf000, 0xe000, 0xc000, 0x8000};
 
 /* esp32gs: whether the last sync found an oscillator running (else the
    DOC's output is silence and needn't be mixed) */
@@ -197,21 +195,17 @@ void _clem_ensoniq_reset_osc(struct ClemensDeviceEnsoniq *doc, unsigned osc_inde
 
 static inline uint16_t _clem_ensoniq_calc_waveform_ptr(struct ClemensDeviceEnsoniq *doc,
                                                        unsigned osc_index) {
-
-    unsigned acc = doc->acc[osc_index] & 0x00ffffff; // 24-bit
-    unsigned size = ((doc->reg[CLEM_ENSONIQ_REG_OSC_SIZE + osc_index] >> 3) & 0x07);
-    unsigned resolution = (doc->reg[CLEM_ENSONIQ_REG_OSC_SIZE + osc_index] & 0x07) + 1;
-    uint16_t ptr = ((uint16_t)doc->reg[CLEM_ENSONIQ_REG_OSC_PTR + osc_index]) << 8;
-    //  use 16-bits of the accumulator, the resolution determines *which* 16 bits
-    // size = 0, use 8 bits of accumulator at ADR0-7
-    //      = 1, use 9 bits of accumulator at ADR0-8
-    //      etc
-    acc = (acc >> resolution) & 0xffff;
-    acc = (acc >> (8 - size)) & 0x7fff;
-    ptr &= s_ensoniq_ptr_bits_mask[size];
-    ptr |= acc;
-    return ptr;
+    /* esp32gs: combine the shifts and select the waveform offset bits.
+       The highest retained accumulator bit is resolution+15 (at most 23),
+       so the separate 24-bit mask is redundant. No cached register state. */
+    unsigned config = doc->reg[CLEM_ENSONIQ_REG_OSC_SIZE + osc_index];
+    unsigned size = (config >> 3) & 7;
+    unsigned shift = (config & 7) + 9 - size;
+    unsigned offset_mask = 0xffffu >> (8 - size);
+    unsigned base = (unsigned)doc->reg[CLEM_ENSONIQ_REG_OSC_PTR + osc_index] << 8;
+    return base ^ ((base ^ (doc->acc[osc_index] >> shift)) & offset_mask);
 }
+
 
 uint8_t clem_ensoniq_oscillator_cycle(struct ClemensDeviceEnsoniq *doc, unsigned osc_index,
                                       unsigned osc_limit, uint8_t ctl) {

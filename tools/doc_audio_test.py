@@ -11,10 +11,16 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--sanitize', action='store_true')
     parser.add_argument('--cc', default='cc')
+    parser.add_argument('--reference-revision', help='Git revision supplying the reference audio module')
+    parser.add_argument('--variant', action='append', choices=['production', 'combined', 'select', 'table'],
+                        help='Candidate to test; repeat for several (default: three experimental forms)')
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
     clemens = root / 'components/apple2gs/clemens'
     source = (clemens / 'clem_audio.c').read_text()
+    reference = (subprocess.check_output(['git', 'show', args.reference_revision +
+                 ':components/apple2gs/clemens/clem_audio.c'], cwd=root, text=True)
+                 if args.reference_revision else source)
     start = source.index('static inline uint16_t _clem_ensoniq_calc_waveform_ptr(')
     end = source.index('\nuint8_t clem_ensoniq_oscillator_cycle', start)
     exports = re.findall(r'^(?:void|unsigned|uint8_t|uint32_t)\s+(\w+)\s*\(', source, re.M)
@@ -22,12 +28,14 @@ def main():
     flags = ['-O2', '-g', '-w', '-I'+str(clemens), '-I'+str(root/'tools')]
     if args.sanitize:
         flags += ['-fsanitize=address,undefined', '-fno-omit-frame-pointer']
-    for variant in ['combined', 'select', 'table']:
+    for variant in args.variant or ['combined', 'select', 'table']:
         files = []
         for prefix in ['ref_', 'candidate_']:
             definitions = ''.join(f'#define {name} {prefix}{name}\n' for name in exports)
-            text = source
+            text = reference
             if prefix == 'candidate_':
+                text = source
+            if prefix == 'candidate_' and variant != 'production':
                 text = ('#include "doc_pointer_variants.h"\n' + source[:start] +
                         'static inline uint16_t _clem_ensoniq_calc_waveform_ptr(struct ClemensDeviceEnsoniq *doc,unsigned i) '
                         '{return doc_pointer_'+variant+'(doc,i);}\n' + source[end:])
