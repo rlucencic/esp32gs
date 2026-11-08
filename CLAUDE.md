@@ -244,6 +244,19 @@ stepping on a data register read). The MaTouch's budget is 4,000 a frame.
 
 ## Testing
 
+- **DOC / SHR baseline (2026-11-08)**: [report](docs/profile-baseline-2026-11-08.md)
+  and [measurements](docs/measurements/profile-baseline-2026-11-08.json).
+  Original media-free 65C816 fixtures cover 0/1/8/32 free-running DOC voices
+  and animated 320-/640-mode SHR. Six native cases pass twice with exact
+  PCM/VRAM/RGB565 repeat hashes; board DOC readbacks and VRAM-to-pixel checks
+  pass. All seven live cases stay at 59.17–59.76 FPS, without additional
+  missing speaker frames during fourteen timing windows. 48 full captures
+  total 1,536,000 samples. Waveform-pointer calculation is the next bounded
+  target (8.38–9.93% of core 1 in the dense cases); no production change yet.
+  Native, normal S3/P4 and isolated P4 builds pass; S3 runtime, other DOC
+  modes and real-software audio remain open. Reproduce with the optional
+  host `make profile` target and `tools/profile_fixture.py` (cc65 required).
+
 - **Debugger** (esp32emu's `components/emudbg`, the VS Code extension
   `../esp32emu-vscode`): the board serves it on port 6502;
   `GS_DEBUG=<port> build/gs_host ...` serves it from the host build, which

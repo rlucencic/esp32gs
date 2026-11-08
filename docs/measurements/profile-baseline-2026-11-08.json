@@ -1,0 +1,1092 @@
+{
+  "date": "2026-11-08",
+  "kind": "unmodified production core baseline",
+  "production_commit": "f785c2ec03dae8ce92a57637f91a52987c9a279b",
+  "shared_commit": "c0e6f0c3b955f538d4546da8554cec3a89ae1003",
+  "hardware": {
+    "board": "Tab5",
+    "cpu": "ESP32-P4",
+    "cpu_mhz": 360,
+    "psram_mhz": 200,
+    "idf": "5.5.6",
+    "gcc": "14.2",
+    "ram_kb": 1024,
+    "rom": "ROM 3",
+    "speaker_enabled": true,
+    "user_media_mounted": false,
+    "settings_isolated": true
+  },
+  "test_elf_sha256": "e500cdb7c714e300b192342dbe11c1b62e6ac4b2b2352e1f8f791bc3de841170",
+  "builds": {
+    "native": true,
+    "normal_p4": true,
+    "isolated_p4": true,
+    "normal_s3": true,
+    "s3_runtime_tested": false
+  },
+  "native": {
+    "static-0": {
+      "fixture": {
+        "entry": "0x022000",
+        "sentinel": "0x023ff0",
+        "bytes": 2444,
+        "voices": 0,
+        "enabled_oscillators": 32,
+        "animate": false,
+        "mode": 320,
+        "sha256": "ff0c304f123b27b8a630ca442254b9c53559d2221d209bffc41617a0a3b7c8eb"
+      },
+      "repeat_hashes_equal": true,
+      "hashes": {
+        "pcm": "920f495dfc5719491842589d55cdbe7ce673660cd863ae301db65af7ed46e89f",
+        "vram": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+        "rgb565": "6fa6cd1779fabf4aa5b93dab71718fe82385aeb7140b4a1b1827cfc7eada683c"
+      },
+      "status": "FIXTURE PASS voices=0 animate=0 mode=320 bytes=2444 frames=600 samples=642766 nonzero=0 peak=0 signature=45"
+    },
+    "static-1": {
+      "fixture": {
+        "entry": "0x022000",
+        "sentinel": "0x023ff0",
+        "bytes": 2454,
+        "voices": 1,
+        "enabled_oscillators": 32,
+        "animate": false,
+        "mode": 320,
+        "sha256": "97791a7b6294215a5ee0ddd0c1917ac3d23012dc03783c37f1ffda2d6baff508"
+      },
+      "repeat_hashes_equal": true,
+      "hashes": {
+        "pcm": "6287155e3dd5516f94bf6f55de5a78243f986c5de993ed8096de61d2e3c58d2c",
+        "vram": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+        "rgb565": "6fa6cd1779fabf4aa5b93dab71718fe82385aeb7140b4a1b1827cfc7eada683c"
+      },
+      "status": "FIXTURE PASS voices=1 animate=0 mode=320 bytes=2454 frames=600 samples=642764 nonzero=637734 peak=131 signature=45"
+    },
+    "static-8": {
+      "fixture": {
+        "entry": "0x022000",
+        "sentinel": "0x023ff0",
+        "bytes": 2524,
+        "voices": 8,
+        "enabled_oscillators": 32,
+        "animate": false,
+        "mode": 320,
+        "sha256": "9eb14d11189d884b9c313a81bfcade3e146910a9373d917c20569811d2f85392"
+      },
+      "repeat_hashes_equal": true,
+      "hashes": {
+        "pcm": "a10fda7aebe83295215008525961103d18489593bbfc4ac50c14b479551d8ed1",
+        "vram": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+        "rgb565": "6fa6cd1779fabf4aa5b93dab71718fe82385aeb7140b4a1b1827cfc7eada683c"
+      },
+      "status": "FIXTURE PASS voices=8 animate=0 mode=320 bytes=2524 frames=600 samples=642766 nonzero=636032 peak=992 signature=45"
+    },
+    "static-32": {
+      "fixture": {
+        "entry": "0x022000",
+        "sentinel": "0x023ff0",
+        "bytes": 2764,
+        "voices": 32,
+        "enabled_oscillators": 32,
+        "animate": false,
+        "mode": 320,
+        "sha256": "866ae2ff5405f78b2c67ba836a896982239795ab61a3391df1439349ef4e9fa3"
+      },
+      "repeat_hashes_equal": true,
+      "hashes": {
+        "pcm": "c5b42939135b07371a38e406c77163aec2eb49fc5086f9181c2c7e3126566fb6",
+        "vram": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+        "rgb565": "6fa6cd1779fabf4aa5b93dab71718fe82385aeb7140b4a1b1827cfc7eada683c"
+      },
+      "status": "FIXTURE PASS voices=32 animate=0 mode=320 bytes=2764 frames=600 samples=642766 nonzero=638938 peak=3441 signature=45"
+    },
+    "animated-320": {
+      "fixture": {
+        "entry": "0x022000",
+        "sentinel": "0x023ff0",
+        "bytes": 2784,
+        "voices": 32,
+        "enabled_oscillators": 32,
+        "animate": true,
+        "mode": 320,
+        "sha256": "5f1c7a5264fb1166eff65152dde0e4bfcd7e9057235bc3594cc1f1c68658da33"
+      },
+      "repeat_hashes_equal": true,
+      "hashes": {
+        "pcm": "432eec965bd4a6e204d8002c5366daeac8a7760d4c9ddbaf466ac80d1e51d7ca",
+        "vram": "1b1570d69b2e690d42d6787eb29efed75e74586ee70d52b3bfb69a418a132e58",
+        "rgb565": "c26b1276fe7daef2d0d70fb17e923b22e5b3c5f26506faba2d3de015c8dfbdcb"
+      },
+      "status": "FIXTURE PASS voices=32 animate=1 mode=320 bytes=2784 frames=600 samples=643942 nonzero=640258 peak=3410 signature=755"
+    },
+    "animated-640": {
+      "fixture": {
+        "entry": "0x022000",
+        "sentinel": "0x023ff0",
+        "bytes": 2784,
+        "voices": 32,
+        "enabled_oscillators": 32,
+        "animate": true,
+        "mode": 640,
+        "sha256": "2adb8f1b0dd0a9ca4bf483a369945bd3b42ba976f04eeec1bc4ae7651d4ee098"
+      },
+      "repeat_hashes_equal": true,
+      "hashes": {
+        "pcm": "432eec965bd4a6e204d8002c5366daeac8a7760d4c9ddbaf466ac80d1e51d7ca",
+        "vram": "8fe772a4582fdc4fdefa12d55408cedd08be03e251edf4f42f98529ab4498430",
+        "rgb565": "98c9811dc60b827499f751674987972598df094bd3275590d37224f74e0edee7"
+      },
+      "status": "FIXTURE PASS voices=32 animate=1 mode=640 bytes=2784 frames=600 samples=643942 nonzero=640258 peak=3410 signature=755"
+    }
+  },
+  "board": {
+    "rom": {
+      "fps_windows": [
+        59.17329057110698,
+        59.28564785832379
+      ],
+      "speaker_missing_checkpoints": [
+        1926,
+        1926,
+        1926
+      ],
+      "speaker_missing_delta": 0,
+      "profiles": {
+        "0": {
+          "samples_per_capture": 32000,
+          "captures": 3,
+          "symbol_percent_runs": [
+            {
+              "esp_cpu_wait_for_intr": 77.1,
+              "memcpy (memcpy.c)": 8.5,
+              "present_task": 6.7,
+              "gs_audio_render": 0.2,
+              "speaker_task": 0.1
+            },
+            {
+              "esp_cpu_wait_for_intr": 77.2,
+              "memcpy (memcpy.c)": 8.4,
+              "present_task": 6.9,
+              "gs_audio_render": 0.2,
+              "speaker_task": 0.1
+            },
+            {
+              "esp_cpu_wait_for_intr": 77.7,
+              "memcpy (memcpy.c)": 8.4,
+              "present_task": 6.9,
+              "gs_audio_render": 0.2,
+              "speaker_task": 0.2
+            }
+          ]
+        },
+        "1": {
+          "samples_per_capture": 32000,
+          "captures": 3,
+          "symbol_percent_runs": [
+            {
+              "esp_cpu_wait_for_intr": 15.6,
+              "clem_ensoniq_sync": 0.3,
+              "clem_sound_glu_sync": 1.6,
+              "line_same.constprop.0": 0.3,
+              "video_frame": 0.8,
+              "w65816_run": 9.3,
+              "fetch": 10.9,
+              "branch": 3.2,
+              "bus_read (gs.c)": 15.4
+            },
+            {
+              "esp_cpu_wait_for_intr": 15.0,
+              "clem_ensoniq_sync": 0.2,
+              "clem_sound_glu_sync": 1.7,
+              "line_same.constprop.0": 0.4,
+              "video_frame": 0.9,
+              "w65816_run": 9.4,
+              "fetch": 10.8,
+              "branch": 3.1,
+              "bus_read (gs.c)": 15.5
+            },
+            {
+              "esp_cpu_wait_for_intr": 15.4,
+              "clem_ensoniq_sync": 0.2,
+              "clem_sound_glu_sync": 1.6,
+              "line_same.constprop.0": 0.4,
+              "video_frame": 0.9,
+              "w65816_run": 9.3,
+              "fetch": 10.6,
+              "branch": 3.3,
+              "bus_read (gs.c)": 15.8
+            }
+          ]
+        }
+      }
+    },
+    "static-0": {
+      "fps_windows": [
+        59.74682142975413,
+        59.743833981235305
+      ],
+      "speaker_missing_checkpoints": [
+        3143,
+        3143,
+        3143
+      ],
+      "speaker_missing_delta": 0,
+      "profiles": {
+        "0": {
+          "samples_per_capture": 32000,
+          "captures": 3,
+          "symbol_percent_runs": [
+            {
+              "esp_cpu_wait_for_intr": 93.5,
+              "memcpy (memcpy.c)": 0.0,
+              "gs_audio_render": 0.0,
+              "speaker_task": 0.6
+            },
+            {
+              "esp_cpu_wait_for_intr": 93.6,
+              "memcpy (memcpy.c)": 0.5
+            },
+            {
+              "esp_cpu_wait_for_intr": 94.4
+            }
+          ]
+        },
+        "1": {
+          "samples_per_capture": 32000,
+          "captures": 3,
+          "symbol_percent_runs": [
+            {
+              "esp_cpu_wait_for_intr": 63.0,
+              "clem_ensoniq_sync": 0.2,
+              "clem_sound_glu_sync": 1.4,
+              "line_same.constprop.0": 1.5,
+              "video_frame": 0.1,
+              "w65816_run": 6.4,
+              "fetch": 10.1,
+              "branch": 9.7
+            },
+            {
+              "esp_cpu_wait_for_intr": 62.9,
+              "clem_ensoniq_sync": 0.2,
+              "clem_sound_glu_sync": 1.2,
+              "line_same.constprop.0": 1.5,
+              "video_frame": 0.2,
+              "w65816_run": 6.4,
+              "fetch": 10.2,
+              "branch": 9.6
+            },
+            {
+              "esp_cpu_wait_for_intr": 63.0,
+              "clem_ensoniq_sync": 0.2,
+              "clem_sound_glu_sync": 1.4,
+              "line_same.constprop.0": 1.5,
+              "video_frame": 0.2,
+              "w65816_run": 6.4,
+              "fetch": 10.2,
+              "branch": 9.5
+            }
+          ]
+        }
+      }
+    },
+    "static-1": {
+      "fps_windows": [
+        59.748983817429476,
+        59.748900496249426
+      ],
+      "speaker_missing_checkpoints": [
+        4468,
+        4468,
+        4468
+      ],
+      "speaker_missing_delta": 0,
+      "profiles": {
+        "0": {
+          "samples_per_capture": 32000,
+          "captures": 3,
+          "symbol_percent_runs": [
+            {
+              "esp_cpu_wait_for_intr": 93.9,
+              "memcpy (memcpy.c)": 0.1,
+              "gs_audio_render": 0.0,
+              "speaker_task": 0.0
+            },
+            {
+              "esp_cpu_wait_for_intr": 94.1,
+              "memcpy (memcpy.c)": 0.1
+            },
+            {
+              "esp_cpu_wait_for_intr": 94.5,
+              "memcpy (memcpy.c)": 0.0,
+              "gs_audio_render": 0.6,
+              "speaker_task": 0.0
+            }
+          ]
+        },
+        "1": {
+          "samples_per_capture": 32000,
+          "captures": 3,
+          "symbol_percent_runs": [
+            {
+              "esp_cpu_wait_for_intr": 54.7,
+              "clem_ensoniq_sync": 6.2,
+              "clem_ensoniq_oscillator_cycle": 0.6,
+              "clem_ensoniq_voices": 1.9,
+              "clem_sound_glu_sync": 1.4,
+              "line_same.constprop.0": 1.5,
+              "video_frame": 0.1,
+              "w65816_run": 6.8,
+              "fetch": 10.1,
+              "branch": 8.7
+            },
+            {
+              "esp_cpu_wait_for_intr": 54.2,
+              "clem_ensoniq_sync": 6.2,
+              "clem_ensoniq_oscillator_cycle": 0.5,
+              "clem_ensoniq_voices": 2.0,
+              "clem_sound_glu_sync": 1.5,
+              "line_same.constprop.0": 1.5,
+              "video_frame": 0.1,
+              "w65816_run": 6.5,
+              "fetch": 10.2,
+              "branch": 9.2
+            },
+            {
+              "esp_cpu_wait_for_intr": 54.5,
+              "clem_ensoniq_sync": 6.1,
+              "clem_ensoniq_oscillator_cycle": 0.5,
+              "clem_ensoniq_voices": 1.9,
+              "clem_sound_glu_sync": 1.6,
+              "line_same.constprop.0": 1.5,
+              "video_frame": 0.1,
+              "w65816_run": 6.5,
+              "fetch": 10.1,
+              "branch": 9.3,
+              "memcpy (memcpy.c)": 0.0
+            }
+          ]
+        }
+      }
+    },
+    "static-8": {
+      "fps_windows": [
+        59.74946347348798,
+        59.75024645030041
+      ],
+      "speaker_missing_checkpoints": [
+        7658,
+        7658,
+        7658
+      ],
+      "speaker_missing_delta": 0,
+      "profiles": {
+        "0": {
+          "samples_per_capture": 32000,
+          "captures": 3,
+          "symbol_percent_runs": [
+            {
+              "esp_cpu_wait_for_intr": 93.0,
+              "memcpy (memcpy.c)": 0.0,
+              "speaker_task": 0.0
+            },
+            {
+              "esp_cpu_wait_for_intr": 93.6,
+              "memcpy (memcpy.c)": 0.0,
+              "gs_audio_render": 0.0,
+              "speaker_task": 0.6
+            },
+            {
+              "esp_cpu_wait_for_intr": 94.1,
+              "memcpy (memcpy.c)": 0.0,
+              "gs_audio_render": 0.0,
+              "speaker_task": 0.6
+            }
+          ]
+        },
+        "1": {
+          "samples_per_capture": 32000,
+          "captures": 3,
+          "symbol_percent_runs": [
+            {
+              "esp_cpu_wait_for_intr": 47.8,
+              "clem_ensoniq_sync": 6.8,
+              "clem_ensoniq_oscillator_cycle": 3.9,
+              "clem_ensoniq_voices": 3.8,
+              "clem_sound_glu_sync": 1.5,
+              "line_same.constprop.0": 1.5,
+              "video_frame": 0.2,
+              "w65816_run": 6.8,
+              "fetch": 10.0,
+              "branch": 9.5,
+              "memcpy (memcpy.c)": 0.0
+            },
+            {
+              "esp_cpu_wait_for_intr": 48.1,
+              "clem_ensoniq_sync": 6.6,
+              "clem_ensoniq_oscillator_cycle": 4.0,
+              "clem_ensoniq_voices": 3.9,
+              "clem_sound_glu_sync": 1.4,
+              "line_same.constprop.0": 1.5,
+              "video_frame": 0.1,
+              "w65816_run": 7.0,
+              "fetch": 10.0,
+              "branch": 9.3,
+              "memcpy (memcpy.c)": 0.0
+            },
+            {
+              "esp_cpu_wait_for_intr": 47.8,
+              "clem_ensoniq_sync": 6.8,
+              "clem_ensoniq_oscillator_cycle": 3.9,
+              "clem_ensoniq_voices": 3.8,
+              "clem_sound_glu_sync": 1.4,
+              "line_same.constprop.0": 1.5,
+              "video_frame": 0.1,
+              "w65816_run": 6.7,
+              "fetch": 10.2,
+              "branch": 9.1,
+              "memcpy (memcpy.c)": 0.0
+            }
+          ]
+        }
+      }
+    },
+    "static-32": {
+      "fps_windows": [
+        59.76146153801011,
+        59.74668027251147
+      ],
+      "speaker_missing_checkpoints": [
+        9341,
+        9341,
+        9341
+      ],
+      "speaker_missing_delta": 0,
+      "profiles": {
+        "0": {
+          "samples_per_capture": 32000,
+          "captures": 3,
+          "symbol_percent_runs": [
+            {
+              "esp_cpu_wait_for_intr": 94.1,
+              "memcpy (memcpy.c)": 0.3,
+              "gs_audio_render": 0.0,
+              "speaker_task": 0.0
+            },
+            {
+              "esp_cpu_wait_for_intr": 94.1,
+              "gs_audio_render": 0.6
+            },
+            {
+              "esp_cpu_wait_for_intr": 92.1,
+              "memcpy (memcpy.c)": 0.1,
+              "speaker_task": 0.0
+            }
+          ]
+        },
+        "1": {
+          "samples_per_capture": 32000,
+          "captures": 3,
+          "symbol_percent_runs": [
+            {
+              "esp_cpu_wait_for_intr": 27.0,
+              "clem_ensoniq_sync": 9.0,
+              "clem_ensoniq_oscillator_cycle": 16.2,
+              "clem_ensoniq_voices": 10.3,
+              "clem_sound_glu_sync": 1.3,
+              "line_same.constprop.0": 1.5,
+              "video_frame": 0.2,
+              "w65816_run": 6.7,
+              "fetch": 10.1,
+              "branch": 9.2,
+              "memcpy (memcpy.c)": 0.0
+            },
+            {
+              "esp_cpu_wait_for_intr": 28.0,
+              "clem_ensoniq_sync": 8.9,
+              "clem_ensoniq_oscillator_cycle": 15.3,
+              "clem_ensoniq_voices": 10.3,
+              "clem_sound_glu_sync": 1.3,
+              "line_same.constprop.0": 1.5,
+              "video_frame": 0.1,
+              "w65816_run": 6.7,
+              "fetch": 10.3,
+              "branch": 9.1,
+              "memcpy (memcpy.c)": 0.0
+            },
+            {
+              "esp_cpu_wait_for_intr": 27.9,
+              "clem_ensoniq_sync": 9.1,
+              "clem_ensoniq_oscillator_cycle": 15.9,
+              "clem_ensoniq_voices": 10.3,
+              "clem_sound_glu_sync": 1.5,
+              "line_same.constprop.0": 1.5,
+              "video_frame": 0.2,
+              "w65816_run": 6.4,
+              "fetch": 10.0,
+              "branch": 9.0,
+              "memcpy (memcpy.c)": 0.0
+            }
+          ]
+        }
+      }
+    },
+    "animated-320": {
+      "fps_windows": [
+        59.616552209986,
+        59.632546505901274
+      ],
+      "speaker_missing_checkpoints": [
+        10882,
+        10882,
+        10882
+      ],
+      "speaker_missing_delta": 0,
+      "profiles": {
+        "0": {
+          "samples_per_capture": 32000,
+          "captures": 3,
+          "symbol_percent_runs": [
+            {
+              "esp_cpu_wait_for_intr": 56.1,
+              "memcpy (memcpy.c)": 11.6,
+              "present_task": 24.5,
+              "gs_audio_render": 0.1,
+              "speaker_task": 0.2
+            },
+            {
+              "esp_cpu_wait_for_intr": 55.6,
+              "memcpy (memcpy.c)": 11.8,
+              "present_task": 24.8,
+              "gs_audio_render": 0.2,
+              "speaker_task": 0.1
+            },
+            {
+              "esp_cpu_wait_for_intr": 56.1,
+              "memcpy (memcpy.c)": 11.7,
+              "present_task": 24.9,
+              "gs_audio_render": 0.2,
+              "speaker_task": 0.2
+            }
+          ]
+        },
+        "1": {
+          "samples_per_capture": 32000,
+          "captures": 3,
+          "symbol_percent_runs": [
+            {
+              "esp_cpu_wait_for_intr": 8.3,
+              "clem_ensoniq_sync": 10.5,
+              "clem_ensoniq_oscillator_cycle": 19.0,
+              "clem_ensoniq_voices": 10.9,
+              "clem_sound_glu_sync": 2.4,
+              "line_same.constprop.0": 2.5,
+              "video_frame": 2.6,
+              "w65816_run": 8.8,
+              "fetch": 12.1,
+              "branch": 1.4
+            },
+            {
+              "esp_cpu_wait_for_intr": 7.4,
+              "clem_ensoniq_sync": 9.6,
+              "clem_ensoniq_oscillator_cycle": 18.2,
+              "clem_ensoniq_voices": 10.5,
+              "clem_sound_glu_sync": 2.2,
+              "line_same.constprop.0": 2.5,
+              "video_frame": 2.5,
+              "w65816_run": 9.3,
+              "fetch": 13.1,
+              "branch": 1.4
+            },
+            {
+              "esp_cpu_wait_for_intr": 7.8,
+              "clem_ensoniq_sync": 8.9,
+              "clem_ensoniq_oscillator_cycle": 16.4,
+              "clem_ensoniq_voices": 10.2,
+              "clem_sound_glu_sync": 2.2,
+              "line_same.constprop.0": 2.5,
+              "video_frame": 2.5,
+              "w65816_run": 9.7,
+              "fetch": 14.0,
+              "branch": 1.6
+            }
+          ]
+        }
+      }
+    },
+    "animated-640": {
+      "fps_windows": [
+        59.67492845601918,
+        59.620348321613214
+      ],
+      "speaker_missing_checkpoints": [
+        12580,
+        12580,
+        12580
+      ],
+      "speaker_missing_delta": 0,
+      "profiles": {
+        "0": {
+          "samples_per_capture": 32000,
+          "captures": 3,
+          "symbol_percent_runs": [
+            {
+              "esp_cpu_wait_for_intr": 52.6,
+              "memcpy (memcpy.c)": 12.1,
+              "present_task": 26.7,
+              "gs_audio_render": 0.2,
+              "speaker_task": 0.2
+            },
+            {
+              "esp_cpu_wait_for_intr": 53.9,
+              "memcpy (memcpy.c)": 12.0,
+              "present_task": 26.6,
+              "gs_audio_render": 0.3,
+              "speaker_task": 0.1
+            },
+            {
+              "esp_cpu_wait_for_intr": 53.7,
+              "memcpy (memcpy.c)": 12.0,
+              "present_task": 26.6,
+              "gs_audio_render": 0.2,
+              "speaker_task": 0.2
+            }
+          ]
+        },
+        "1": {
+          "samples_per_capture": 32000,
+          "captures": 3,
+          "symbol_percent_runs": [
+            {
+              "esp_cpu_wait_for_intr": 7.4,
+              "clem_ensoniq_sync": 9.5,
+              "clem_ensoniq_oscillator_cycle": 17.5,
+              "clem_ensoniq_voices": 11.1,
+              "clem_sound_glu_sync": 2.3,
+              "line_same.constprop.0": 2.5,
+              "video_frame": 2.7,
+              "w65816_run": 9.2,
+              "fetch": 12.9,
+              "branch": 1.4
+            },
+            {
+              "esp_cpu_wait_for_intr": 7.3,
+              "clem_ensoniq_sync": 9.0,
+              "clem_ensoniq_oscillator_cycle": 16.5,
+              "clem_ensoniq_voices": 11.1,
+              "clem_sound_glu_sync": 2.3,
+              "line_same.constprop.0": 2.5,
+              "video_frame": 2.8,
+              "w65816_run": 9.7,
+              "fetch": 13.2,
+              "branch": 1.5
+            },
+            {
+              "esp_cpu_wait_for_intr": 7.3,
+              "clem_ensoniq_sync": 9.3,
+              "clem_ensoniq_oscillator_cycle": 17.1,
+              "clem_ensoniq_voices": 11.0,
+              "clem_sound_glu_sync": 2.3,
+              "line_same.constprop.0": 2.5,
+              "video_frame": 2.8,
+              "w65816_run": 9.3,
+              "fetch": 13.1,
+              "branch": 1.4
+            }
+          ]
+        }
+      }
+    }
+  },
+  "pixel_validation": {
+    "static-0": {
+      "readback_pass": true,
+      "vram_picture_match": true,
+      "picture_sha256": "fbbe265027daa12618b8e6c0c48102c5975b407b31eb61bcec60db38589c4ee5",
+      "vram_sha256": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+      "native_picture_match": true
+    },
+    "static-1": {
+      "readback_pass": true,
+      "vram_picture_match": true,
+      "picture_sha256": "fbbe265027daa12618b8e6c0c48102c5975b407b31eb61bcec60db38589c4ee5",
+      "vram_sha256": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+      "native_picture_match": true
+    },
+    "static-8": {
+      "readback_pass": true,
+      "vram_picture_match": true,
+      "picture_sha256": "fbbe265027daa12618b8e6c0c48102c5975b407b31eb61bcec60db38589c4ee5",
+      "vram_sha256": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+      "native_picture_match": true
+    },
+    "static-32": {
+      "readback_pass": true,
+      "vram_picture_match": true,
+      "picture_sha256": "fbbe265027daa12618b8e6c0c48102c5975b407b31eb61bcec60db38589c4ee5",
+      "vram_sha256": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+      "native_picture_match": true
+    },
+    "animated-320": {
+      "readback_pass": true,
+      "vram_picture_match": true,
+      "picture_sha256": "53f279c5407b777040fd29d183237562f8d2150e4d7f9958b0cf4b44aa8c7f13",
+      "vram_sha256": "666cb463f4a109a57f19d21c36716eaebe666f2584a6a38e05974858b86d2da1"
+    },
+    "animated-640": {
+      "readback_pass": true,
+      "vram_picture_match": true,
+      "picture_sha256": "d6095b05b517dc344fec5e0bd177a14d3769695ada7e6a6358cbe2f5fd4b0be6",
+      "vram_sha256": "5050348d06748ddf83c14e1259766ac7229fa6c428fe05336e81421f1c4b7b16"
+    }
+  },
+  "inline_profiles": {
+    "static-32": [
+      {
+        "samples": 32000,
+        "inclusive_percent": {
+          "_clem_ensoniq_calc_waveform_ptr": 8.3781,
+          "clem_ensoniq_oscillator_cycle": 15.5625,
+          "clem_ensoniq_sync": 9.1406,
+          "clem_ensoniq_voices": 10.15,
+          "clem_sound_glu_sync": 1.3875,
+          "shr_line": 0.0,
+          "hash_words": 1.4344,
+          "line_same": 1.4594,
+          "video_frame": 0.1594,
+          "audio_frame": 0.45,
+          "w65816_run": 6.5875
+        },
+        "leaf_percent": {
+          "esp_cpu_wait_for_intr": 26.45,
+          "fetch": 10.5125,
+          "clem_ensoniq_voices": 10.15,
+          "clem_ensoniq_sync": 9.1094,
+          "branch": 9.1031,
+          "_clem_ensoniq_calc_waveform_ptr": 8.3781,
+          "clem_ensoniq_oscillator_cycle": 7.1844,
+          "w65816_run": 6.5812,
+          "??": 1.8531,
+          "esp_crosscore_int_send": 1.5063,
+          "hash_words": 1.4344,
+          "clem_sound_glu_sync": 1.2906,
+          "devices_sync": 0.9313,
+          "_clem_iwm_step": 0.575,
+          "_clem_vgc_scanline_build_rgb_palette": 0.5625,
+          "audio_frame": 0.45,
+          "gs_run_frame": 0.3219,
+          "clem_scc_sync_channel_uart": 0.2938,
+          "phi0_next": 0.2844,
+          "clem_vgc_sync": 0.275,
+          "store": 0.2437,
+          "refill": 0.2313,
+          "vPortExitCriticalMultiCore": 0.2188,
+          "clem_gameport_sync": 0.1812,
+          "load": 0.1656,
+          "clem_adb_glu_sync": 0.1531,
+          "irq_update": 0.1531,
+          "video_frame": 0.15,
+          "clem_iwm_speed_disk_gate": 0.1219,
+          "clem_scc_glu_sync": 0.1219
+        }
+      },
+      {
+        "samples": 32000,
+        "inclusive_percent": {
+          "_clem_ensoniq_calc_waveform_ptr": 8.6469,
+          "clem_ensoniq_oscillator_cycle": 16.3344,
+          "clem_ensoniq_sync": 9.0656,
+          "clem_ensoniq_voices": 10.275,
+          "clem_sound_glu_sync": 1.4125,
+          "shr_line": 0.0,
+          "hash_words": 1.4375,
+          "line_same": 1.4656,
+          "video_frame": 0.1781,
+          "audio_frame": 0.4719,
+          "w65816_run": 6.3
+        },
+        "leaf_percent": {
+          "esp_cpu_wait_for_intr": 27.7656,
+          "clem_ensoniq_voices": 10.275,
+          "fetch": 9.9531,
+          "branch": 9.3063,
+          "clem_ensoniq_sync": 9.0219,
+          "_clem_ensoniq_calc_waveform_ptr": 8.6469,
+          "clem_ensoniq_oscillator_cycle": 7.6875,
+          "w65816_run": 6.2906,
+          "??": 1.8469,
+          "hash_words": 1.4375,
+          "clem_sound_glu_sync": 1.3094,
+          "devices_sync": 1.0,
+          "_clem_vgc_scanline_build_rgb_palette": 0.6375,
+          "_clem_iwm_step": 0.5969,
+          "audio_frame": 0.4719,
+          "gs_run_frame": 0.3688,
+          "clem_scc_sync_channel_uart": 0.2594,
+          "phi0_next": 0.2594,
+          "clem_vgc_sync": 0.25,
+          "refill": 0.225,
+          "store": 0.2156,
+          "clem_gameport_sync": 0.2,
+          "load": 0.1906,
+          "video_frame": 0.1594,
+          "vPortExitCriticalMultiCore": 0.15,
+          "clem_adb_glu_sync": 0.1437,
+          "clem_iwm_speed_disk_gate": 0.1344,
+          "clem_scc_glu_sync": 0.1281,
+          "irq_update": 0.1125,
+          "_clem_scc_clock_data_step_from_mode": 0.1031
+        }
+      },
+      {
+        "samples": 32000,
+        "inclusive_percent": {
+          "_clem_ensoniq_calc_waveform_ptr": 8.45,
+          "clem_ensoniq_oscillator_cycle": 15.8375,
+          "clem_ensoniq_sync": 8.8531,
+          "clem_ensoniq_voices": 10.2281,
+          "clem_sound_glu_sync": 1.4094,
+          "shr_line": 0.0,
+          "hash_words": 1.4094,
+          "line_same": 1.4469,
+          "video_frame": 0.15,
+          "audio_frame": 0.4719,
+          "w65816_run": 6.7719
+        },
+        "leaf_percent": {
+          "esp_cpu_wait_for_intr": 26.0719,
+          "fetch": 10.2719,
+          "clem_ensoniq_voices": 10.2281,
+          "branch": 9.4594,
+          "clem_ensoniq_sync": 8.8156,
+          "_clem_ensoniq_calc_waveform_ptr": 8.45,
+          "clem_ensoniq_oscillator_cycle": 7.3875,
+          "w65816_run": 6.7531,
+          "??": 1.7969,
+          "esp_crosscore_int_send": 1.5656,
+          "hash_words": 1.4094,
+          "clem_sound_glu_sync": 1.325,
+          "devices_sync": 1.0,
+          "_clem_iwm_step": 0.65,
+          "_clem_vgc_scanline_build_rgb_palette": 0.5719,
+          "audio_frame": 0.4719,
+          "gs_run_frame": 0.3312,
+          "clem_scc_sync_channel_uart": 0.3156,
+          "phi0_next": 0.275,
+          "clem_vgc_sync": 0.2656,
+          "store": 0.2281,
+          "load": 0.2219,
+          "refill": 0.2125,
+          "clem_gameport_sync": 0.1719,
+          "vPortExitCriticalMultiCore": 0.1469,
+          "irq_update": 0.1437,
+          "video_frame": 0.1406,
+          "_clem_scc_clock_data_step_from_mode": 0.1219,
+          "clem_iwm_speed_disk_gate": 0.1125,
+          "clem_adb_glu_sync": 0.1031
+        }
+      }
+    ],
+    "animated-640": [
+      {
+        "samples": 32000,
+        "inclusive_percent": {
+          "_clem_ensoniq_calc_waveform_ptr": 9.1781,
+          "clem_ensoniq_oscillator_cycle": 17.8531,
+          "clem_ensoniq_sync": 9.8719,
+          "clem_ensoniq_voices": 9.6094,
+          "clem_sound_glu_sync": 2.075,
+          "shr_line": 2.3875,
+          "hash_words": 2.4719,
+          "line_same": 2.525,
+          "video_frame": 2.7656,
+          "audio_frame": 0.6875,
+          "w65816_run": 9.7937
+        },
+        "leaf_percent": {
+          "fetch": 13.5813,
+          "clem_ensoniq_sync": 9.8187,
+          "w65816_run": 9.7812,
+          "clem_ensoniq_voices": 9.6094,
+          "_clem_ensoniq_calc_waveform_ptr": 9.1781,
+          "clem_ensoniq_oscillator_cycle": 8.675,
+          "esp_cpu_wait_for_intr": 7.8375,
+          "fetch16": 3.1375,
+          "hash_words": 2.4719,
+          "am_long": 2.4094,
+          "??": 2.325,
+          "op_adc": 2.3,
+          "shr_line": 2.2687,
+          "clem_sound_glu_sync": 1.9406,
+          "branch": 1.5094,
+          "wr": 1.1969,
+          "rd": 1.0938,
+          "devices_sync": 0.9938,
+          "_clem_vgc_scanline_build_rgb_palette": 0.7969,
+          "nz16": 0.6937,
+          "audio_frame": 0.6875,
+          "_clem_iwm_step": 0.6781,
+          "compare": 0.5625,
+          "op_lda": 0.5156,
+          "gs_run_frame": 0.4375,
+          "nz": 0.4375,
+          "phi0_next": 0.3563,
+          "clem_gameport_sync": 0.3406,
+          "clem_vgc_sync": 0.3312,
+          "clem_scc_sync_channel_uart": 0.3031
+        }
+      },
+      {
+        "samples": 32000,
+        "inclusive_percent": {
+          "_clem_ensoniq_calc_waveform_ptr": 9.4531,
+          "clem_ensoniq_oscillator_cycle": 18.4219,
+          "clem_ensoniq_sync": 9.8719,
+          "clem_ensoniq_voices": 10.0531,
+          "clem_sound_glu_sync": 2.2156,
+          "shr_line": 2.375,
+          "hash_words": 2.4531,
+          "line_same": 2.4937,
+          "video_frame": 2.7437,
+          "audio_frame": 0.6562,
+          "w65816_run": 8.9031
+        },
+        "leaf_percent": {
+          "fetch": 12.4531,
+          "clem_ensoniq_voices": 10.0531,
+          "clem_ensoniq_sync": 9.8281,
+          "_clem_ensoniq_calc_waveform_ptr": 9.4531,
+          "clem_ensoniq_oscillator_cycle": 8.9688,
+          "w65816_run": 8.8969,
+          "esp_cpu_wait_for_intr": 8.35,
+          "fetch16": 3.2469,
+          "??": 2.5531,
+          "hash_words": 2.4531,
+          "shr_line": 2.3219,
+          "am_long": 2.2406,
+          "op_adc": 2.2188,
+          "clem_sound_glu_sync": 2.0781,
+          "branch": 1.4312,
+          "rd": 1.1875,
+          "wr": 1.1438,
+          "devices_sync": 1.0469,
+          "_clem_vgc_scanline_build_rgb_palette": 0.7125,
+          "_clem_iwm_step": 0.7094,
+          "audio_frame": 0.6562,
+          "compare": 0.6219,
+          "nz16": 0.5844,
+          "gs_run_frame": 0.5375,
+          "op_lda": 0.5031,
+          "nz": 0.4344,
+          "phi0_next": 0.3969,
+          "clem_scc_sync_channel_uart": 0.3969,
+          "refill": 0.3469,
+          "load": 0.3438
+        }
+      },
+      {
+        "samples": 32000,
+        "inclusive_percent": {
+          "_clem_ensoniq_calc_waveform_ptr": 9.9281,
+          "clem_ensoniq_oscillator_cycle": 19.2469,
+          "clem_ensoniq_sync": 10.3313,
+          "clem_ensoniq_voices": 10.3719,
+          "clem_sound_glu_sync": 2.0688,
+          "shr_line": 2.3375,
+          "hash_words": 2.4875,
+          "line_same": 2.525,
+          "video_frame": 2.6875,
+          "audio_frame": 0.675,
+          "w65816_run": 9.0687
+        },
+        "leaf_percent": {
+          "fetch": 12.1219,
+          "clem_ensoniq_voices": 10.3719,
+          "clem_ensoniq_sync": 10.2812,
+          "_clem_ensoniq_calc_waveform_ptr": 9.9281,
+          "clem_ensoniq_oscillator_cycle": 9.3187,
+          "w65816_run": 9.0656,
+          "esp_cpu_wait_for_intr": 8.425,
+          "fetch16": 3.0031,
+          "hash_words": 2.4875,
+          "shr_line": 2.2969,
+          "am_long": 2.2687,
+          "op_adc": 2.1875,
+          "??": 2.1688,
+          "clem_sound_glu_sync": 1.9625,
+          "branch": 1.4438,
+          "rd": 1.1156,
+          "wr": 1.1031,
+          "devices_sync": 1.075,
+          "_clem_vgc_scanline_build_rgb_palette": 0.8156,
+          "_clem_iwm_step": 0.7375,
+          "audio_frame": 0.675,
+          "nz16": 0.5969,
+          "compare": 0.55,
+          "op_lda": 0.475,
+          "gs_run_frame": 0.4469,
+          "clem_scc_sync_channel_uart": 0.425,
+          "nz": 0.3906,
+          "clem_vgc_sync": 0.3219,
+          "phi0_next": 0.3,
+          "clem_gameport_sync": 0.275
+        }
+      }
+    ]
+  },
+  "sampling": {
+    "frequency_hz": 20000,
+    "flat_captures": 42,
+    "inline_captures": 6,
+    "samples_per_capture": 32000,
+    "total_samples": 1536000,
+    "flat_percent_precision": 0.1,
+    "inclusive_definition": "DWARF inline ancestry only, not a sampled call stack; nested helpers overlap parents"
+  },
+  "next_target": "_clem_ensoniq_calc_waveform_ptr: try equivalent portable-C address arithmetic before a cache or assembly; preserve accumulator masking, resolution, size, base alignment and cycle ordering",
+  "limits": [
+    "Synthetic free-running audio and SHR workloads, no game or GS/OS speedup claim",
+    "Only the host PCM was checked numerically; no speaker listening assessment",
+    "No S3 runtime measurements",
+    "640-mode pixel check validates consistency with current renderer, not independent hardware accuracy"
+  ],
+  "restoration": {
+    "full_flash_bytes": 16777216,
+    "flash_hash_verified": true,
+    "msx_disk_basic_running": true,
+    "pictures": {
+      "guest": {
+        "exact_match": true,
+        "matches_outside_cursor": true,
+        "shape": [
+          480,
+          576,
+          3
+        ],
+        "cursor_rectangle": [
+          48,
+          128,
+          60,
+          144
+        ],
+        "masked_rgb_sha256": "256b44d1b79b9e8d2e1ff807a9016c05277391b9bf5994c3ed2c4cc1777cf23a"
+      },
+      "lcd": {
+        "exact_match": true,
+        "matches_outside_cursor": true,
+        "shape": [
+          720,
+          1280,
+          3
+        ],
+        "cursor_rectangle": [
+          240,
+          192,
+          260,
+          216
+        ],
+        "masked_rgb_sha256": "39398541246e9b99c65289a5d7b6839eac8da48f4c922c582927ed2115ff56a7"
+      }
+    }
+  }
+}

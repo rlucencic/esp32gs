@@ -20,6 +20,12 @@ OBJS      := $(patsubst $(GS)/%.c,$(BUILD)/gs/%.o,$(GS_SRCS)) \
 
 all: $(BUILD)/gs_host
 
+# Original DOC/SHR fixture validator, linked against the same production objects.
+profile: $(BUILD)/profile_host
+
+$(BUILD)/profile_host: ../../../tools/profile_host.c $(OBJS)
+	$(CC) $(CFLAGS) $^ -lm -lpthread -o $@
+
 $(BUILD)/gs_host: host_main.c $(OBJS)
 	$(CC) $(CFLAGS) $^ -lm -lpthread -o $@
 
@@ -46,4 +52,4 @@ $(BUILD)/diskspace_apple.o: $(DISKSPACE)/apple.c $(DISKSPACE)/include/diskspace.
 clean:
 	rm -rf $(BUILD)
 
-.PHONY: all clean
+.PHONY: all clean profile
