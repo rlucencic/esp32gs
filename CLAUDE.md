@@ -244,6 +244,16 @@ stepping on a data register read). The MaTouch's budget is 4,000 a frame.
 
 ## Testing
 
+- **DOC pointer arithmetic trial (2026-11-08)**:
+  [report](docs/doc-pointer-experiment-2026-11-08.md). Three C variants pass
+  6,242,880 independent bit-oracle cases each; complete audio-module state,
+  IRQ and mixing comparisons pass 224 states / 57,344 events per variant
+  under ASan/UBSan. 216 P4 ABBA cases select the XOR masked form (13.28–13.30%
+  fewer pointer-kernel cycles). Its normal-flags audio-module object saves
+  50 P4 / 18 S3 text bytes; P4 oscillator stack drops 16 to 0 bytes.
+  Production is unchanged: next do full-emulator PCM/state/pixel replay and
+  S3/P4 builds, then P4 A/B before retaining it. No full-app/S3 speed claim.
+
 - **DOC / SHR baseline (2026-11-08)**: [report](docs/profile-baseline-2026-11-08.md)
   and [measurements](docs/measurements/profile-baseline-2026-11-08.json).
   Original media-free 65C816 fixtures cover 0/1/8/32 free-running DOC voices
