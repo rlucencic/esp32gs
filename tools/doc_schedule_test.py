@@ -6,7 +6,7 @@ import re
 import subprocess
 
 
-def generate(root, out, revision):
+def generate(root, out, revision, production_span=False):
     source = (subprocess.check_output(['git', 'show', revision +
         ':components/apple2gs/clemens/clem_audio.c'], cwd=root, text=True)
         if revision else (root/'components/apple2gs/clemens/clem_audio.c').read_text())
@@ -44,6 +44,8 @@ BODY
     out.mkdir(parents=True, exist_ok=True)
     for name, replacement in [('reference', loop), ('counter', counter), ('span', span)]:
         module = source[:begin] + replacement + source[end:]
+        if name == 'span' and production_span:
+            module = (root/'components/apple2gs/clemens/clem_audio.c').read_text()
         (out / (name+'-module.c')).write_text(module)
         prefix = 'ref_' if name == 'reference' else 'candidate_'
         definitions = ''.join(f'#define {symbol} {prefix}{symbol}\n' for symbol in exports)
@@ -56,16 +58,20 @@ BODY
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, required=True)
-    parser.add_argument('--reference-revision', help='Default: snapshot current production source')
+    parser.add_argument('--reference-revision', default='02d9f47',
+                        help='Frozen per-slot reference (default: 02d9f47)')
+    parser.add_argument('--production-span', action='store_true',
+                        help='Check the actual production module as the span candidate')
+    parser.add_argument('--variant', action='append', choices=['counter', 'span'])
     parser.add_argument('--sanitize', action='store_true')
     parser.add_argument('--cc', default='cc')
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
-    generate(root, args.output, args.reference_revision)
+    generate(root, args.output, args.reference_revision, args.production_span)
     flags = ['-O2', '-g', '-I'+str(root/'components/apple2gs/clemens')]
     if args.sanitize:
         flags += ['-fsanitize=address,undefined', '-fno-sanitize-recover=all', '-fno-omit-frame-pointer']
-    for variant in ['counter', 'span']:
+    for variant in args.variant or ['counter', 'span']:
         for name in ['doc_audio_test', 'doc_schedule_check']:
             binary = args.output / (variant+'-'+name)
             subprocess.run([args.cc, *flags, str(root/'tools'/(name+'.c')),

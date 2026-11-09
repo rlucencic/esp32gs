@@ -301,10 +301,24 @@ uint32_t clem_ensoniq_sync(struct ClemensDeviceEnsoniq *doc, clem_clocks_duratio
         return (doc->reg[CLEM_ENSONIQ_REG_OSC_OIR] & 0x80) ? 0 : CLEM_IRQ_AUDIO_OSC;
     }
 
+    /* esp32gs: visit oscillator slots in order, then skip both padding slots.
+       Helpers do not read cycle, so advance its unsigned count once. */
     osc_cycle = doc->cycle % osc_cnt_2;
-    while (cycles--) {
-        // 2 extra cycles after running through all active oscillators
-        if (osc_cycle < osc_cnt) {
+    doc->cycle += cycles;
+    while (cycles) {
+        if (osc_cycle >= osc_cnt) {
+            unsigned skip = osc_cnt_2 - osc_cycle;
+            if (skip > cycles) skip = cycles;
+            cycles -= skip;
+            osc_cycle += skip;
+            if (osc_cycle == osc_cnt_2) osc_cycle = 0;
+            continue;
+        }
+        unsigned run = osc_cnt - osc_cycle;
+        if (run > cycles) run = cycles;
+        cycles -= run;
+        unsigned end = osc_cycle + run;
+        do {
             uint8_t ctl = doc->reg[CLEM_ENSONIQ_REG_OSC_CTRL + osc_cycle];
             if (ctl & CLEM_ENSONIQ_OSC_CTL_HALT) {
                 if (ctl & CLEM_ENSONIQ_OSC_CTL_M0) {
@@ -321,11 +335,8 @@ uint32_t clem_ensoniq_sync(struct ClemensDeviceEnsoniq *doc, clem_clocks_duratio
                 }
             }
             doc->reg[CLEM_ENSONIQ_REG_OSC_CTRL + osc_cycle] = ctl;
-        }
-        ++doc->cycle;
-        if (++osc_cycle == osc_cnt_2) {
-            osc_cycle = 0;
-        }
+            ++osc_cycle;
+        } while (osc_cycle != end);
     }
 
     return (doc->reg[CLEM_ENSONIQ_REG_OSC_OIR] & 0x80) ? 0 : CLEM_IRQ_AUDIO_OSC;

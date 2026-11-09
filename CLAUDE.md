@@ -164,7 +164,9 @@ write to the port directly).
 - `clem_adb.c`: absolute mouse tracking started with `mx0 = my` (typo).
 - `clem_audio.c`: the DOC's sync skips over halted oscillators in one step
   (and does nothing until a register is written), doesn't mix silence, the
-  mix's gain is worked out once (no FP divide on the S3). Waveform-pointer
+  mix's gain is worked out once (no FP divide on the S3). Active scheduling
+  visits oscillator spans in order and consumes padding slots together,
+  advancing the unsigned cycle counter once per call. Waveform-pointer
   arithmetic combines the shifts and selects offset bits without a mask
   table, preserving size/resolution, base alignment and 24-bit behavior.
   Voice mixing shares a generated 256-float normalization table between
@@ -250,6 +252,19 @@ stepping on a data register read). The MaTouch's budget is 4,000 a frame.
   of sound lost at once). Mark what moves; `GS_CHECK_MAPS` checks it.
 
 ## Testing
+
+- **DOC span integration (2026-11-09)**:
+  [report](docs/doc-span-integration-2026-11-09.md). Retain span after six
+  exact native fixture pairs, actual-production sanitized DOC/boundary/IRQ
+  checks, an exact 21,601-frame Tour replay, full normal S3/P4 builds and
+  isolated P4 A/B with dense references before/after. Ten fixed checkpoints
+  and five Tour source pairs/final LCD pair match. 42 complete captures /
+  32 timing windows add no speaker misses during the observed windows.
+  Dense scheduler share drops 7.0–7.2% to 5.0–5.3%; animated 7.5–8.0% to
+  5.8–5.9%; Tour 7.1–9.1% to 5.1–5.7%. Idle gains have runtime variation,
+  and ROM/quiet ranges overlap. Capped FPS is unchanged. P4 text +36 bytes,
+  stack +32; S3 text +14, stack +16, runtime unmeasured. Next investigate
+  oscillator metadata/address loads (12.5–14.3% in dense candidate cases).
 
 - **DOC scheduler trial / IRQ queue fix (2026-11-09)**:
   [report](docs/doc-scheduler-experiment-2026-11-09.md). Expanded sanitizer
