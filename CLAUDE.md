@@ -253,6 +253,18 @@ stepping on a data register read). The MaTouch's budget is 4,000 a frame.
 
 ## Testing
 
+- **DOC local oscillator-helper trial (2026-11-09)**:
+  [report](docs/doc-helper-scope-experiment-2026-11-09.md). Making the sole
+  scheduler helper local lets GCC inline it: audio text -78 P4 / -57 S3
+  bytes, scheduler stack 80→32 P4 / 64→48 S3. Sanitized DOC/boundary/IRQ
+  checks, six exact fixture pairs and a 21,601-frame Tour replay pass.
+  378 P4 ABBA cases / 1,512 timings match full DOC hashes: scanline kernel
+  savings 37.5–37.7% dense, 24.1–25.4% eight active, 7.3–7.5% one active;
+  short/quiet medians also improve. Production is unchanged. Next full-app
+  A/B with inline-aware profiles. Metadata-first variants save code but
+  are codegen-only and need canonical snapshots before layout trials.
+  S3 runtime and full-app gains are unmeasured.
+
 - **DOC span integration (2026-11-09)**:
   [report](docs/doc-span-integration-2026-11-09.md). Retain span after six
   exact native fixture pairs, actual-production sanitized DOC/boundary/IRQ
