@@ -178,6 +178,9 @@ static void _clem_ensoniq_next_irq(struct ClemensDeviceEnsoniq *doc) {
          ++stack_index) {
         doc->osc_stack[stack_index] = doc->osc_stack[stack_index + 1];
     }
+    /* esp32gs: a full queue has no empty entry to shift into its tail.
+       Free that slot so the acknowledged oscillator can enqueue again. */
+    doc->osc_stack[stack_index] = 0;
     osc_index = doc->osc_stack[0];
     if (osc_index & 0x80) {
         osc_index &= 0x7f;

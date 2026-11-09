@@ -27,7 +27,7 @@ def main():
     args.output.mkdir(parents=True, exist_ok=True)
     flags = ['-O2', '-g', '-w', '-I'+str(clemens), '-I'+str(root/'tools')]
     if args.sanitize:
-        flags += ['-fsanitize=address,undefined', '-fno-omit-frame-pointer']
+        flags += ['-fsanitize=address,undefined', '-fno-sanitize-recover=all', '-fno-omit-frame-pointer']
     for variant in args.variant or ['combined', 'select', 'table']:
         files = []
         for prefix in ['ref_', 'candidate_']:

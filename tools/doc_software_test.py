@@ -23,6 +23,8 @@ parser.add_argument("--drive", choices=["35", "525", "HD1", "HD2"], default="35"
 parser.add_argument("--frames", type=int, default=21601)
 parser.add_argument("--ram", type=int, default=1024)
 parser.add_argument("--reference-revision", default="8c6b241")
+parser.add_argument("--candidate-audio", type=Path,
+                    help="Generated complete audio module; production source is untouched")
 parser.add_argument("--script", type=Path)
 parser.add_argument("--output", type=Path, required=True)
 args = parser.parse_args()
@@ -81,6 +83,10 @@ for variant in ["reference", "candidate"]:
         subprocess.run(["cc", *flags, "-c", str(r / "reference-audio.c"), "-o",
                         str(r / "reference-audio.o")], cwd=root, check=True)
         obs = [p for p in objects if p.name != "clem_audio.o"] + [r / "reference-audio.o"]
+    if variant == "candidate" and args.candidate_audio:
+        subprocess.run(["cc", *flags, "-c", str(args.candidate_audio.resolve()), "-o",
+                        str(r / "candidate-audio.o")], cwd=root, check=True)
+        obs = [p for p in objects if p.name != "clem_audio.o"] + [r / "candidate-audio.o"]
     runner = r / ("host-" + variant)
     subprocess.run(["cc", *flags, str(r / "host-replay.c"), *map(str, obs),
                     "-lm", "-lpthread", "-o", str(runner)], cwd=root, check=True)

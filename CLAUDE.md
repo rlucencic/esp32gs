@@ -169,7 +169,9 @@ write to the port directly).
   table, preserving size/resolution, base alignment and 24-bit behavior.
   Voice mixing shares a generated 256-float normalization table between
   sample and volume (1024 read-only bytes), replacing the two divisions
-  with exact float operands and the same accumulation order.
+  with exact float operands and the same accumulation order. A full IRQ
+  queue clears its vacated tail when acknowledged, permitting re-enqueue
+  without a duplicate tail or an out-of-bounds append.
 - `clem_iwm.c`: with the drive off (and no SmartPort units) a step moves time
   on in one go; the reset puts the scanline grid on the machine's grid
   (Clemens started it at time 0: after a later reset the IWM stretched nearly
@@ -248,6 +250,20 @@ stepping on a data register read). The MaTouch's budget is 4,000 a frame.
   of sound lost at once). Mark what moves; `GS_CHECK_MAPS` checks it.
 
 ## Testing
+
+- **DOC scheduler trial / IRQ queue fix (2026-11-09)**:
+  [report](docs/doc-scheduler-experiment-2026-11-09.md). Expanded sanitizer
+  checks expose a duplicate tail after acknowledging a full 32-entry IRQ
+  queue; a later enqueue can write past the array. Production now clears
+  the vacated tail. An independent FIFO-model regression passes 18,000
+  native ASan/UBSan and P4 events; committed code fails. Legacy DOC and
+  21,601-frame Tour comparisons remain exact; normal S3/P4 builds pass.
+  Scheduler production is unchanged. Counter and span variants each pass
+  245,760 sanitized boundary calls and a Tour replay. P4 kernel trial:
+  756 ABBA cases / 3,024 timings. Span saves 12.9–13.0% dense and 21–30%
+  sparse at scanline deltas, regresses short/quiet calls, adds 32 P4 / 16
+  S3 stack bytes. Tour active calls all advance 32–63 slots. Next full-app
+  span A/B with quiet controls and real music; S3 runtime unmeasured.
 
 - **DOC real-software replay (2026-11-09)**:
   [report](docs/doc-software-replay-2026-11-09.md). Tour boot/music passes
