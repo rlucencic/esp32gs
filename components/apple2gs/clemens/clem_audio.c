@@ -211,7 +211,8 @@ static inline uint16_t _clem_ensoniq_calc_waveform_ptr(struct ClemensDeviceEnson
 }
 
 
-uint8_t clem_ensoniq_oscillator_cycle(struct ClemensDeviceEnsoniq *doc, unsigned osc_index,
+/* esp32gs: the sole caller is local; allow compiler inlining across slots. */
+static uint8_t clem_ensoniq_oscillator_cycle(struct ClemensDeviceEnsoniq *doc, unsigned osc_index,
                                       unsigned osc_limit, uint8_t ctl) {
     //  Data is read from sound RAM and sent to one of up to eight output channels
     //  address calculation

@@ -6,7 +6,7 @@ import re
 import subprocess
 
 
-def generate(root, out, revision):
+def generate(root, out, revision, production_inline=False):
     source = subprocess.check_output(['git', 'show', revision +
         ':components/apple2gs/clemens/clem_audio.c'], cwd=root, text=True)
     needle = 'uint8_t clem_ensoniq_oscillator_cycle('
@@ -16,6 +16,8 @@ def generate(root, out, revision):
     out.mkdir(parents=True, exist_ok=True)
     for variant, prefix in [('reference', 'ref_'), ('inline', 'candidate_')]:
         module = source if variant == 'reference' else source.replace(needle, 'static '+needle)
+        if variant == 'inline' and production_inline:
+            module = (root/'components/apple2gs/clemens/clem_audio.c').read_text()
         definitions = ''.join(f'#define {name} {prefix}{name}\n' for name in exports)
         (out/(variant+'-module.c')).write_text(module)
         (out/(variant+'.c')).write_text(definitions+module)
@@ -26,9 +28,11 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--reference-revision', default='792b627')
     parser.add_argument('--sanitize', action='store_true')
+    parser.add_argument('--production-inline', action='store_true',
+                        help='Check the actual production module as candidate')
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
-    generate(root, args.output, args.reference_revision)
+    generate(root, args.output, args.reference_revision, args.production_inline)
     flags = ['-O2', '-g', '-I'+str(root/'components/apple2gs/clemens')]
     if args.sanitize:
         flags += ['-fsanitize=address,undefined', '-fno-sanitize-recover=all', '-fno-omit-frame-pointer']

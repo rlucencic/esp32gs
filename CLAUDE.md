@@ -166,7 +166,8 @@ write to the port directly).
   (and does nothing until a register is written), doesn't mix silence, the
   mix's gain is worked out once (no FP divide on the S3). Active scheduling
   visits oscillator spans in order and consumes padding slots together,
-  advancing the unsigned cycle counter once per call. Waveform-pointer
+  advancing the unsigned cycle counter once per call. Its sole oscillator
+  helper is local, allowing GCC to inline it into the scheduler. Waveform-pointer
   arithmetic combines the shifts and selects offset bits without a mask
   table, preserving size/resolution, base alignment and 24-bit behavior.
   Voice mixing shares a generated 256-float normalization table between
@@ -252,6 +253,20 @@ stepping on a data register read). The MaTouch's budget is 4,000 a frame.
   of sound lost at once). Mark what moves; `GS_CHECK_MAPS` checks it.
 
 ## Testing
+
+- **DOC local oscillator-helper integration (2026-11-09)**:
+  [report](docs/doc-helper-scope-integration-2026-11-09.md). Retained local
+  helper after exact native PCM/state/pixel fixtures, sanitized boundary/IRQ
+  checks and real Tour replay. Normal S3/P4 builds pass. Inline-aware P4 A/B/C
+  profiles: dense static DOC share 17.66–17.95% → 12.68–13.17%, animated
+  19.84–20.41% → 13.34–13.62%; idle rises to 44.6–44.8% / 24.9–26.1%.
+  42 full captures / 32 timing windows, no added misses in observed windows;
+  ten fixture checkpoints and six live Tour image pairs match. One-voice
+  DOC share does not improve. Audio text -78 P4 / -57 S3 bytes, scheduler
+  stack -48 / -16 bytes. FPS capped; S3 runtime unmeasured. Next inspect
+  remaining inlined metadata/address loads, with canonical snapshots before
+  any layout trial. Original media unmounted; disposable copies removed.
+  Full MSX backup restored/digest-verified; guest/LCD captures match exactly.
 
 - **DOC local oscillator-helper trial (2026-11-09)**:
   [report](docs/doc-helper-scope-experiment-2026-11-09.md). Making the sole
