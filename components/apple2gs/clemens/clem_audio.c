@@ -2,6 +2,7 @@
 #include "clem_device.h"
 #include "clem_mmio_defs.h"
 #include "clem_util.h"
+#include "clem_doc_normalize.h"
 
 #include <math.h>
 #include <string.h>
@@ -372,8 +373,9 @@ unsigned clem_ensoniq_voices(struct ClemensDeviceEnsoniq *doc) {
             }
         }
 
-        level = (2.0f * data / 255.0f) - 1.0f;
-        doc->voice[channel] += level * (volume / 255.0f);
+        /* esp32gs: exact normalized bytes avoid two per-voice divisions. */
+        level = 2.0f * s_doc_unit[data] - 1.0f;
+        doc->voice[channel] += level * s_doc_unit[volume];
     }
 
     return osc_max_channels;

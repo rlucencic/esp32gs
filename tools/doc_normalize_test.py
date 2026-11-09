@@ -2,7 +2,8 @@
 """Generate bit-exact DOC normalization candidates and validate the native mixers.
 
 Emits complete, symbol-prefixed audio modules for native and IDF tests. Production
-source is read as the reference and is never modified. Float tables use exact
+source (current or committed) supplies the reference and is never modified.
+--production-unit compares the complete current production module to it. Tables use exact
 binary32 hex literals, generated with explicit rounding at each reference step.
 """
 import argparse
@@ -21,13 +22,14 @@ def table(name, values):
     return 'static const float '+name+'[256] = {\n    '+',\n    '.join(rows)+'\n};\n'
 
 
-def generate(root, out, reference_revision=None):
+def generate(root, out, reference_revision=None, production_unit=False):
     source = (subprocess.check_output(['git','show',reference_revision+
               ':components/apple2gs/clemens/clem_audio.c'],cwd=root,text=True)
               if reference_revision else (root/'components/apple2gs/clemens/clem_audio.c').read_text())
     old = ('        level = (2.0f * data / 255.0f) - 1.0f;\n'
            '        doc->voice[channel] += level * (volume / 255.0f);')
-    assert source.count(old)==1
+    if source.count(old)!=1:
+        raise ValueError('Reference must contain division-based mixing; pass --reference-revision 4ea30c6')
     norm = table('s_doc_unit', [f32(i/255.0) for i in range(256)])
     levels = table('s_doc_level', [f32(f32((2*i)/255.0)-1.0) for i in range(256)])
     replacements = {'reference': old,
@@ -41,6 +43,9 @@ def generate(root, out, reference_revision=None):
         definitions=''.join(f'#define {symbol} {prefix}{symbol}\n' for symbol in exports)
         arrays='' if name=='reference' else norm+(levels if name=='dual' else '')
         module=source.replace(old,replacements[name])
+        if name=='unit' and production_unit:
+            arrays=''
+            module=(root/'components/apple2gs/clemens/clem_audio.c').read_text()
         wrapper=f'''\nuint32_t normalize_run_{name}(struct ClemensDeviceEnsoniq *doc,unsigned repeats) {{
     uint32_t sum=0;
     for(unsigned n=0;n<repeats;++n) {{
@@ -64,9 +69,13 @@ def main():
     parser.add_argument('--cc',default='cc')
     parser.add_argument('--sanitize',action='store_true')
     parser.add_argument('--reference-revision',help='Committed reference module to preserve reproducibility after integration')
+    parser.add_argument('--production-unit',action='store_true',
+                        help='Use the current complete production module for the shared-table candidate')
     args=parser.parse_args()
     root=Path(__file__).resolve().parents[1]
-    source,norm,levels,replacements=generate(root,args.output,args.reference_revision)
+    if args.production_unit and not args.reference_revision:
+        parser.error('--production-unit requires --reference-revision for the division-based reference')
+    source,norm,levels,replacements=generate(root,args.output,args.reference_revision,args.production_unit)
     flags=['-O2','-g','-w','-I'+str(root/'tools'),'-I'+str(root/'components/apple2gs/clemens')]
     if args.sanitize:flags+=['-fsanitize=address,undefined','-fno-omit-frame-pointer']
     mainfile=args.output/'main.c'
@@ -88,6 +97,9 @@ def main():
             if prefix=='candidate_':
                 module=source.replace(replacements['reference'],replacements[variant])
                 arrays=norm+(levels if variant=='dual' else '')
+                if variant=='unit' and args.production_unit:
+                    arrays=''
+                    module=(root/'components/apple2gs/clemens/clem_audio.c').read_text()
             path=args.output/(variant+'-'+prefix+'.c');path.write_text(definitions+arrays+module);files.append(str(path))
         binary=args.output/('state-'+variant)
         subprocess.run([args.cc,*flags,str(root/'tools/doc_audio_test.c'),*files,'-lm','-o',str(binary)],check=True)

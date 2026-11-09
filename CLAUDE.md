@@ -167,6 +167,9 @@ write to the port directly).
   mix's gain is worked out once (no FP divide on the S3). Waveform-pointer
   arithmetic combines the shifts and selects offset bits without a mask
   table, preserving size/resolution, base alignment and 24-bit behavior.
+  Voice mixing shares a generated 256-float normalization table between
+  sample and volume (1024 read-only bytes), replacing the two divisions
+  with exact float operands and the same accumulation order.
 - `clem_iwm.c`: with the drive off (and no SmartPort units) a step moves time
   on in one go; the reset puts the scanline grid on the machine's grid
   (Clemens started it at time 0: after a later reset the IWM stretched nearly
@@ -245,6 +248,19 @@ stepping on a data register read). The MaTouch's budget is 4,000 a frame.
   of sound lost at once). Mark what moves; `GS_CHECK_MAPS` checks it.
 
 ## Testing
+
+- **DOC normalization integration (2026-11-08)**:
+  [report](docs/doc-normalization-integration-2026-11-08.md). Retain the
+  shared 1 KB table after six exact native PCM/CPU/DOC/RAM/pixel replay pairs,
+  524,288 production mixer cases and sanitized DOC mode/IRQ/state checks.
+  Full normal S3/P4 and isolated P4 builds pass. Ten board checkpoints match;
+  42 full captures / 24 timing windows have no new missing speaker frames
+  during timing. Dense static core-1 idle rises 31.0–33.2% to 35.4–37.5%,
+  animated 12.8–13.4% to 16.7–17.6%, with references before/after. P4 binary
+  grows 1024 bytes; mixer frame grows 16 bytes on each target. S3 object
+  text saves 25 bytes, runtime unmeasured. FPS remains capped near 60;
+  no real-software throughput gain is established. Next replay real DOC
+  audio software on throwaway media before another local kernel trial.
 
 - **DOC normalization trial (2026-11-08)**:
   [report](docs/doc-normalization-experiment-2026-11-08.md). Shared 1 KB and

@@ -1,0 +1,1404 @@
+{
+  "date": "2026-11-08",
+  "reference_revision": "0a7cc8c",
+  "shared_revision": "b70d679556dbad6a4df678c274cbaa0b600b4b49",
+  "hardware": {
+    "board": "Tab5",
+    "cpu": "ESP32-P4",
+    "cpu_mhz": 360,
+    "psram_mhz": 200,
+    "idf": "5.5.6",
+    "gcc": "14.2",
+    "ram_kb": 1024,
+    "rom": "ROM 3",
+    "speaker_enabled": true,
+    "settings_isolated": true,
+    "original_nvs_restored_each_round": true,
+    "user_media_mounted": false,
+    "s3_runtime_tested": false
+  },
+  "builds": {
+    "reference_p4_test": true,
+    "candidate_p4_test": true,
+    "candidate_p4_normal": true,
+    "candidate_s3_normal": true
+  },
+  "source_sha256": {
+    "clem_audio.c": "4c4a611b21ca4ae259073e0cd0bc93288307d5b9482312656e445b8e4941edd5",
+    "clem_doc_normalize.h": "535bfbeb2453d0fd722d17bd1b82703051c461c9b64f7b247950ed68d9ffb535"
+  },
+  "elf_sha256": {
+    "reference": "8afa252aa10b4052e47dd61093bbf348014dccd6b8772a93b45a666edae0c81e",
+    "candidate": "02328c01b63cad28993d9df6adc986a1f2552c7ecc7e0fac68d8169a0626e33d"
+  },
+  "native_platform": "x86_64",
+  "native": {
+    "reference": {
+      "static-0": {
+        "hashes": {
+          "pcm": "920f495dfc5719491842589d55cdbe7ce673660cd863ae301db65af7ed46e89f",
+          "vram": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+          "rgb565": "6fa6cd1779fabf4aa5b93dab71718fe82385aeb7140b4a1b1827cfc7eada683c",
+          "cpu": "3450904ccc0c0276c237bd24b4590fc190b9b2da7a3672d011d4ea9d27af2260",
+          "doc": "9b22866436d57fd4ea2f7d15f607a16fc35935bbd8d6bfb0f83ff84c69d6e885",
+          "ram": "c8be404f356447a6d5b40f47bb09669e0bb7582c08789243e1eaab6804437836",
+          "mega2": "02c1df7e026046f1940c284213b5b9fc1f173d0625f09dcda22cf70388d3fa8b"
+        },
+        "status": "FIXTURE PASS voices=0 animate=0 mode=320 bytes=2444 frames=600 samples=642766 nonzero=0 peak=0 signature=45"
+      },
+      "static-1": {
+        "hashes": {
+          "pcm": "6287155e3dd5516f94bf6f55de5a78243f986c5de993ed8096de61d2e3c58d2c",
+          "vram": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+          "rgb565": "6fa6cd1779fabf4aa5b93dab71718fe82385aeb7140b4a1b1827cfc7eada683c",
+          "cpu": "14853e8c70edb0037561514a1c5673f3fdc9aeed5dbc83397fc176f69ab0e32a",
+          "doc": "7e01a3ca4cb91aa24701e196ac84aabfde306ec02170da9c980645e0bedc07e9",
+          "ram": "f768808fe52418afa402d890eadc208d6bf53a5511c1fe77e05565bdaa92b1ad",
+          "mega2": "02c1df7e026046f1940c284213b5b9fc1f173d0625f09dcda22cf70388d3fa8b"
+        },
+        "status": "FIXTURE PASS voices=1 animate=0 mode=320 bytes=2454 frames=600 samples=642764 nonzero=637734 peak=131 signature=45"
+      },
+      "static-8": {
+        "hashes": {
+          "pcm": "a10fda7aebe83295215008525961103d18489593bbfc4ac50c14b479551d8ed1",
+          "vram": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+          "rgb565": "6fa6cd1779fabf4aa5b93dab71718fe82385aeb7140b4a1b1827cfc7eada683c",
+          "cpu": "84f67f317d76936b7bfae5b6fcef610c7770aea1a1c92d117e475a341ac028e5",
+          "doc": "52ef9417f9aafb42acc92c1075b017cb6989e7cab376172579cb5c67148014fc",
+          "ram": "8f73b53984e6a4cc6eeb0703a706b6e40d864d3fb5785558f938d193bf27a9eb",
+          "mega2": "02c1df7e026046f1940c284213b5b9fc1f173d0625f09dcda22cf70388d3fa8b"
+        },
+        "status": "FIXTURE PASS voices=8 animate=0 mode=320 bytes=2524 frames=600 samples=642766 nonzero=636032 peak=992 signature=45"
+      },
+      "static-32": {
+        "hashes": {
+          "pcm": "c5b42939135b07371a38e406c77163aec2eb49fc5086f9181c2c7e3126566fb6",
+          "vram": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+          "rgb565": "6fa6cd1779fabf4aa5b93dab71718fe82385aeb7140b4a1b1827cfc7eada683c",
+          "cpu": "aa628143a01a5b36aa4b160badf038fe42f1aae792b1a7c20c5b2416f79743e3",
+          "doc": "093115a9726459fa377fad79654bcc58d681b4ba911b1ef06763270d551cf27b",
+          "ram": "b380a18e6782a445ef1a3bab4ecfaeaedaf6c199bd010d12e01ac5b8bbb20d2e",
+          "mega2": "02c1df7e026046f1940c284213b5b9fc1f173d0625f09dcda22cf70388d3fa8b"
+        },
+        "status": "FIXTURE PASS voices=32 animate=0 mode=320 bytes=2764 frames=600 samples=642766 nonzero=638938 peak=3441 signature=45"
+      },
+      "animated-320": {
+        "hashes": {
+          "pcm": "432eec965bd4a6e204d8002c5366daeac8a7760d4c9ddbaf466ac80d1e51d7ca",
+          "vram": "1b1570d69b2e690d42d6787eb29efed75e74586ee70d52b3bfb69a418a132e58",
+          "rgb565": "c26b1276fe7daef2d0d70fb17e923b22e5b3c5f26506faba2d3de015c8dfbdcb",
+          "cpu": "807a5f3f11728b23d027422be10aded9965a6f9b2c32bd2122bd3f5bc1abdfc6",
+          "doc": "5ee1b5534729acce52769f245f8a69c0235553a4d2635d369f276510231338c1",
+          "ram": "25e1132befd16f8ec66b98dbbd8d9a605ffdeef37ff7daefe9aab35465463508",
+          "mega2": "14f78d711957c5937581c4ea40d1a551e561d70f0faa0b2a5ad26fc7a1186880"
+        },
+        "status": "FIXTURE PASS voices=32 animate=1 mode=320 bytes=2784 frames=600 samples=643942 nonzero=640258 peak=3410 signature=755"
+      },
+      "animated-640": {
+        "hashes": {
+          "pcm": "432eec965bd4a6e204d8002c5366daeac8a7760d4c9ddbaf466ac80d1e51d7ca",
+          "vram": "8fe772a4582fdc4fdefa12d55408cedd08be03e251edf4f42f98529ab4498430",
+          "rgb565": "98c9811dc60b827499f751674987972598df094bd3275590d37224f74e0edee7",
+          "cpu": "807a5f3f11728b23d027422be10aded9965a6f9b2c32bd2122bd3f5bc1abdfc6",
+          "doc": "5ee1b5534729acce52769f245f8a69c0235553a4d2635d369f276510231338c1",
+          "ram": "99dbcd921d4a940838a3f12f781dcd2dbd3c3774ad2a748658dc8db21df196bf",
+          "mega2": "fe3f9f7af78ce1ec06a85750c2f85befc157b5d80e004fd28f221355d1ff8b4c"
+        },
+        "status": "FIXTURE PASS voices=32 animate=1 mode=640 bytes=2784 frames=600 samples=643942 nonzero=640258 peak=3410 signature=755"
+      }
+    },
+    "candidate": {
+      "static-0": {
+        "hashes": {
+          "pcm": "920f495dfc5719491842589d55cdbe7ce673660cd863ae301db65af7ed46e89f",
+          "vram": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+          "rgb565": "6fa6cd1779fabf4aa5b93dab71718fe82385aeb7140b4a1b1827cfc7eada683c",
+          "cpu": "3450904ccc0c0276c237bd24b4590fc190b9b2da7a3672d011d4ea9d27af2260",
+          "doc": "9b22866436d57fd4ea2f7d15f607a16fc35935bbd8d6bfb0f83ff84c69d6e885",
+          "ram": "c8be404f356447a6d5b40f47bb09669e0bb7582c08789243e1eaab6804437836",
+          "mega2": "02c1df7e026046f1940c284213b5b9fc1f173d0625f09dcda22cf70388d3fa8b"
+        },
+        "status": "FIXTURE PASS voices=0 animate=0 mode=320 bytes=2444 frames=600 samples=642766 nonzero=0 peak=0 signature=45"
+      },
+      "static-1": {
+        "hashes": {
+          "pcm": "6287155e3dd5516f94bf6f55de5a78243f986c5de993ed8096de61d2e3c58d2c",
+          "vram": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+          "rgb565": "6fa6cd1779fabf4aa5b93dab71718fe82385aeb7140b4a1b1827cfc7eada683c",
+          "cpu": "14853e8c70edb0037561514a1c5673f3fdc9aeed5dbc83397fc176f69ab0e32a",
+          "doc": "7e01a3ca4cb91aa24701e196ac84aabfde306ec02170da9c980645e0bedc07e9",
+          "ram": "f768808fe52418afa402d890eadc208d6bf53a5511c1fe77e05565bdaa92b1ad",
+          "mega2": "02c1df7e026046f1940c284213b5b9fc1f173d0625f09dcda22cf70388d3fa8b"
+        },
+        "status": "FIXTURE PASS voices=1 animate=0 mode=320 bytes=2454 frames=600 samples=642764 nonzero=637734 peak=131 signature=45"
+      },
+      "static-8": {
+        "hashes": {
+          "pcm": "a10fda7aebe83295215008525961103d18489593bbfc4ac50c14b479551d8ed1",
+          "vram": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+          "rgb565": "6fa6cd1779fabf4aa5b93dab71718fe82385aeb7140b4a1b1827cfc7eada683c",
+          "cpu": "84f67f317d76936b7bfae5b6fcef610c7770aea1a1c92d117e475a341ac028e5",
+          "doc": "52ef9417f9aafb42acc92c1075b017cb6989e7cab376172579cb5c67148014fc",
+          "ram": "8f73b53984e6a4cc6eeb0703a706b6e40d864d3fb5785558f938d193bf27a9eb",
+          "mega2": "02c1df7e026046f1940c284213b5b9fc1f173d0625f09dcda22cf70388d3fa8b"
+        },
+        "status": "FIXTURE PASS voices=8 animate=0 mode=320 bytes=2524 frames=600 samples=642766 nonzero=636032 peak=992 signature=45"
+      },
+      "static-32": {
+        "hashes": {
+          "pcm": "c5b42939135b07371a38e406c77163aec2eb49fc5086f9181c2c7e3126566fb6",
+          "vram": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+          "rgb565": "6fa6cd1779fabf4aa5b93dab71718fe82385aeb7140b4a1b1827cfc7eada683c",
+          "cpu": "aa628143a01a5b36aa4b160badf038fe42f1aae792b1a7c20c5b2416f79743e3",
+          "doc": "093115a9726459fa377fad79654bcc58d681b4ba911b1ef06763270d551cf27b",
+          "ram": "b380a18e6782a445ef1a3bab4ecfaeaedaf6c199bd010d12e01ac5b8bbb20d2e",
+          "mega2": "02c1df7e026046f1940c284213b5b9fc1f173d0625f09dcda22cf70388d3fa8b"
+        },
+        "status": "FIXTURE PASS voices=32 animate=0 mode=320 bytes=2764 frames=600 samples=642766 nonzero=638938 peak=3441 signature=45"
+      },
+      "animated-320": {
+        "hashes": {
+          "pcm": "432eec965bd4a6e204d8002c5366daeac8a7760d4c9ddbaf466ac80d1e51d7ca",
+          "vram": "1b1570d69b2e690d42d6787eb29efed75e74586ee70d52b3bfb69a418a132e58",
+          "rgb565": "c26b1276fe7daef2d0d70fb17e923b22e5b3c5f26506faba2d3de015c8dfbdcb",
+          "cpu": "807a5f3f11728b23d027422be10aded9965a6f9b2c32bd2122bd3f5bc1abdfc6",
+          "doc": "5ee1b5534729acce52769f245f8a69c0235553a4d2635d369f276510231338c1",
+          "ram": "25e1132befd16f8ec66b98dbbd8d9a605ffdeef37ff7daefe9aab35465463508",
+          "mega2": "14f78d711957c5937581c4ea40d1a551e561d70f0faa0b2a5ad26fc7a1186880"
+        },
+        "status": "FIXTURE PASS voices=32 animate=1 mode=320 bytes=2784 frames=600 samples=643942 nonzero=640258 peak=3410 signature=755"
+      },
+      "animated-640": {
+        "hashes": {
+          "pcm": "432eec965bd4a6e204d8002c5366daeac8a7760d4c9ddbaf466ac80d1e51d7ca",
+          "vram": "8fe772a4582fdc4fdefa12d55408cedd08be03e251edf4f42f98529ab4498430",
+          "rgb565": "98c9811dc60b827499f751674987972598df094bd3275590d37224f74e0edee7",
+          "cpu": "807a5f3f11728b23d027422be10aded9965a6f9b2c32bd2122bd3f5bc1abdfc6",
+          "doc": "5ee1b5534729acce52769f245f8a69c0235553a4d2635d369f276510231338c1",
+          "ram": "99dbcd921d4a940838a3f12f781dcd2dbd3c3774ad2a748658dc8db21df196bf",
+          "mega2": "fe3f9f7af78ce1ec06a85750c2f85befc157b5d80e004fd28f221355d1ff8b4c"
+        },
+        "status": "FIXTURE PASS voices=32 animate=1 mode=640 bytes=2784 frames=600 samples=643942 nonzero=640258 peak=3410 signature=755"
+      }
+    }
+  },
+  "fixtures": {
+    "static-0": {
+      "entry": "0x022000",
+      "sentinel": "0x023ff0",
+      "bytes": 2444,
+      "voices": 0,
+      "enabled_oscillators": 32,
+      "animate": false,
+      "mode": 320,
+      "sha256": "ff0c304f123b27b8a630ca442254b9c53559d2221d209bffc41617a0a3b7c8eb"
+    },
+    "static-1": {
+      "entry": "0x022000",
+      "sentinel": "0x023ff0",
+      "bytes": 2454,
+      "voices": 1,
+      "enabled_oscillators": 32,
+      "animate": false,
+      "mode": 320,
+      "sha256": "97791a7b6294215a5ee0ddd0c1917ac3d23012dc03783c37f1ffda2d6baff508"
+    },
+    "static-8": {
+      "entry": "0x022000",
+      "sentinel": "0x023ff0",
+      "bytes": 2524,
+      "voices": 8,
+      "enabled_oscillators": 32,
+      "animate": false,
+      "mode": 320,
+      "sha256": "9eb14d11189d884b9c313a81bfcade3e146910a9373d917c20569811d2f85392"
+    },
+    "static-32": {
+      "entry": "0x022000",
+      "sentinel": "0x023ff0",
+      "bytes": 2764,
+      "voices": 32,
+      "enabled_oscillators": 32,
+      "animate": false,
+      "mode": 320,
+      "sha256": "866ae2ff5405f78b2c67ba836a896982239795ab61a3391df1439349ef4e9fa3"
+    },
+    "animated-320": {
+      "entry": "0x022000",
+      "sentinel": "0x023ff0",
+      "bytes": 2784,
+      "voices": 32,
+      "enabled_oscillators": 32,
+      "animate": true,
+      "mode": 320,
+      "sha256": "5f1c7a5264fb1166eff65152dde0e4bfcd7e9057235bc3594cc1f1c68658da33"
+    },
+    "animated-640": {
+      "entry": "0x022000",
+      "sentinel": "0x023ff0",
+      "bytes": 2784,
+      "voices": 32,
+      "enabled_oscillators": 32,
+      "animate": true,
+      "mode": 640,
+      "sha256": "2adb8f1b0dd0a9ca4bf483a369945bd3b42ba976f04eeec1bc4ae7651d4ee098"
+    }
+  },
+  "production_mixer_exact_check": {
+    "cases": 524288,
+    "all_sample_volume_byte_pairs": true,
+    "contexts": 8,
+    "host_asan_ubsan_pass": true,
+    "all_voice_float_bits_channel_count_and_mono_bits_equal": true
+  },
+  "production_doc_state_check": {
+    "states": 224,
+    "sync_mix_events": 57344,
+    "irq_events": 11866,
+    "halted_observations": 327629,
+    "host_asan_ubsan_pass": true,
+    "full_state_irq_and_float_outputs_equal": true
+  },
+  "board": {
+    "reference-a": {
+      "rom": {
+        "fps_windows": [
+          59.24584476133429,
+          59.173025444544976
+        ],
+        "speaker_missing_checkpoints": [
+          1926,
+          1926,
+          1926
+        ],
+        "speaker_missing_delta": 0,
+        "core1_profiles": [
+          {
+            "esp_cpu_wait_for_intr": 15.1,
+            "clem_ensoniq_sync": 0.2,
+            "clem_sound_glu_sync": 1.5,
+            "fetch": 10.4,
+            "branch": 3.1,
+            "w65816_run": 9.9,
+            "video_frame": 0.8,
+            "line_same.constprop.0": 0.4,
+            "__umoddi3": 1.2
+          },
+          {
+            "esp_cpu_wait_for_intr": 15.7,
+            "clem_ensoniq_sync": 0.2,
+            "clem_sound_glu_sync": 1.6,
+            "fetch": 10.2,
+            "branch": 3.1,
+            "w65816_run": 9.9,
+            "video_frame": 0.9,
+            "line_same.constprop.0": 0.4,
+            "__umoddi3": 1.4
+          },
+          {
+            "esp_cpu_wait_for_intr": 16.4,
+            "clem_ensoniq_sync": 0.2,
+            "clem_sound_glu_sync": 1.5,
+            "fetch": 9.9,
+            "branch": 3.2,
+            "w65816_run": 9.9,
+            "video_frame": 0.8,
+            "line_same.constprop.0": 0.4,
+            "__umoddi3": 1.2
+          }
+        ]
+      },
+      "static-0": {
+        "fps_windows": [
+          59.757210531465965,
+          59.746108865150156
+        ],
+        "speaker_missing_checkpoints": [
+          29594,
+          29594,
+          29594
+        ],
+        "speaker_missing_delta": 0,
+        "core1_profiles": [
+          {
+            "esp_cpu_wait_for_intr": 63.2,
+            "clem_ensoniq_sync": 0.2,
+            "clem_sound_glu_sync": 1.1,
+            "fetch": 10.1,
+            "branch": 9.6,
+            "w65816_run": 6.2,
+            "video_frame": 0.1,
+            "line_same.constprop.0": 1.5,
+            "__umoddi3": 1.1
+          },
+          {
+            "esp_cpu_wait_for_intr": 62.8,
+            "clem_ensoniq_sync": 0.2,
+            "clem_sound_glu_sync": 1.2,
+            "fetch": 10.0,
+            "branch": 9.6,
+            "w65816_run": 6.5,
+            "video_frame": 0.1,
+            "line_same.constprop.0": 1.5,
+            "__umoddi3": 1.2
+          },
+          {
+            "esp_cpu_wait_for_intr": 63.0,
+            "clem_ensoniq_sync": 0.2,
+            "clem_sound_glu_sync": 1.2,
+            "fetch": 10.2,
+            "branch": 9.3,
+            "w65816_run": 6.2,
+            "video_frame": 0.1,
+            "line_same.constprop.0": 1.5,
+            "__umoddi3": 1.1
+          }
+        ]
+      },
+      "static-1": {
+        "fps_windows": [
+          59.69929212592503,
+          59.751586004297685
+        ],
+        "speaker_missing_checkpoints": [
+          59933,
+          59933,
+          59933
+        ],
+        "speaker_missing_delta": 0,
+        "core1_profiles": [
+          {
+            "esp_cpu_wait_for_intr": 54.7,
+            "clem_ensoniq_voices": 1.9,
+            "clem_ensoniq_oscillator_cycle": 0.4,
+            "clem_ensoniq_sync": 5.9,
+            "clem_sound_glu_sync": 1.4,
+            "fetch": 9.9,
+            "branch": 9.3,
+            "w65816_run": 6.6,
+            "video_frame": 0.2,
+            "line_same.constprop.0": 1.5,
+            "__umoddi3": 1.3
+          },
+          {
+            "esp_cpu_wait_for_intr": 55.0,
+            "clem_ensoniq_voices": 1.9,
+            "clem_ensoniq_oscillator_cycle": 0.5,
+            "clem_ensoniq_sync": 5.9,
+            "clem_sound_glu_sync": 1.3,
+            "fetch": 10.3,
+            "branch": 9.3,
+            "w65816_run": 6.4,
+            "video_frame": 0.2,
+            "line_same.constprop.0": 1.5,
+            "__umoddi3": 1.1
+          },
+          {
+            "esp_cpu_wait_for_intr": 54.6,
+            "clem_ensoniq_voices": 1.9,
+            "clem_ensoniq_oscillator_cycle": 0.4,
+            "clem_ensoniq_sync": 5.9,
+            "clem_sound_glu_sync": 1.4,
+            "fetch": 10.2,
+            "branch": 9.1,
+            "w65816_run": 6.5,
+            "video_frame": 0.2,
+            "line_same.constprop.0": 1.5,
+            "__umoddi3": 1.3
+          }
+        ]
+      },
+      "static-32": {
+        "fps_windows": [
+          59.75158899402518,
+          59.686024157237654
+        ],
+        "speaker_missing_checkpoints": [
+          90013,
+          90013,
+          90013
+        ],
+        "speaker_missing_delta": 0,
+        "core1_profiles": [
+          {
+            "esp_cpu_wait_for_intr": 31.0,
+            "clem_ensoniq_voices": 10.3,
+            "clem_ensoniq_oscillator_cycle": 12.6,
+            "clem_ensoniq_sync": 7.3,
+            "clem_sound_glu_sync": 1.4,
+            "fetch": 10.4,
+            "branch": 9.2,
+            "w65816_run": 6.6,
+            "video_frame": 0.2,
+            "line_same.constprop.0": 1.5,
+            "__umoddi3": 1.2
+          },
+          {
+            "esp_cpu_wait_for_intr": 32.5,
+            "clem_ensoniq_voices": 10.3,
+            "clem_ensoniq_oscillator_cycle": 12.5,
+            "clem_ensoniq_sync": 7.1,
+            "clem_sound_glu_sync": 1.3,
+            "fetch": 10.1,
+            "branch": 9.5,
+            "w65816_run": 6.7,
+            "video_frame": 0.2,
+            "line_same.constprop.0": 1.5,
+            "__umoddi3": 1.2
+          },
+          {
+            "esp_cpu_wait_for_intr": 32.6,
+            "clem_ensoniq_voices": 10.3,
+            "clem_ensoniq_oscillator_cycle": 12.4,
+            "clem_ensoniq_sync": 7.3,
+            "clem_sound_glu_sync": 1.4,
+            "fetch": 10.2,
+            "branch": 9.5,
+            "w65816_run": 6.7,
+            "video_frame": 0.2,
+            "line_same.constprop.0": 1.5,
+            "__umoddi3": 1.2
+          }
+        ]
+      },
+      "animated-640": {
+        "fps_windows": [
+          59.60263664791534,
+          59.67303975203682
+        ],
+        "speaker_missing_checkpoints": [
+          120278,
+          120278,
+          120278
+        ],
+        "speaker_missing_delta": 0,
+        "core1_profiles": [
+          {
+            "esp_cpu_wait_for_intr": 12.8,
+            "clem_ensoniq_voices": 10.7,
+            "clem_ensoniq_oscillator_cycle": 14.8,
+            "clem_ensoniq_sync": 7.7,
+            "clem_sound_glu_sync": 2.0,
+            "fetch": 13.8,
+            "branch": 1.3,
+            "w65816_run": 9.6,
+            "video_frame": 2.8,
+            "line_same.constprop.0": 2.5,
+            "__umoddi3": 1.3
+          },
+          {
+            "esp_cpu_wait_for_intr": 12.9,
+            "clem_ensoniq_voices": 10.8,
+            "clem_ensoniq_oscillator_cycle": 14.3,
+            "clem_ensoniq_sync": 7.5,
+            "clem_sound_glu_sync": 1.9,
+            "fetch": 13.9,
+            "branch": 1.4,
+            "w65816_run": 9.3,
+            "video_frame": 2.8,
+            "line_same.constprop.0": 2.5,
+            "__umoddi3": 1.3
+          },
+          {
+            "esp_cpu_wait_for_intr": 13.0,
+            "clem_ensoniq_voices": 11.0,
+            "clem_ensoniq_oscillator_cycle": 14.7,
+            "clem_ensoniq_sync": 7.5,
+            "clem_sound_glu_sync": 1.8,
+            "fetch": 13.8,
+            "branch": 1.3,
+            "w65816_run": 9.4,
+            "video_frame": 2.9,
+            "line_same.constprop.0": 2.4,
+            "__umoddi3": 1.3
+          }
+        ]
+      }
+    },
+    "candidate-b": {
+      "rom": {
+        "fps_windows": [
+          59.282584431117954,
+          59.213024046630075
+        ],
+        "speaker_missing_checkpoints": [
+          2182,
+          2182,
+          2182
+        ],
+        "speaker_missing_delta": 0,
+        "core1_profiles": [
+          {
+            "esp_cpu_wait_for_intr": 15.3,
+            "clem_ensoniq_sync": 0.2,
+            "clem_sound_glu_sync": 1.6,
+            "fetch": 10.2,
+            "branch": 3.0,
+            "w65816_run": 9.7,
+            "video_frame": 0.9,
+            "line_same.constprop.0": 0.3,
+            "__umoddi3": 1.3
+          },
+          {
+            "esp_cpu_wait_for_intr": 16.0,
+            "clem_ensoniq_sync": 0.2,
+            "clem_sound_glu_sync": 1.6,
+            "fetch": 10.1,
+            "branch": 2.9,
+            "w65816_run": 9.9,
+            "video_frame": 0.9,
+            "line_same.constprop.0": 0.4,
+            "__umoddi3": 1.2
+          },
+          {
+            "esp_cpu_wait_for_intr": 16.6,
+            "clem_ensoniq_sync": 0.2,
+            "clem_sound_glu_sync": 1.5,
+            "fetch": 10.5,
+            "branch": 3.0,
+            "w65816_run": 10.1,
+            "video_frame": 0.8,
+            "line_same.constprop.0": 0.3,
+            "__umoddi3": 1.2
+          }
+        ]
+      },
+      "static-0": {
+        "fps_windows": [
+          59.68061678414004,
+          59.75045573876291
+        ],
+        "speaker_missing_checkpoints": [
+          32406,
+          32406,
+          32406
+        ],
+        "speaker_missing_delta": 0,
+        "core1_profiles": [
+          {
+            "esp_cpu_wait_for_intr": 62.9,
+            "clem_ensoniq_sync": 0.2,
+            "clem_sound_glu_sync": 1.2,
+            "fetch": 10.1,
+            "branch": 9.3,
+            "w65816_run": 6.9,
+            "video_frame": 0.2,
+            "line_same.constprop.0": 1.5,
+            "__umoddi3": 1.2
+          },
+          {
+            "esp_cpu_wait_for_intr": 63.3,
+            "clem_ensoniq_sync": 0.2,
+            "clem_sound_glu_sync": 1.2,
+            "fetch": 10.3,
+            "branch": 9.2,
+            "w65816_run": 6.6,
+            "video_frame": 0.2,
+            "line_same.constprop.0": 1.5,
+            "__umoddi3": 1.2
+          },
+          {
+            "esp_cpu_wait_for_intr": 63.4,
+            "clem_ensoniq_sync": 0.2,
+            "clem_sound_glu_sync": 1.2,
+            "fetch": 9.9,
+            "branch": 8.9,
+            "w65816_run": 6.8,
+            "video_frame": 0.1,
+            "line_same.constprop.0": 1.5,
+            "__umoddi3": 1.3
+          }
+        ]
+      },
+      "static-1": {
+        "fps_windows": [
+          59.74519802342998,
+          59.6772669530504
+        ],
+        "speaker_missing_checkpoints": [
+          62721,
+          62721,
+          62721
+        ],
+        "speaker_missing_delta": 0,
+        "core1_profiles": [
+          {
+            "esp_cpu_wait_for_intr": 54.7,
+            "clem_ensoniq_voices": 1.8,
+            "clem_ensoniq_oscillator_cycle": 0.4,
+            "clem_ensoniq_sync": 6.0,
+            "clem_sound_glu_sync": 1.4,
+            "fetch": 10.3,
+            "branch": 9.2,
+            "w65816_run": 6.6,
+            "video_frame": 0.1,
+            "line_same.constprop.0": 1.5,
+            "__umoddi3": 1.3
+          },
+          {
+            "esp_cpu_wait_for_intr": 54.9,
+            "clem_ensoniq_voices": 1.8,
+            "clem_ensoniq_oscillator_cycle": 0.4,
+            "clem_ensoniq_sync": 5.8,
+            "clem_sound_glu_sync": 1.4,
+            "fetch": 10.2,
+            "branch": 9.0,
+            "w65816_run": 6.9,
+            "video_frame": 0.2,
+            "line_same.constprop.0": 1.5,
+            "__umoddi3": 1.2
+          },
+          {
+            "esp_cpu_wait_for_intr": 54.6,
+            "clem_ensoniq_voices": 1.7,
+            "clem_ensoniq_oscillator_cycle": 0.4,
+            "clem_ensoniq_sync": 6.0,
+            "clem_sound_glu_sync": 1.5,
+            "fetch": 10.1,
+            "branch": 9.2,
+            "w65816_run": 6.8,
+            "video_frame": 0.1,
+            "line_same.constprop.0": 1.5,
+            "__umoddi3": 1.4
+          }
+        ]
+      },
+      "static-32": {
+        "fps_windows": [
+          59.756934788236755,
+          59.748139204297644
+        ],
+        "speaker_missing_checkpoints": [
+          92801,
+          92801,
+          92801
+        ],
+        "speaker_missing_delta": 0,
+        "core1_profiles": [
+          {
+            "esp_cpu_wait_for_intr": 35.4,
+            "clem_ensoniq_voices": 5.7,
+            "clem_ensoniq_oscillator_cycle": 12.7,
+            "clem_ensoniq_sync": 6.9,
+            "clem_sound_glu_sync": 1.4,
+            "fetch": 10.1,
+            "branch": 9.1,
+            "w65816_run": 6.7,
+            "video_frame": 0.1,
+            "line_same.constprop.0": 1.5,
+            "__umoddi3": 1.3
+          },
+          {
+            "esp_cpu_wait_for_intr": 37.5,
+            "clem_ensoniq_voices": 6.2,
+            "clem_ensoniq_oscillator_cycle": 12.6,
+            "clem_ensoniq_sync": 7.1,
+            "clem_sound_glu_sync": 1.4,
+            "fetch": 9.9,
+            "branch": 8.9,
+            "w65816_run": 6.6,
+            "video_frame": 0.1,
+            "line_same.constprop.0": 1.5,
+            "__umoddi3": 1.3
+          },
+          {
+            "esp_cpu_wait_for_intr": 37.3,
+            "clem_ensoniq_voices": 6.1,
+            "clem_ensoniq_oscillator_cycle": 12.7,
+            "clem_ensoniq_sync": 7.1,
+            "clem_sound_glu_sync": 1.5,
+            "fetch": 9.6,
+            "branch": 9.4,
+            "w65816_run": 6.6,
+            "video_frame": 0.1,
+            "line_same.constprop.0": 1.5,
+            "__umoddi3": 1.2
+          }
+        ]
+      },
+      "animated-640": {
+        "fps_windows": [
+          59.68404798821487,
+          59.621051641971
+        ],
+        "speaker_missing_checkpoints": [
+          126023,
+          126023,
+          126023
+        ],
+        "speaker_missing_delta": 0,
+        "core1_profiles": [
+          {
+            "esp_cpu_wait_for_intr": 17.6,
+            "clem_ensoniq_voices": 6.5,
+            "clem_ensoniq_oscillator_cycle": 15.0,
+            "clem_ensoniq_sync": 7.4,
+            "clem_sound_glu_sync": 1.9,
+            "fetch": 13.9,
+            "branch": 1.3,
+            "w65816_run": 8.8,
+            "video_frame": 2.8,
+            "line_same.constprop.0": 2.5,
+            "__umoddi3": 1.4
+          },
+          {
+            "esp_cpu_wait_for_intr": 16.7,
+            "clem_ensoniq_voices": 6.5,
+            "clem_ensoniq_oscillator_cycle": 14.4,
+            "clem_ensoniq_sync": 7.6,
+            "clem_sound_glu_sync": 1.9,
+            "fetch": 13.7,
+            "branch": 1.3,
+            "w65816_run": 8.9,
+            "video_frame": 2.9,
+            "line_same.constprop.0": 2.4,
+            "__umoddi3": 1.4
+          },
+          {
+            "esp_cpu_wait_for_intr": 17.3,
+            "clem_ensoniq_voices": 6.3,
+            "clem_ensoniq_oscillator_cycle": 14.4,
+            "clem_ensoniq_sync": 7.7,
+            "clem_sound_glu_sync": 2.0,
+            "fetch": 14.2,
+            "branch": 1.3,
+            "w65816_run": 8.8,
+            "video_frame": 2.9,
+            "line_same.constprop.0": 2.4,
+            "__umoddi3": 1.4
+          }
+        ]
+      }
+    },
+    "reference-c": {
+      "static-32": {
+        "fps_windows": [
+          59.746359207128,
+          59.738610884805944
+        ],
+        "speaker_missing_checkpoints": [
+          35347,
+          35347,
+          35347
+        ],
+        "speaker_missing_delta": 0,
+        "core1_profiles": [
+          {
+            "esp_cpu_wait_for_intr": 32.8,
+            "clem_ensoniq_voices": 10.3,
+            "clem_ensoniq_oscillator_cycle": 12.6,
+            "clem_ensoniq_sync": 7.0,
+            "clem_sound_glu_sync": 1.5,
+            "fetch": 10.3,
+            "branch": 9.3,
+            "w65816_run": 6.5,
+            "video_frame": 0.2,
+            "line_same.constprop.0": 1.5,
+            "__umoddi3": 1.1
+          },
+          {
+            "esp_cpu_wait_for_intr": 33.2,
+            "clem_ensoniq_voices": 10.3,
+            "clem_ensoniq_oscillator_cycle": 12.4,
+            "clem_ensoniq_sync": 7.2,
+            "clem_sound_glu_sync": 1.4,
+            "fetch": 9.8,
+            "branch": 9.3,
+            "w65816_run": 6.6,
+            "video_frame": 0.1,
+            "line_same.constprop.0": 1.5,
+            "__umoddi3": 1.2
+          },
+          {
+            "esp_cpu_wait_for_intr": 32.8,
+            "clem_ensoniq_voices": 10.6,
+            "clem_ensoniq_oscillator_cycle": 12.7,
+            "clem_ensoniq_sync": 7.4,
+            "clem_sound_glu_sync": 1.3,
+            "fetch": 10.0,
+            "branch": 9.3,
+            "w65816_run": 6.5,
+            "video_frame": 0.2,
+            "line_same.constprop.0": 1.5,
+            "__umoddi3": 1.2
+          }
+        ]
+      },
+      "animated-640": {
+        "fps_windows": [
+          59.67661102770568,
+          59.62269531349185
+        ],
+        "speaker_missing_checkpoints": [
+          65949,
+          65949,
+          65949
+        ],
+        "speaker_missing_delta": 0,
+        "core1_profiles": [
+          {
+            "esp_cpu_wait_for_intr": 13.4,
+            "clem_ensoniq_voices": 10.8,
+            "clem_ensoniq_oscillator_cycle": 14.5,
+            "clem_ensoniq_sync": 7.6,
+            "clem_sound_glu_sync": 2.0,
+            "fetch": 13.5,
+            "branch": 1.4,
+            "w65816_run": 9.5,
+            "video_frame": 2.8,
+            "line_same.constprop.0": 2.5,
+            "__umoddi3": 1.3
+          },
+          {
+            "esp_cpu_wait_for_intr": 13.3,
+            "clem_ensoniq_voices": 10.9,
+            "clem_ensoniq_oscillator_cycle": 14.1,
+            "clem_ensoniq_sync": 7.5,
+            "clem_sound_glu_sync": 1.8,
+            "fetch": 13.7,
+            "branch": 1.4,
+            "w65816_run": 9.3,
+            "video_frame": 2.8,
+            "line_same.constprop.0": 2.4,
+            "__umoddi3": 1.4
+          },
+          {
+            "esp_cpu_wait_for_intr": 13.2,
+            "clem_ensoniq_voices": 11.2,
+            "clem_ensoniq_oscillator_cycle": 14.4,
+            "clem_ensoniq_sync": 7.3,
+            "clem_sound_glu_sync": 1.8,
+            "fetch": 13.9,
+            "branch": 1.4,
+            "w65816_run": 9.3,
+            "video_frame": 2.8,
+            "line_same.constprop.0": 2.5,
+            "__umoddi3": 1.5
+          }
+        ]
+      }
+    }
+  },
+  "pixel_validation": {
+    "reference-a/static-0": {
+      "readback_pass": true,
+      "vram_picture_match": true,
+      "picture_sha256": "fbbe265027daa12618b8e6c0c48102c5975b407b31eb61bcec60db38589c4ee5",
+      "vram_sha256": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+      "native_picture_match": true
+    },
+    "reference-a/static-1": {
+      "readback_pass": true,
+      "vram_picture_match": true,
+      "picture_sha256": "fbbe265027daa12618b8e6c0c48102c5975b407b31eb61bcec60db38589c4ee5",
+      "vram_sha256": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+      "native_picture_match": true
+    },
+    "reference-a/static-32": {
+      "readback_pass": true,
+      "vram_picture_match": true,
+      "picture_sha256": "fbbe265027daa12618b8e6c0c48102c5975b407b31eb61bcec60db38589c4ee5",
+      "vram_sha256": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+      "native_picture_match": true
+    },
+    "reference-a/animated-640": {
+      "readback_pass": true,
+      "vram_picture_match": true,
+      "picture_sha256": "d6095b05b517dc344fec5e0bd177a14d3769695ada7e6a6358cbe2f5fd4b0be6",
+      "vram_sha256": "5050348d06748ddf83c14e1259766ac7229fa6c428fe05336e81421f1c4b7b16"
+    },
+    "candidate-b/static-0": {
+      "readback_pass": true,
+      "vram_picture_match": true,
+      "picture_sha256": "fbbe265027daa12618b8e6c0c48102c5975b407b31eb61bcec60db38589c4ee5",
+      "vram_sha256": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+      "native_picture_match": true,
+      "vram_reference_match": true,
+      "picture_reference_match": true,
+      "differing_register_fields": [
+        "cycles"
+      ],
+      "registers_reference_match": false,
+      "registers_except_cumulative_cycles_match": true,
+      "initialized_registers_reference_match": true
+    },
+    "candidate-b/static-1": {
+      "readback_pass": true,
+      "vram_picture_match": true,
+      "picture_sha256": "fbbe265027daa12618b8e6c0c48102c5975b407b31eb61bcec60db38589c4ee5",
+      "vram_sha256": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+      "native_picture_match": true,
+      "vram_reference_match": true,
+      "picture_reference_match": true,
+      "differing_register_fields": [
+        "Y",
+        "cycles"
+      ],
+      "registers_reference_match": false,
+      "registers_except_cumulative_cycles_match": false,
+      "initialized_registers_reference_match": true
+    },
+    "candidate-b/static-32": {
+      "readback_pass": true,
+      "vram_picture_match": true,
+      "picture_sha256": "fbbe265027daa12618b8e6c0c48102c5975b407b31eb61bcec60db38589c4ee5",
+      "vram_sha256": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+      "native_picture_match": true,
+      "vram_reference_match": true,
+      "picture_reference_match": true,
+      "differing_register_fields": [
+        "cycles"
+      ],
+      "registers_reference_match": false,
+      "registers_except_cumulative_cycles_match": true,
+      "initialized_registers_reference_match": true
+    },
+    "candidate-b/animated-640": {
+      "readback_pass": true,
+      "vram_picture_match": true,
+      "picture_sha256": "d6095b05b517dc344fec5e0bd177a14d3769695ada7e6a6358cbe2f5fd4b0be6",
+      "vram_sha256": "5050348d06748ddf83c14e1259766ac7229fa6c428fe05336e81421f1c4b7b16",
+      "vram_reference_match": true,
+      "picture_reference_match": true,
+      "differing_register_fields": [
+        "cycles"
+      ],
+      "registers_reference_match": false,
+      "registers_except_cumulative_cycles_match": true,
+      "initialized_registers_reference_match": true
+    },
+    "reference-c/static-32": {
+      "readback_pass": true,
+      "vram_picture_match": true,
+      "picture_sha256": "fbbe265027daa12618b8e6c0c48102c5975b407b31eb61bcec60db38589c4ee5",
+      "vram_sha256": "b00a8f75aca794e047c8ac4904ec0a07fe58eb74d7b37dcb8805d47471970965",
+      "native_picture_match": true,
+      "vram_reference_match": true,
+      "picture_reference_match": true,
+      "differing_register_fields": [
+        "Y",
+        "cycles"
+      ],
+      "registers_reference_match": false,
+      "registers_except_cumulative_cycles_match": false,
+      "initialized_registers_reference_match": true
+    },
+    "reference-c/animated-640": {
+      "readback_pass": true,
+      "vram_picture_match": true,
+      "picture_sha256": "d6095b05b517dc344fec5e0bd177a14d3769695ada7e6a6358cbe2f5fd4b0be6",
+      "vram_sha256": "5050348d06748ddf83c14e1259766ac7229fa6c428fe05336e81421f1c4b7b16",
+      "vram_reference_match": true,
+      "picture_reference_match": true,
+      "differing_register_fields": [
+        "cycles"
+      ],
+      "registers_reference_match": false,
+      "registers_except_cumulative_cycles_match": true,
+      "initialized_registers_reference_match": true
+    }
+  },
+  "inline_profiles": {
+    "reference-a": [
+      {
+        "samples": 32000,
+        "inclusive_percent": {
+          "_clem_ensoniq_calc_waveform_ptr": 7.1281,
+          "clem_ensoniq_oscillator_cycle": 14.3,
+          "clem_ensoniq_sync": 7.6094,
+          "clem_ensoniq_voices": 10.6906,
+          "clem_sound_glu_sync": 1.8094,
+          "shr_line": 2.3969,
+          "hash_words": 2.4094,
+          "line_same": 2.4562,
+          "video_frame": 2.8,
+          "audio_frame": 0.6438,
+          "w65816_run": 9.0531
+        },
+        "leaf_percent": {
+          "fetch": 13.5219,
+          "esp_cpu_wait_for_intr": 13.4563,
+          "clem_ensoniq_voices": 10.6906,
+          "w65816_run": 9.0406,
+          "clem_ensoniq_sync": 7.5656,
+          "clem_ensoniq_oscillator_cycle": 7.1719,
+          "_clem_ensoniq_calc_waveform_ptr": 7.1281,
+          "fetch16": 3.05,
+          "op_adc": 2.4125,
+          "hash_words": 2.4094,
+          "shr_line": 2.3438,
+          "am_long": 2.2469,
+          "??": 2.1063,
+          "clem_sound_glu_sync": 1.7219,
+          "branch": 1.3875,
+          "wr": 1.2563,
+          "rd": 1.1375,
+          "devices_sync": 1.125,
+          "_clem_vgc_scanline_build_rgb_palette": 0.7719,
+          "_clem_iwm_step": 0.725,
+          "audio_frame": 0.6438,
+          "nz16": 0.6312,
+          "compare": 0.6188,
+          "nz": 0.5125,
+          "clem_scc_sync_channel_uart": 0.5,
+          "gs_run_frame": 0.4656,
+          "op_lda": 0.4375,
+          "vPortExitCriticalMultiCore": 0.4,
+          "phi0_next": 0.3156,
+          "clem_vgc_sync": 0.3
+        }
+      },
+      {
+        "samples": 32000,
+        "inclusive_percent": {
+          "_clem_ensoniq_calc_waveform_ptr": 7.175,
+          "clem_ensoniq_oscillator_cycle": 14.35,
+          "clem_ensoniq_sync": 7.5875,
+          "clem_ensoniq_voices": 10.7875,
+          "clem_sound_glu_sync": 1.8094,
+          "shr_line": 2.425,
+          "hash_words": 2.4719,
+          "line_same": 2.525,
+          "video_frame": 2.7906,
+          "audio_frame": 0.65,
+          "w65816_run": 9.3094
+        },
+        "leaf_percent": {
+          "fetch": 14.0188,
+          "esp_cpu_wait_for_intr": 13.2688,
+          "clem_ensoniq_voices": 10.7875,
+          "w65816_run": 9.2969,
+          "clem_ensoniq_sync": 7.5469,
+          "_clem_ensoniq_calc_waveform_ptr": 7.175,
+          "clem_ensoniq_oscillator_cycle": 7.175,
+          "fetch16": 2.9469,
+          "hash_words": 2.4719,
+          "shr_line": 2.3875,
+          "am_long": 2.35,
+          "??": 2.1688,
+          "op_adc": 2.075,
+          "clem_sound_glu_sync": 1.6938,
+          "branch": 1.4563,
+          "devices_sync": 1.1562,
+          "rd": 1.075,
+          "wr": 1.0281,
+          "_clem_vgc_scanline_build_rgb_palette": 0.9437,
+          "compare": 0.6625,
+          "nz16": 0.6594,
+          "_clem_iwm_step": 0.6531,
+          "audio_frame": 0.65,
+          "nz": 0.5031,
+          "gs_run_frame": 0.4594,
+          "op_lda": 0.3937,
+          "vPortExitCriticalMultiCore": 0.3563,
+          "clem_scc_sync_channel_uart": 0.3469,
+          "clem_vgc_sync": 0.3406,
+          "phi0_next": 0.3031
+        }
+      },
+      {
+        "samples": 32000,
+        "inclusive_percent": {
+          "_clem_ensoniq_calc_waveform_ptr": 7.4125,
+          "clem_ensoniq_oscillator_cycle": 14.6781,
+          "clem_ensoniq_sync": 7.675,
+          "clem_ensoniq_voices": 10.8219,
+          "clem_sound_glu_sync": 1.8406,
+          "shr_line": 2.3,
+          "hash_words": 2.5031,
+          "line_same": 2.55,
+          "video_frame": 2.7062,
+          "audio_frame": 0.6531,
+          "w65816_run": 9.4375
+        },
+        "leaf_percent": {
+          "fetch": 13.4031,
+          "esp_cpu_wait_for_intr": 13.2719,
+          "clem_ensoniq_voices": 10.8219,
+          "w65816_run": 9.425,
+          "clem_ensoniq_sync": 7.6312,
+          "_clem_ensoniq_calc_waveform_ptr": 7.4125,
+          "clem_ensoniq_oscillator_cycle": 7.2656,
+          "fetch16": 3.1437,
+          "hash_words": 2.5031,
+          "am_long": 2.3281,
+          "shr_line": 2.2563,
+          "op_adc": 2.1125,
+          "??": 2.1031,
+          "clem_sound_glu_sync": 1.7,
+          "branch": 1.3094,
+          "devices_sync": 1.2844,
+          "wr": 1.1281,
+          "rd": 1.05,
+          "_clem_vgc_scanline_build_rgb_palette": 0.7719,
+          "nz16": 0.7031,
+          "audio_frame": 0.6531,
+          "_clem_iwm_step": 0.6125,
+          "compare": 0.5344,
+          "clem_scc_sync_channel_uart": 0.5,
+          "nz": 0.475,
+          "gs_run_frame": 0.4531,
+          "op_lda": 0.4062,
+          "vPortExitCriticalMultiCore": 0.3875,
+          "clem_vgc_sync": 0.3719,
+          "phi0_next": 0.2875
+        }
+      }
+    ],
+    "candidate-b": [
+      {
+        "samples": 32000,
+        "inclusive_percent": {
+          "_clem_ensoniq_calc_waveform_ptr": 7.275,
+          "clem_ensoniq_oscillator_cycle": 14.3375,
+          "clem_ensoniq_sync": 7.4531,
+          "clem_ensoniq_voices": 6.3656,
+          "clem_sound_glu_sync": 1.9375,
+          "shr_line": 2.4656,
+          "hash_words": 2.4312,
+          "line_same": 2.475,
+          "video_frame": 2.8125,
+          "audio_frame": 0.6344,
+          "w65816_run": 9.0344
+        },
+        "leaf_percent": {
+          "esp_cpu_wait_for_intr": 18.1625,
+          "fetch": 13.675,
+          "w65816_run": 9.0219,
+          "clem_ensoniq_sync": 7.4219,
+          "_clem_ensoniq_calc_waveform_ptr": 7.275,
+          "clem_ensoniq_oscillator_cycle": 7.0625,
+          "clem_ensoniq_voices": 6.3656,
+          "fetch16": 3.1625,
+          "hash_words": 2.4312,
+          "shr_line": 2.4094,
+          "am_long": 2.3125,
+          "??": 2.2969,
+          "op_adc": 2.1625,
+          "clem_sound_glu_sync": 1.8281,
+          "branch": 1.2844,
+          "devices_sync": 1.25,
+          "wr": 1.1781,
+          "rd": 0.9656,
+          "_clem_vgc_scanline_build_rgb_palette": 0.8594,
+          "nz16": 0.675,
+          "_clem_iwm_step": 0.6625,
+          "audio_frame": 0.6344,
+          "compare": 0.5312,
+          "nz": 0.4437,
+          "clem_scc_sync_channel_uart": 0.4281,
+          "op_lda": 0.4281,
+          "gs_run_frame": 0.4094,
+          "vPortExitCriticalMultiCore": 0.3656,
+          "load": 0.2906,
+          "clem_vgc_sync": 0.2875
+        }
+      },
+      {
+        "samples": 32000,
+        "inclusive_percent": {
+          "_clem_ensoniq_calc_waveform_ptr": 7.2531,
+          "clem_ensoniq_oscillator_cycle": 14.2844,
+          "clem_ensoniq_sync": 7.5281,
+          "clem_ensoniq_voices": 6.55,
+          "clem_sound_glu_sync": 1.8687,
+          "shr_line": 2.3813,
+          "hash_words": 2.425,
+          "line_same": 2.4625,
+          "video_frame": 2.7812,
+          "audio_frame": 0.6656,
+          "w65816_run": 8.9844
+        },
+        "leaf_percent": {
+          "esp_cpu_wait_for_intr": 17.0469,
+          "fetch": 13.7625,
+          "w65816_run": 8.9781,
+          "clem_ensoniq_sync": 7.4938,
+          "_clem_ensoniq_calc_waveform_ptr": 7.2531,
+          "clem_ensoniq_oscillator_cycle": 7.0312,
+          "clem_ensoniq_voices": 6.55,
+          "fetch16": 3.1187,
+          "hash_words": 2.425,
+          "op_adc": 2.3844,
+          "shr_line": 2.3125,
+          "am_long": 2.2406,
+          "??": 2.1906,
+          "clem_sound_glu_sync": 1.7375,
+          "branch": 1.25,
+          "devices_sync": 1.175,
+          "wr": 1.1719,
+          "esp_crosscore_int_send": 1.0063,
+          "rd": 0.9906,
+          "_clem_vgc_scanline_build_rgb_palette": 0.85,
+          "compare": 0.6781,
+          "audio_frame": 0.6656,
+          "nz16": 0.6656,
+          "_clem_iwm_step": 0.5875,
+          "gs_run_frame": 0.475,
+          "nz": 0.4625,
+          "op_lda": 0.4313,
+          "clem_scc_sync_channel_uart": 0.4219,
+          "vPortExitCriticalMultiCore": 0.3625,
+          "phi0_next": 0.3031
+        }
+      },
+      {
+        "samples": 32000,
+        "inclusive_percent": {
+          "_clem_ensoniq_calc_waveform_ptr": 7.2906,
+          "clem_ensoniq_oscillator_cycle": 14.8094,
+          "clem_ensoniq_sync": 7.6031,
+          "clem_ensoniq_voices": 6.6,
+          "clem_sound_glu_sync": 1.9563,
+          "shr_line": 2.4406,
+          "hash_words": 2.5375,
+          "line_same": 2.5594,
+          "video_frame": 2.85,
+          "audio_frame": 0.6687,
+          "w65816_run": 8.8781
+        },
+        "leaf_percent": {
+          "esp_cpu_wait_for_intr": 17.0719,
+          "fetch": 13.9437,
+          "w65816_run": 8.8688,
+          "clem_ensoniq_sync": 7.5438,
+          "clem_ensoniq_oscillator_cycle": 7.5187,
+          "_clem_ensoniq_calc_waveform_ptr": 7.2906,
+          "clem_ensoniq_voices": 6.6,
+          "fetch16": 3.1313,
+          "hash_words": 2.5375,
+          "shr_line": 2.3844,
+          "am_long": 2.2875,
+          "??": 2.2156,
+          "op_adc": 2.2031,
+          "clem_sound_glu_sync": 1.8375,
+          "branch": 1.2875,
+          "devices_sync": 1.2094,
+          "wr": 1.1344,
+          "rd": 1.1313,
+          "_clem_vgc_scanline_build_rgb_palette": 0.8719,
+          "_clem_iwm_step": 0.6719,
+          "audio_frame": 0.6687,
+          "nz16": 0.625,
+          "compare": 0.5906,
+          "nz": 0.4656,
+          "gs_run_frame": 0.4406,
+          "clem_scc_sync_channel_uart": 0.4188,
+          "op_lda": 0.4125,
+          "vPortExitCriticalMultiCore": 0.3812,
+          "store": 0.3031,
+          "load": 0.3031
+        }
+      }
+    ]
+  },
+  "target_module_sizes": {
+    "p4": {
+      "reference": {
+        "voice_text_bytes": 264,
+        "audio_text_symbol_bytes": 3456,
+        "table_bytes": 0,
+        "voice_stack_bytes": 64,
+        "fdiv_instruction_count": 2,
+        "divsf3_call_sites": 0
+      },
+      "candidate": {
+        "voice_text_bytes": 270,
+        "audio_text_symbol_bytes": 3462,
+        "table_bytes": 1024,
+        "voice_stack_bytes": 80,
+        "fdiv_instruction_count": 0,
+        "divsf3_call_sites": 0
+      }
+    },
+    "s3": {
+      "reference": {
+        "voice_text_bytes": 216,
+        "audio_text_symbol_bytes": 3120,
+        "table_bytes": 0,
+        "voice_stack_bytes": 48,
+        "fdiv_instruction_count": 0,
+        "divsf3_call_sites": 2
+      },
+      "candidate": {
+        "voice_text_bytes": 191,
+        "audio_text_symbol_bytes": 3095,
+        "table_bytes": 1024,
+        "voice_stack_bytes": 64,
+        "fdiv_instruction_count": 0,
+        "divsf3_call_sites": 0
+      }
+    }
+  },
+  "linked_p4_sizes": {
+    "reference": {
+      "voice_text_bytes": 264,
+      "table_bytes": 0,
+      "binary_bytes": 2008064
+    },
+    "candidate": {
+      "voice_text_bytes": 270,
+      "table_bytes": 1024,
+      "binary_bytes": 2009088
+    }
+  },
+  "sampling": {
+    "frequency_hz": 20000,
+    "flat_captures": 36,
+    "inline_captures": 6,
+    "samples_per_capture": 32000,
+    "total_samples": 1344000,
+    "all_complete": true,
+    "incomplete_attempts": 0,
+    "flat_percent_precision": 0.1,
+    "inclusive_definition": "DWARF inline ancestry, not call stacks; nested percentages overlap"
+  },
+  "limits": [
+    "Frame-capped synthetic workload results do not establish real-software throughput gains",
+    "No S3 runtime measurement or listening assessment",
+    "1 KB read-only table and 16 extra mixer-frame bytes",
+    "Board inherited unused Y and cumulative cycles vary across live sessions",
+    "640 checker validates current-renderer consistency, not independent hardware accuracy"
+  ],
+  "decision": "retain shared 1 KB normalization table",
+  "next": "Real-software DOC audio replay using throwaway media, exact PCM/state/media-write comparison and P4 timing/pixels before more local kernels",
+  "restoration": {
+    "fresh_full_flash_backup_bytes": 16777216,
+    "flash_hash_verified": true,
+    "msx_disk_basic_running": true,
+    "pictures": {
+      "guest": {
+        "exact_match": true,
+        "matches_outside_cursor": true,
+        "shape": [
+          480,
+          576,
+          3
+        ],
+        "cursor_rectangle": [
+          48,
+          128,
+          60,
+          144
+        ],
+        "masked_rgb_sha256": "256b44d1b79b9e8d2e1ff807a9016c05277391b9bf5994c3ed2c4cc1777cf23a"
+      },
+      "lcd": {
+        "exact_match": true,
+        "matches_outside_cursor": true,
+        "shape": [
+          720,
+          1280,
+          3
+        ],
+        "cursor_rectangle": [
+          240,
+          192,
+          260,
+          216
+        ],
+        "masked_rgb_sha256": "39398541246e9b99c65289a5d7b6839eac8da48f4c922c582927ed2115ff56a7"
+      }
+    }
+  }
+}
