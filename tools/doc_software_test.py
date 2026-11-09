@@ -44,7 +44,7 @@ original_hash = hashlib.sha256(media.read_bytes()).hexdigest()
 with (r / "build.log").open("w") as log:
     subprocess.run(["make", "-C", "components/apple2gs/host", "-j4"],
                    cwd=root, stdout=log, stderr=subprocess.STDOUT, check=True)
-s=(root/'components/apple2gs/host/host_main.c').read_text()
+s='#include "doc_snapshot.h"\n'+(root/'components/apple2gs/host/host_main.c').read_text()
 assert s.count('    uint32_t samples = 0;') == 1
 assert s.count('        gs_run_frame();\n        if (wav)') == 1
 assert s.count('    }\n    gs_disk_flush();') == 1
@@ -61,15 +61,16 @@ s=s.replace('    }\n    gs_disk_flush();', '''    }
     if(getenv("GS_SNAPSHOT")) {
         const char *prefix=getenv("GS_SNAPSHOT");char path[1024];FILE *sf;
         uint64_t cpu[]={gs.cpu.a,gs.cpu.x,gs.cpu.y,gs.cpu.s,gs.cpu.d,gs.cpu.pc,gs.cpu.pbr,gs.cpu.dbr,gs.cpu.p,gs.cpu.e,gs.cpu.stopped,gs.cpu.waiting,gs.cpu.irq,gs.cpu.nmi,(uint64_t)gs.cpu.penalty,gs.cpu.vector_bank,gs.cpu.cycles};
-        const void *ptr[]={cpu,&gs.mmio->dev_audio.doc,cfg.ram,cfg.mega2,cfg.frame};
-        size_t len[]={sizeof(cpu),sizeof(gs.mmio->dev_audio.doc),cfg.ram_kb*1024,128*1024,GS_SCREEN_WIDTH*GS_SCREEN_HEIGHT*2};
+        uint8_t doc[DOC_STATE_BYTES];doc_snapshot(doc,&gs.mmio->dev_audio.doc);
+        const void *ptr[]={cpu,doc,cfg.ram,cfg.mega2,cfg.frame};
+        size_t len[]={sizeof(cpu),sizeof(doc),cfg.ram_kb*1024,128*1024,GS_SCREEN_WIDTH*GS_SCREEN_HEIGHT*2};
         const char *ext[]={"cpu","doc","ram","mega2","rgb565"};
         for(int i=0;i<5;i++){snprintf(path,sizeof(path),"%s.%s",prefix,ext[i]);sf=fopen(path,"wb");if(!sf||fwrite(ptr[i],1,len[i],sf)!=len[i])abort();fclose(sf);}
     }
     gs_disk_flush();''')
 
 (r / "host-replay.c").write_text(s)
-flags = ["-O2", "-g", "-Icomponents/apple2gs/include", "-Icomponents/apple2gs",
+flags = ["-O2", "-g", "-Itools", "-Icomponents/apple2gs/include", "-Icomponents/apple2gs",
          "-Icomponents/apple2gs/clemens", "-I../esp32emu/components/w65816/include",
          "-I../esp32emu/components/emudbg/include", "-I../esp32emu/components/diskspace/include"]
 objects = list((root / "components/apple2gs/host/build").rglob("*.o"))

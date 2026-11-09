@@ -254,6 +254,20 @@ stepping on a data register read). The MaTouch's budget is 4,000 a frame.
 
 ## Testing
 
+- **DOC metadata-layout trial (2026-11-09)**:
+  [report](docs/doc-metadata-layout-experiment-2026-11-09.md). Production
+  layout unchanged: metadata-first saves 238 P4 / 190 S3 text bytes but
+  dense P4 scanline calls regress 3.0%, eight-oscillator sync 2.2–2.5%.
+  Short calls improve. 378 ABBA groups / 1,512 timings match canonical DOC
+  hashes. New field-based snapshots cover all 14 DOC fields, exact float
+  bits and no padding. Both layouts pass sanitized legacy/boundary/IRQ
+  checks, six complete-core native fixture pairs and a 21,601-frame Tour
+  replay. Existing replay/profile tools now use canonical DOC snapshots;
+  old raw DOC hashes are not directly comparable. Both target audio objects
+  compile; S3 runtime unmeasured, scheduler frame grows 16 bytes there.
+  Next inspect shared 65C816 fetch/fetch16 with bus/timing/IRQ equivalence.
+  Fresh full MSX backup restored/digest-verified; guest/LCD match exactly.
+
 - **DOC local oscillator-helper integration (2026-11-09)**:
   [report](docs/doc-helper-scope-integration-2026-11-09.md). Retained local
   helper after exact native PCM/state/pixel fixtures, sanitized boundary/IRQ

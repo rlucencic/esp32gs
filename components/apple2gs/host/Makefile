@@ -23,8 +23,8 @@ all: $(BUILD)/gs_host
 # Original DOC/SHR fixture validator, linked against the same production objects.
 profile: $(BUILD)/profile_host
 
-$(BUILD)/profile_host: ../../../tools/profile_host.c $(OBJS)
-	$(CC) $(CFLAGS) $^ -lm -lpthread -o $@
+$(BUILD)/profile_host: ../../../tools/profile_host.c $(OBJS) ../../../tools/doc_snapshot.h ../../../tools/doc_state.h
+	$(CC) $(CFLAGS) $(filter %.c %.o,$^) -lm -lpthread -o $@
 
 $(BUILD)/gs_host: host_main.c $(OBJS)
 	$(CC) $(CFLAGS) $^ -lm -lpthread -o $@

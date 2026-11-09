@@ -1,0 +1,6566 @@
+{
+  "date": "2026-11-09",
+  "reference_revision": "85d6204",
+  "decision": "defer metadata-first layout; production unchanged",
+  "canonical_state_bytes": 66128,
+  "canonical_fields": [
+    "acc",
+    "addr_auto_inc",
+    "address",
+    "cycle",
+    "data_reg",
+    "dt_budget",
+    "is_access_ram",
+    "is_busy",
+    "osc_flags",
+    "osc_stack",
+    "ptr",
+    "reg",
+    "sound_ram",
+    "voice"
+  ],
+  "snapshot_mutation_checks_per_layout": 21,
+  "sanitized_checks": {
+    "starting_states": 224,
+    "sync_mix_events": 57344,
+    "boundary_cases": 24576,
+    "boundary_sync_mix_irq_calls": 245760,
+    "independent_irq_events_per_layout": 18000,
+    "fail_fast": true
+  },
+  "full_core_fixtures": {
+    "static-0": {
+      "equal": true,
+      "outputs": [
+        "pcm",
+        "cpu",
+        "doc",
+        "ram",
+        "mega2",
+        "vram",
+        "rgb565"
+      ]
+    },
+    "static-1": {
+      "equal": true,
+      "outputs": [
+        "pcm",
+        "cpu",
+        "doc",
+        "ram",
+        "mega2",
+        "vram",
+        "rgb565"
+      ]
+    },
+    "static-8": {
+      "equal": true,
+      "outputs": [
+        "pcm",
+        "cpu",
+        "doc",
+        "ram",
+        "mega2",
+        "vram",
+        "rgb565"
+      ]
+    },
+    "static-32": {
+      "equal": true,
+      "outputs": [
+        "pcm",
+        "cpu",
+        "doc",
+        "ram",
+        "mega2",
+        "vram",
+        "rgb565"
+      ]
+    },
+    "animated-320": {
+      "equal": true,
+      "outputs": [
+        "pcm",
+        "cpu",
+        "doc",
+        "ram",
+        "mega2",
+        "vram",
+        "rgb565"
+      ]
+    },
+    "animated-640": {
+      "equal": true,
+      "outputs": [
+        "pcm",
+        "cpu",
+        "doc",
+        "ram",
+        "mega2",
+        "vram",
+        "rgb565"
+      ]
+    }
+  },
+  "native_tour": {
+    "frames": 21601,
+    "equal": true,
+    "outputs": [
+      "wav",
+      "cpu",
+      "doc",
+      "ram",
+      "mega2",
+      "vram",
+      "rgb565",
+      "media"
+    ],
+    "original_media_unchanged": true,
+    "disposable_copies": true
+  },
+  "existing_software_replay_canonical_regression": true,
+  "normal_production_profile_target_exact_match": true,
+  "codegen": {
+    "p4": {
+      "reference": {
+        "text_bytes": 3424,
+        "sync_bytes": 846,
+        "sync_stack": 32,
+        "oscillator_bytes": 0,
+        "oscillator_stack": null
+      },
+      "layout": {
+        "text_bytes": 3186,
+        "sync_bytes": 744,
+        "sync_stack": 16,
+        "oscillator_bytes": 0,
+        "oscillator_stack": null
+      }
+    },
+    "s3": {
+      "reference": {
+        "text_bytes": 3048,
+        "sync_bytes": 770,
+        "sync_stack": 48,
+        "oscillator_bytes": 0,
+        "oscillator_stack": null
+      },
+      "layout": {
+        "text_bytes": 2858,
+        "sync_bytes": 744,
+        "sync_stack": 64,
+        "oscillator_bytes": 0,
+        "oscillator_stack": null
+      }
+    }
+  },
+  "p4_benchmark": {
+    "cpu_mhz": 360,
+    "psram_mhz": 200,
+    "instructions_in_psram": true,
+    "abba_cases": 378,
+    "timing_runs": 1512,
+    "calls_per_timing": 512,
+    "summary": [
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 0,
+        "median_saving_percent": 7.541377206620348,
+        "min_saving_percent": 3.3069245807181846,
+        "max_saving_percent": 14.66145475259777
+      },
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 1,
+        "median_saving_percent": 12.927787952997349,
+        "min_saving_percent": 7.967938679634057,
+        "max_saving_percent": 15.107812656704445
+      },
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 2,
+        "median_saving_percent": 9.809896674200836,
+        "min_saving_percent": 7.669033652361845,
+        "max_saving_percent": 11.717473874795825
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 0,
+        "median_saving_percent": 18.394150439334744,
+        "min_saving_percent": 17.51503319016009,
+        "max_saving_percent": 18.428608919832655
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 1,
+        "median_saving_percent": 10.501009446523035,
+        "min_saving_percent": 9.481450118233525,
+        "max_saving_percent": 10.693470867197853
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 2,
+        "median_saving_percent": 3.0689961890561057,
+        "min_saving_percent": 2.967702558593377,
+        "max_saving_percent": 3.3085049544513745
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 0,
+        "median_saving_percent": 17.80808955723613,
+        "min_saving_percent": 16.6362905189525,
+        "max_saving_percent": 17.830709778835452
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 1,
+        "median_saving_percent": 6.409119496855342,
+        "min_saving_percent": 6.37907830855533,
+        "max_saving_percent": 6.838048041847344
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 2,
+        "median_saving_percent": 0.15794933048343118,
+        "min_saving_percent": 0.14130309001124663,
+        "max_saving_percent": 0.3566249336279248
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 0,
+        "median_saving_percent": 13.783493026152716,
+        "min_saving_percent": 13.766675056632272,
+        "max_saving_percent": 13.799028246311874
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 1,
+        "median_saving_percent": 1.3743593892798445,
+        "min_saving_percent": 0.8182265226666874,
+        "max_saving_percent": 1.397212927896463
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 2,
+        "median_saving_percent": -3.0513409191553986,
+        "min_saving_percent": -3.0764066383199173,
+        "max_saving_percent": -3.0100758535189343
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 0,
+        "median_saving_percent": 11.922252133047406,
+        "min_saving_percent": 11.69287985279871,
+        "max_saving_percent": 12.30181937366246
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 1,
+        "median_saving_percent": 5.49712504130051,
+        "min_saving_percent": 5.3347674702268755,
+        "max_saving_percent": 5.562997626915656
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 2,
+        "median_saving_percent": 1.1834774004762072,
+        "min_saving_percent": 1.1613231644135968,
+        "max_saving_percent": 1.2996428626939172
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 0,
+        "median_saving_percent": 13.470273584677317,
+        "min_saving_percent": 11.872967717469363,
+        "max_saving_percent": 13.691878287244686
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 1,
+        "median_saving_percent": 7.524972920929118,
+        "min_saving_percent": 7.303597244405924,
+        "max_saving_percent": 7.70225291724671
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 2,
+        "median_saving_percent": 1.565820533383433,
+        "min_saving_percent": 1.5559036836845785,
+        "max_saving_percent": 1.592973020792432
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 0,
+        "median_saving_percent": 14.927305586275729,
+        "min_saving_percent": 14.732901890418882,
+        "max_saving_percent": 14.979675207798248
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 1,
+        "median_saving_percent": 2.2770604763179048,
+        "min_saving_percent": 1.5618272286388235,
+        "max_saving_percent": 2.2919401637219616
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 2,
+        "median_saving_percent": -2.4793105153866346,
+        "min_saving_percent": -2.7062889816277247,
+        "max_saving_percent": -2.428636936087658
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 0,
+        "median_saving_percent": 9.487591722318411,
+        "min_saving_percent": 5.791873963515759,
+        "max_saving_percent": 14.67594641348513
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 1,
+        "median_saving_percent": 9.277473439575035,
+        "min_saving_percent": 5.798092868988391,
+        "max_saving_percent": 12.048092868988391
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 2,
+        "median_saving_percent": 7.1606475716064715,
+        "min_saving_percent": 5.798092868988391,
+        "max_saving_percent": 12.048092868988391
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 0,
+        "median_saving_percent": 15.995008266564925,
+        "min_saving_percent": 15.014882149465048,
+        "max_saving_percent": 16.015513240296276
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 1,
+        "median_saving_percent": 9.94546870942612,
+        "min_saving_percent": 8.878808819748008,
+        "max_saving_percent": 10.119477699225964
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 2,
+        "median_saving_percent": 3.267402494232974,
+        "min_saving_percent": 3.197037226977606,
+        "max_saving_percent": 3.293854407232011
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 0,
+        "median_saving_percent": 15.461079560452816,
+        "min_saving_percent": 14.617061495777307,
+        "max_saving_percent": 15.504413571638565
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 1,
+        "median_saving_percent": 5.533240145020368,
+        "min_saving_percent": 5.450135945508117,
+        "max_saving_percent": 6.289767098082999
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 2,
+        "median_saving_percent": 0.08711672775076895,
+        "min_saving_percent": 0.07368122429037838,
+        "max_saving_percent": 0.34649903583905406
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 0,
+        "median_saving_percent": 14.153112821668978,
+        "min_saving_percent": 14.118276589023349,
+        "max_saving_percent": 14.162717016124882
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 1,
+        "median_saving_percent": 1.2291769545041742,
+        "min_saving_percent": 1.1318529145859624,
+        "max_saving_percent": 1.409302170802318
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 2,
+        "median_saving_percent": -2.9549043457639756,
+        "min_saving_percent": -3.0140014449051344,
+        "max_saving_percent": -2.920570104833331
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 0,
+        "median_saving_percent": 14.99918542895311,
+        "min_saving_percent": 14.647448637166294,
+        "max_saving_percent": 15.539064217099563
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 1,
+        "median_saving_percent": 5.460050142187656,
+        "min_saving_percent": 5.38622073934254,
+        "max_saving_percent": 5.620552939927082
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 2,
+        "median_saving_percent": 1.2223183790502135,
+        "min_saving_percent": 1.1653401999460966,
+        "max_saving_percent": 1.2735229935096126
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 0,
+        "median_saving_percent": 17.506679239352508,
+        "min_saving_percent": 17.157092567723275,
+        "max_saving_percent": 17.548792460239547
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 1,
+        "median_saving_percent": 7.964198710937853,
+        "min_saving_percent": 7.470268674165159,
+        "max_saving_percent": 9.371487751631447
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 2,
+        "median_saving_percent": 1.556911132677108,
+        "min_saving_percent": 1.505588462265739,
+        "max_saving_percent": 1.56982301007913
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 0,
+        "median_saving_percent": 13.52636882767887,
+        "min_saving_percent": 13.196518331107521,
+        "max_saving_percent": 13.647614307429478
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 1,
+        "median_saving_percent": 2.2489864703400975,
+        "min_saving_percent": 1.5834610261913018,
+        "max_saving_percent": 2.2787229180947666
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 2,
+        "median_saving_percent": -2.1983477518768613,
+        "min_saving_percent": -2.315600294418796,
+        "max_saving_percent": -2.128288744492779
+      }
+    ],
+    "rows": [
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 0,
+        "round": 0,
+        "reference_cycles": [
+          25279,
+          24263
+        ],
+        "candidate_cycles": [
+          22734,
+          22711
+        ],
+        "state_hash": 3466778995,
+        "saving_percent": 8.269750918412655
+      },
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 0,
+        "round": 1,
+        "reference_cycles": [
+          25629,
+          25280
+        ],
+        "candidate_cycles": [
+          21747,
+          21698
+        ],
+        "state_hash": 3466778995,
+        "saving_percent": 14.66145475259777
+      },
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 0,
+        "round": 2,
+        "reference_cycles": [
+          26545,
+          24268
+        ],
+        "candidate_cycles": [
+          23513,
+          23468
+        ],
+        "state_hash": 3466778995,
+        "saving_percent": 7.541377206620348
+      },
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 0,
+        "round": 3,
+        "reference_cycles": [
+          24327,
+          24265
+        ],
+        "candidate_cycles": [
+          23499,
+          23471
+        ],
+        "state_hash": 3466778995,
+        "saving_percent": 3.337998024366151
+      },
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 0,
+        "round": 4,
+        "reference_cycles": [
+          24327,
+          24268
+        ],
+        "candidate_cycles": [
+          23514,
+          23474
+        ],
+        "state_hash": 3466778995,
+        "saving_percent": 3.3069245807181846
+      },
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 0,
+        "round": 5,
+        "reference_cycles": [
+          24320,
+          24265
+        ],
+        "candidate_cycles": [
+          23510,
+          23468
+        ],
+        "state_hash": 3466778995,
+        "saving_percent": 3.307605227951016
+      },
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 0,
+        "round": 6,
+        "reference_cycles": [
+          24327,
+          24268
+        ],
+        "candidate_cycles": [
+          23514,
+          23474
+        ],
+        "state_hash": 3466778995,
+        "saving_percent": 3.3069245807181846
+      },
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 0,
+        "round": 7,
+        "reference_cycles": [
+          25577,
+          24269
+        ],
+        "candidate_cycles": [
+          21743,
+          21697
+        ],
+        "state_hash": 3466778995,
+        "saving_percent": 12.851582875255785
+      },
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 0,
+        "round": 8,
+        "reference_cycles": [
+          24327,
+          24268
+        ],
+        "candidate_cycles": [
+          21745,
+          21703
+        ],
+        "state_hash": 3466778995,
+        "saving_percent": 10.591624652742048
+      },
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 1,
+        "round": 0,
+        "reference_cycles": [
+          24265,
+          24267
+        ],
+        "candidate_cycles": [
+          22962,
+          21703
+        ],
+        "state_hash": 2963158285,
+        "saving_percent": 7.967938679634057
+      },
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 1,
+        "round": 1,
+        "reference_cycles": [
+          24334,
+          24268
+        ],
+        "candidate_cycles": [
+          21745,
+          21703
+        ],
+        "state_hash": 2963158285,
+        "saving_percent": 10.604501872350935
+      },
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 1,
+        "round": 2,
+        "reference_cycles": [
+          25641,
+          25281
+        ],
+        "candidate_cycles": [
+          21743,
+          21697
+        ],
+        "state_hash": 2963158285,
+        "saving_percent": 14.693059974078004
+      },
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 1,
+        "round": 3,
+        "reference_cycles": [
+          26607,
+          24272
+        ],
+        "candidate_cycles": [
+          21637,
+          21603
+        ],
+        "state_hash": 2963158285,
+        "saving_percent": 15.014052949153879
+      },
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 1,
+        "round": 4,
+        "reference_cycles": [
+          25579,
+          24273
+        ],
+        "candidate_cycles": [
+          21633,
+          21589
+        ],
+        "state_hash": 2963158285,
+        "saving_percent": 13.29936612372623
+      },
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 1,
+        "round": 5,
+        "reference_cycles": [
+          25583,
+          24272
+        ],
+        "candidate_cycles": [
+          21637,
+          20686
+        ],
+        "state_hash": 2963158285,
+        "saving_percent": 15.107812656704445
+      },
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 1,
+        "round": 6,
+        "reference_cycles": [
+          24320,
+          24273
+        ],
+        "candidate_cycles": [
+          21633,
+          20678
+        ],
+        "state_hash": 2963158285,
+        "saving_percent": 12.927787952997349
+      },
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 1,
+        "round": 7,
+        "reference_cycles": [
+          24327,
+          24272
+        ],
+        "candidate_cycles": [
+          21637,
+          21603
+        ],
+        "state_hash": 2963158285,
+        "saving_percent": 11.026975863700894
+      },
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 1,
+        "round": 8,
+        "reference_cycles": [
+          24320,
+          24273
+        ],
+        "candidate_cycles": [
+          21633,
+          21591
+        ],
+        "state_hash": 2963158285,
+        "saving_percent": 11.04891651060852
+      },
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 2,
+        "round": 0,
+        "reference_cycles": [
+          24272,
+          25280
+        ],
+        "candidate_cycles": [
+          22988,
+          21703
+        ],
+        "state_hash": 2230327747,
+        "saving_percent": 9.809896674200836
+      },
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 2,
+        "round": 1,
+        "reference_cycles": [
+          26548,
+          24265
+        ],
+        "candidate_cycles": [
+          22451,
+          22408
+        ],
+        "state_hash": 2230327747,
+        "saving_percent": 11.717473874795825
+      },
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 2,
+        "round": 2,
+        "reference_cycles": [
+          25614,
+          24268
+        ],
+        "candidate_cycles": [
+          22455,
+          22410
+        ],
+        "state_hash": 2230327747,
+        "saving_percent": 10.057736257567862
+      },
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 2,
+        "round": 3,
+        "reference_cycles": [
+          24320,
+          24265
+        ],
+        "candidate_cycles": [
+          22451,
+          22408
+        ],
+        "state_hash": 2230327747,
+        "saving_percent": 7.669033652361845
+      },
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 2,
+        "round": 4,
+        "reference_cycles": [
+          25622,
+          24276
+        ],
+        "candidate_cycles": [
+          22455,
+          22409
+        ],
+        "state_hash": 2230327747,
+        "saving_percent": 10.088580704637462
+      },
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 2,
+        "round": 5,
+        "reference_cycles": [
+          24320,
+          24265
+        ],
+        "candidate_cycles": [
+          22451,
+          22408
+        ],
+        "state_hash": 2230327747,
+        "saving_percent": 7.669033652361845
+      },
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 2,
+        "round": 6,
+        "reference_cycles": [
+          24327,
+          24268
+        ],
+        "candidate_cycles": [
+          22455,
+          22410
+        ],
+        "state_hash": 2230327747,
+        "saving_percent": 7.6756867990534055
+      },
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 2,
+        "round": 7,
+        "reference_cycles": [
+          24320,
+          24265
+        ],
+        "candidate_cycles": [
+          22451,
+          22408
+        ],
+        "state_hash": 2230327747,
+        "saving_percent": 7.669033652361845
+      },
+      {
+        "memory": 0,
+        "scene": 0,
+        "delta_index": 2,
+        "round": 8,
+        "reference_cycles": [
+          25626,
+          24268
+        ],
+        "candidate_cycles": [
+          22455,
+          22410
+        ],
+        "state_hash": 2230327747,
+        "saving_percent": 10.079368260712707
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 0,
+        "round": 0,
+        "reference_cycles": [
+          63967,
+          64083
+        ],
+        "candidate_cycles": [
+          52776,
+          52846
+        ],
+        "state_hash": 1092516286,
+        "saving_percent": 17.51503319016009
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 0,
+        "round": 1,
+        "reference_cycles": [
+          65530,
+          63984
+        ],
+        "candidate_cycles": [
+          52888,
+          52803
+        ],
+        "state_hash": 1092516286,
+        "saving_percent": 18.394150439334744
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 0,
+        "round": 2,
+        "reference_cycles": [
+          65466,
+          64077
+        ],
+        "candidate_cycles": [
+          52846,
+          52835
+        ],
+        "state_hash": 1092516286,
+        "saving_percent": 18.420138486834492
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 0,
+        "round": 3,
+        "reference_cycles": [
+          65504,
+          63984
+        ],
+        "candidate_cycles": [
+          52888,
+          52803
+        ],
+        "state_hash": 1092516286,
+        "saving_percent": 18.377764734956138
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 0,
+        "round": 4,
+        "reference_cycles": [
+          65478,
+          64076
+        ],
+        "candidate_cycles": [
+          52845,
+          52834
+        ],
+        "state_hash": 1092516286,
+        "saving_percent": 18.428608919832655
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 0,
+        "round": 5,
+        "reference_cycles": [
+          65500,
+          63984
+        ],
+        "candidate_cycles": [
+          52888,
+          52804
+        ],
+        "state_hash": 1092516286,
+        "saving_percent": 18.374470977109137
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 0,
+        "round": 6,
+        "reference_cycles": [
+          65464,
+          64076
+        ],
+        "candidate_cycles": [
+          52845,
+          52833
+        ],
+        "state_hash": 1092516286,
+        "saving_percent": 18.420565076424268
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 0,
+        "round": 7,
+        "reference_cycles": [
+          65512,
+          63984
+        ],
+        "candidate_cycles": [
+          52888,
+          52803
+        ],
+        "state_hash": 1092516286,
+        "saving_percent": 18.38280719095571
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 0,
+        "round": 8,
+        "reference_cycles": [
+          65472,
+          64076
+        ],
+        "candidate_cycles": [
+          52845,
+          52834
+        ],
+        "state_hash": 1092516286,
+        "saving_percent": 18.424830950690097
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 1,
+        "round": 0,
+        "reference_cycles": [
+          124614,
+          125738
+        ],
+        "candidate_cycles": [
+          114143,
+          112472
+        ],
+        "state_hash": 3003201358,
+        "saving_percent": 9.481450118233525
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 1,
+        "round": 1,
+        "reference_cycles": [
+          127259,
+          125734
+        ],
+        "candidate_cycles": [
+          112752,
+          113793
+        ],
+        "state_hash": 3003201358,
+        "saving_percent": 10.454044183040633
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 1,
+        "round": 2,
+        "reference_cycles": [
+          127203,
+          125734
+        ],
+        "candidate_cycles": [
+          112750,
+          113802
+        ],
+        "state_hash": 3003201358,
+        "saving_percent": 10.431451310009997
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 1,
+        "round": 3,
+        "reference_cycles": [
+          127375,
+          125734
+        ],
+        "candidate_cycles": [
+          112750,
+          113780
+        ],
+        "state_hash": 3003201358,
+        "saving_percent": 10.501009446523035
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 1,
+        "round": 4,
+        "reference_cycles": [
+          127391,
+          125738
+        ],
+        "candidate_cycles": [
+          112756,
+          113779
+        ],
+        "state_hash": 3003201358,
+        "saving_percent": 10.506105582529068
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 1,
+        "round": 5,
+        "reference_cycles": [
+          127245,
+          125734
+        ],
+        "candidate_cycles": [
+          112748,
+          113796
+        ],
+        "state_hash": 3003201358,
+        "saving_percent": 10.449483949260607
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 1,
+        "round": 6,
+        "reference_cycles": [
+          126158,
+          124350
+        ],
+        "candidate_cycles": [
+          111898,
+          111822
+        ],
+        "state_hash": 3003201358,
+        "saving_percent": 10.693470867197853
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 1,
+        "round": 7,
+        "reference_cycles": [
+          125958,
+          124350
+        ],
+        "candidate_cycles": [
+          111900,
+          111822
+        ],
+        "state_hash": 3003201358,
+        "saving_percent": 10.621314540486127
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 1,
+        "round": 8,
+        "reference_cycles": [
+          125992,
+          124356
+        ],
+        "candidate_cycles": [
+          111902,
+          111822
+        ],
+        "state_hash": 3003201358,
+        "saving_percent": 10.634796363462062
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 2,
+        "round": 0,
+        "reference_cycles": [
+          444097,
+          444825
+        ],
+        "candidate_cycles": [
+          430917,
+          430911
+        ],
+        "state_hash": 887282019,
+        "saving_percent": 3.047961463435489
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 2,
+        "round": 1,
+        "reference_cycles": [
+          446623,
+          443952
+        ],
+        "candidate_cycles": [
+          430716,
+          430640
+        ],
+        "state_hash": 887282019,
+        "saving_percent": 3.280914016225467
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 2,
+        "round": 2,
+        "reference_cycles": [
+          446614,
+          444302
+        ],
+        "candidate_cycles": [
+          430772,
+          430668
+        ],
+        "state_hash": 887282019,
+        "saving_percent": 3.3085049544513745
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 2,
+        "round": 3,
+        "reference_cycles": [
+          445735,
+          444894
+        ],
+        "candidate_cycles": [
+          430744,
+          430682
+        ],
+        "state_hash": 887282019,
+        "saving_percent": 3.2789186069620446
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 2,
+        "round": 4,
+        "reference_cycles": [
+          446433,
+          443214
+        ],
+        "candidate_cycles": [
+          430992,
+          430949
+        ],
+        "state_hash": 887282019,
+        "saving_percent": 3.1142689178966454
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 2,
+        "round": 5,
+        "reference_cycles": [
+          445927,
+          443354
+        ],
+        "candidate_cycles": [
+          431019,
+          430970
+        ],
+        "state_hash": 887282019,
+        "saving_percent": 3.0689961890561057
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 2,
+        "round": 6,
+        "reference_cycles": [
+          444740,
+          443287
+        ],
+        "candidate_cycles": [
+          430849,
+          430824
+        ],
+        "state_hash": 887282019,
+        "saving_percent": 2.967702558593377
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 2,
+        "round": 7,
+        "reference_cycles": [
+          444766,
+          443433
+        ],
+        "candidate_cycles": [
+          430814,
+          430739
+        ],
+        "state_hash": 887282019,
+        "saving_percent": 3.000003377621452
+      },
+      {
+        "memory": 0,
+        "scene": 1,
+        "delta_index": 2,
+        "round": 8,
+        "reference_cycles": [
+          444792,
+          443469
+        ],
+        "candidate_cycles": [
+          430808,
+          430788
+        ],
+        "state_hash": 887282019,
+        "saving_percent": 3.0019329904161007
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 0,
+        "round": 0,
+        "reference_cycles": [
+          67946,
+          67946
+        ],
+        "candidate_cycles": [
+          56457,
+          56452
+        ],
+        "state_hash": 1447464196,
+        "saving_percent": 16.91269537573956
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 0,
+        "round": 1,
+        "reference_cycles": [
+          69371,
+          68011
+        ],
+        "candidate_cycles": [
+          56462,
+          56446
+        ],
+        "state_hash": 1447464196,
+        "saving_percent": 17.81456085950125
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 0,
+        "round": 2,
+        "reference_cycles": [
+          69510,
+          67946
+        ],
+        "candidate_cycles": [
+          56490,
+          56475
+        ],
+        "state_hash": 1447464196,
+        "saving_percent": 17.817337911768128
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 0,
+        "round": 3,
+        "reference_cycles": [
+          69398,
+          68011
+        ],
+        "candidate_cycles": [
+          56462,
+          56446
+        ],
+        "state_hash": 1447464196,
+        "saving_percent": 17.830709778835452
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 0,
+        "round": 4,
+        "reference_cycles": [
+          69444,
+          67946
+        ],
+        "candidate_cycles": [
+          56506,
+          56475
+        ],
+        "state_hash": 1447464196,
+        "saving_percent": 17.766212970376305
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 0,
+        "round": 5,
+        "reference_cycles": [
+          69379,
+          68004
+        ],
+        "candidate_cycles": [
+          56468,
+          56447
+        ],
+        "state_hash": 1447464196,
+        "saving_percent": 17.810063836136937
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 0,
+        "round": 6,
+        "reference_cycles": [
+          69440,
+          67940
+        ],
+        "candidate_cycles": [
+          56514,
+          56472
+        ],
+        "state_hash": 1447464196,
+        "saving_percent": 17.756587567331493
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 0,
+        "round": 7,
+        "reference_cycles": [
+          69383,
+          68004
+        ],
+        "candidate_cycles": [
+          56484,
+          56437
+        ],
+        "state_hash": 1447464196,
+        "saving_percent": 17.80808955723613
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 0,
+        "round": 8,
+        "reference_cycles": [
+          69464,
+          66059
+        ],
+        "candidate_cycles": [
+          56508,
+          56469
+        ],
+        "state_hash": 1447464196,
+        "saving_percent": 16.6362905189525
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 1,
+        "round": 0,
+        "reference_cycles": [
+          159542,
+          158246
+        ],
+        "candidate_cycles": [
+          148150,
+          148189
+        ],
+        "state_hash": 3543246349,
+        "saving_percent": 6.749468198925069
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 1,
+        "round": 1,
+        "reference_cycles": [
+          159748,
+          158256
+        ],
+        "candidate_cycles": [
+          148222,
+          149478
+        ],
+        "state_hash": 3543246349,
+        "saving_percent": 6.384825348108825
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 1,
+        "round": 2,
+        "reference_cycles": [
+          159820,
+          158250
+        ],
+        "candidate_cycles": [
+          148226,
+          149458
+        ],
+        "state_hash": 3543246349,
+        "saving_percent": 6.409280975885812
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 1,
+        "round": 3,
+        "reference_cycles": [
+          159772,
+          158252
+        ],
+        "candidate_cycles": [
+          148224,
+          149513
+        ],
+        "state_hash": 3543246349,
+        "saving_percent": 6.37907830855533
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 1,
+        "round": 4,
+        "reference_cycles": [
+          159798,
+          158250
+        ],
+        "candidate_cycles": [
+          148224,
+          149442
+        ],
+        "state_hash": 3543246349,
+        "saving_percent": 6.4084666465439195
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 1,
+        "round": 5,
+        "reference_cycles": [
+          159768,
+          158250
+        ],
+        "candidate_cycles": [
+          148228,
+          149466
+        ],
+        "state_hash": 3543246349,
+        "saving_percent": 6.390833223276671
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 1,
+        "round": 6,
+        "reference_cycles": [
+          159804,
+          158252
+        ],
+        "candidate_cycles": [
+          148228,
+          149395
+        ],
+        "state_hash": 3543246349,
+        "saving_percent": 6.424340367733983
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 1,
+        "round": 7,
+        "reference_cycles": [
+          159746,
+          158254
+        ],
+        "candidate_cycles": [
+          148224,
+          149395
+        ],
+        "state_hash": 3543246349,
+        "saving_percent": 6.409119496855342
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 1,
+        "round": 8,
+        "reference_cycles": [
+          160933,
+          158705
+        ],
+        "candidate_cycles": [
+          148276,
+          149505
+        ],
+        "state_hash": 3543246349,
+        "saving_percent": 6.838048041847344
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 2,
+        "round": 0,
+        "reference_cycles": [
+          636232,
+          636103
+        ],
+        "candidate_cycles": [
+          633857,
+          635062
+        ],
+        "state_hash": 3452512413,
+        "saving_percent": 0.26848275021909007
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 2,
+        "round": 1,
+        "reference_cycles": [
+          636315,
+          636245
+        ],
+        "candidate_cycles": [
+          635274,
+          635276
+        ],
+        "state_hash": 3452512413,
+        "saving_percent": 0.15794933048343118
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 2,
+        "round": 2,
+        "reference_cycles": [
+          636349,
+          636148
+        ],
+        "candidate_cycles": [
+          635264,
+          635091
+        ],
+        "state_hash": 3452512413,
+        "saving_percent": 0.16833045578888983
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 2,
+        "round": 3,
+        "reference_cycles": [
+          636447,
+          636312
+        ],
+        "candidate_cycles": [
+          635341,
+          635213
+        ],
+        "state_hash": 3452512413,
+        "saving_percent": 0.17324568123265882
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 2,
+        "round": 4,
+        "reference_cycles": [
+          637714,
+          637295
+        ],
+        "candidate_cycles": [
+          635295,
+          635167
+        ],
+        "state_hash": 3452512413,
+        "saving_percent": 0.3566249336279248
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 2,
+        "round": 5,
+        "reference_cycles": [
+          635247,
+          634996
+        ],
+        "candidate_cycles": [
+          634355,
+          634089
+        ],
+        "state_hash": 3452512413,
+        "saving_percent": 0.14162644470389063
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 2,
+        "round": 6,
+        "reference_cycles": [
+          635291,
+          635113
+        ],
+        "candidate_cycles": [
+          634349,
+          634141
+        ],
+        "state_hash": 3452512413,
+        "saving_percent": 0.15066073469541807
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 2,
+        "round": 7,
+        "reference_cycles": [
+          635280,
+          634970
+        ],
+        "candidate_cycles": [
+          634238,
+          634113
+        ],
+        "state_hash": 3452512413,
+        "saving_percent": 0.14949813028931613
+      },
+      {
+        "memory": 0,
+        "scene": 2,
+        "delta_index": 2,
+        "round": 8,
+        "reference_cycles": [
+          635264,
+          635055
+        ],
+        "candidate_cycles": [
+          634326,
+          634198
+        ],
+        "state_hash": 3452512413,
+        "saving_percent": 0.14130309001124663
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 0,
+        "round": 0,
+        "reference_cycles": [
+          78784,
+          80074
+        ],
+        "candidate_cycles": [
+          68494,
+          68490
+        ],
+        "state_hash": 364478206,
+        "saving_percent": 13.76953002052147
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 0,
+        "round": 1,
+        "reference_cycles": [
+          80205,
+          78752
+        ],
+        "candidate_cycles": [
+          68550,
+          68497
+        ],
+        "state_hash": 364478206,
+        "saving_percent": 13.78360185458961
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 0,
+        "round": 2,
+        "reference_cycles": [
+          80189,
+          78752
+        ],
+        "candidate_cycles": [
+          68550,
+          68493
+        ],
+        "state_hash": 364478206,
+        "saving_percent": 13.777439427208837
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 0,
+        "round": 3,
+        "reference_cycles": [
+          80202,
+          78749
+        ],
+        "candidate_cycles": [
+          68550,
+          68492
+        ],
+        "state_hash": 364478206,
+        "saving_percent": 13.783493026152716
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 0,
+        "round": 4,
+        "reference_cycles": [
+          80207,
+          78752
+        ],
+        "candidate_cycles": [
+          68550,
+          68492
+        ],
+        "state_hash": 364478206,
+        "saving_percent": 13.787832082486684
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 0,
+        "round": 5,
+        "reference_cycles": [
+          80168,
+          78752
+        ],
+        "candidate_cycles": [
+          68550,
+          68492
+        ],
+        "state_hash": 364478206,
+        "saving_percent": 13.766675056632272
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 0,
+        "round": 6,
+        "reference_cycles": [
+          80214,
+          78754
+        ],
+        "candidate_cycles": [
+          68573,
+          68502
+        ],
+        "state_hash": 364478206,
+        "saving_percent": 13.771954103970607
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 0,
+        "round": 7,
+        "reference_cycles": [
+          80164,
+          78716
+        ],
+        "candidate_cycles": [
+          68505,
+          68454
+        ],
+        "state_hash": 364478206,
+        "saving_percent": 13.797205438066463
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 0,
+        "round": 8,
+        "reference_cycles": [
+          80196,
+          78692
+        ],
+        "candidate_cycles": [
+          68505,
+          68458
+        ],
+        "state_hash": 364478206,
+        "saving_percent": 13.799028246311874
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 1,
+        "round": 0,
+        "reference_cycles": [
+          269162,
+          270451
+        ],
+        "candidate_cycles": [
+          266927,
+          268205
+        ],
+        "state_hash": 63268611,
+        "saving_percent": 0.8304099419398692
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 1,
+        "round": 1,
+        "reference_cycles": [
+          270576,
+          270350
+        ],
+        "candidate_cycles": [
+          268299,
+          268201
+        ],
+        "state_hash": 63268611,
+        "saving_percent": 0.8182265226666874
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 1,
+        "round": 2,
+        "reference_cycles": [
+          270608,
+          271865
+        ],
+        "candidate_cycles": [
+          268301,
+          268172
+        ],
+        "state_hash": 63268611,
+        "saving_percent": 1.106045830852409
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 1,
+        "round": 3,
+        "reference_cycles": [
+          272060,
+          271880
+        ],
+        "candidate_cycles": [
+          268219,
+          268121
+        ],
+        "state_hash": 63268611,
+        "saving_percent": 1.397212927896463
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 1,
+        "round": 4,
+        "reference_cycles": [
+          272028,
+          271880
+        ],
+        "candidate_cycles": [
+          268225,
+          268121
+        ],
+        "state_hash": 63268611,
+        "saving_percent": 1.3903086551402044
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 1,
+        "round": 5,
+        "reference_cycles": [
+          272028,
+          271869
+        ],
+        "candidate_cycles": [
+          268221,
+          268130
+        ],
+        "state_hash": 63268611,
+        "saving_percent": 1.3873950398696766
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 1,
+        "round": 6,
+        "reference_cycles": [
+          272040,
+          271880
+        ],
+        "candidate_cycles": [
+          268219,
+          268123
+        ],
+        "state_hash": 63268611,
+        "saving_percent": 1.3932195911163459
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 1,
+        "round": 7,
+        "reference_cycles": [
+          272030,
+          271787
+        ],
+        "candidate_cycles": [
+          268219,
+          268124
+        ],
+        "state_hash": 63268611,
+        "saving_percent": 1.3743593892798445
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 1,
+        "round": 8,
+        "reference_cycles": [
+          270630,
+          270471
+        ],
+        "candidate_cycles": [
+          267937,
+          268232
+        ],
+        "state_hash": 63268611,
+        "saving_percent": 0.911474937211354
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 2,
+        "round": 0,
+        "reference_cycles": [
+          1273422,
+          1273608
+        ],
+        "candidate_cycles": [
+          1313437,
+          1311950
+        ],
+        "state_hash": 3513894667,
+        "saving_percent": -3.0764066383199173
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 2,
+        "round": 1,
+        "reference_cycles": [
+          1273736,
+          1273497
+        ],
+        "candidate_cycles": [
+          1313217,
+          1311909
+        ],
+        "state_hash": 3513894667,
+        "saving_percent": -3.0579456217786127
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 2,
+        "round": 2,
+        "reference_cycles": [
+          1273857,
+          1273678
+        ],
+        "candidate_cycles": [
+          1313185,
+          1311545
+        ],
+        "state_hash": 3513894667,
+        "saving_percent": -3.0301840799046964
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 2,
+        "round": 3,
+        "reference_cycles": [
+          1273779,
+          1273429
+        ],
+        "candidate_cycles": [
+          1313095,
+          1311837
+        ],
+        "state_hash": 3513894667,
+        "saving_percent": -3.0513409191553986
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 2,
+        "round": 4,
+        "reference_cycles": [
+          1273749,
+          1273529
+        ],
+        "candidate_cycles": [
+          1312612,
+          1311341
+        ],
+        "state_hash": 3513894667,
+        "saving_percent": -3.0100758535189343
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 2,
+        "round": 5,
+        "reference_cycles": [
+          1273614,
+          1273648
+        ],
+        "candidate_cycles": [
+          1313094,
+          1311921
+        ],
+        "state_hash": 3513894667,
+        "saving_percent": -3.0524147103831556
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 2,
+        "round": 6,
+        "reference_cycles": [
+          1273834,
+          1273491
+        ],
+        "candidate_cycles": [
+          1313157,
+          1311152
+        ],
+        "state_hash": 3513894667,
+        "saving_percent": -3.0221506874859028
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 2,
+        "round": 7,
+        "reference_cycles": [
+          1273715,
+          1273652
+        ],
+        "candidate_cycles": [
+          1312871,
+          1311967
+        ],
+        "state_hash": 3513894667,
+        "saving_percent": -3.0412186386963524
+      },
+      {
+        "memory": 0,
+        "scene": 3,
+        "delta_index": 2,
+        "round": 8,
+        "reference_cycles": [
+          1273864,
+          1273707
+        ],
+        "candidate_cycles": [
+          1313509,
+          1311976
+        ],
+        "state_hash": 3513894667,
+        "saving_percent": -3.058364222233645
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 0,
+        "round": 0,
+        "reference_cycles": [
+          78083,
+          77520
+        ],
+        "candidate_cycles": [
+          68808,
+          67653
+        ],
+        "state_hash": 157625479,
+        "saving_percent": 12.30181937366246
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 0,
+        "round": 1,
+        "reference_cycles": [
+          77687,
+          76051
+        ],
+        "candidate_cycles": [
+          67679,
+          67935
+        ],
+        "state_hash": 157625479,
+        "saving_percent": 11.78888758797435
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 0,
+        "round": 2,
+        "reference_cycles": [
+          77536,
+          76215
+        ],
+        "candidate_cycles": [
+          67814,
+          67694
+        ],
+        "state_hash": 157625479,
+        "saving_percent": 11.865288681049224
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 0,
+        "round": 3,
+        "reference_cycles": [
+          77583,
+          76220
+        ],
+        "candidate_cycles": [
+          67963,
+          67856
+        ],
+        "state_hash": 157625479,
+        "saving_percent": 11.69287985279871
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 0,
+        "round": 4,
+        "reference_cycles": [
+          77719,
+          76025
+        ],
+        "candidate_cycles": [
+          67898,
+          67801
+        ],
+        "state_hash": 157625479,
+        "saving_percent": 11.737043396815483
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 0,
+        "round": 5,
+        "reference_cycles": [
+          77540,
+          76041
+        ],
+        "candidate_cycles": [
+          67687,
+          67546
+        ],
+        "state_hash": 157625479,
+        "saving_percent": 11.946790293070109
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 0,
+        "round": 6,
+        "reference_cycles": [
+          77681,
+          76053
+        ],
+        "candidate_cycles": [
+          67784,
+          67420
+        ],
+        "state_hash": 157625479,
+        "saving_percent": 12.053286846110812
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 0,
+        "round": 7,
+        "reference_cycles": [
+          77405,
+          76014
+        ],
+        "candidate_cycles": [
+          67654,
+          67474
+        ],
+        "state_hash": 157625479,
+        "saving_percent": 11.922252133047406
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 0,
+        "round": 8,
+        "reference_cycles": [
+          77753,
+          75853
+        ],
+        "candidate_cycles": [
+          67642,
+          67509
+        ],
+        "state_hash": 157625479,
+        "saving_percent": 12.01450464174576
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 1,
+        "round": 0,
+        "reference_cycles": [
+          225520,
+          225590
+        ],
+        "candidate_cycles": [
+          213703,
+          212562
+        ],
+        "state_hash": 3528497698,
+        "saving_percent": 5.507525880605613
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 1,
+        "round": 1,
+        "reference_cycles": [
+          225832,
+          225465
+        ],
+        "candidate_cycles": [
+          213893,
+          212691
+        ],
+        "state_hash": 3528497698,
+        "saving_percent": 5.475994744037738
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 1,
+        "round": 2,
+        "reference_cycles": [
+          225519,
+          225456
+        ],
+        "candidate_cycles": [
+          213909,
+          212776
+        ],
+        "state_hash": 3528497698,
+        "saving_percent": 5.3861078773768
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 1,
+        "round": 3,
+        "reference_cycles": [
+          225466,
+          225771
+        ],
+        "candidate_cycles": [
+          213603,
+          212582
+        ],
+        "state_hash": 3528497698,
+        "saving_percent": 5.551849693176758
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 1,
+        "round": 4,
+        "reference_cycles": [
+          225445,
+          225465
+        ],
+        "candidate_cycles": [
+          214110,
+          212745
+        ],
+        "state_hash": 3528497698,
+        "saving_percent": 5.3347674702268755
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 1,
+        "round": 5,
+        "reference_cycles": [
+          225512,
+          225451
+        ],
+        "candidate_cycles": [
+          213678,
+          212495
+        ],
+        "state_hash": 3528497698,
+        "saving_percent": 5.49712504130051
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 1,
+        "round": 6,
+        "reference_cycles": [
+          225443,
+          225456
+        ],
+        "candidate_cycles": [
+          213774,
+          212674
+        ],
+        "state_hash": 3528497698,
+        "saving_percent": 5.422722161725801
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 1,
+        "round": 7,
+        "reference_cycles": [
+          225477,
+          225468
+        ],
+        "candidate_cycles": [
+          213916,
+          212221
+        ],
+        "state_hash": 3528497698,
+        "saving_percent": 5.501336083114349
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 1,
+        "round": 8,
+        "reference_cycles": [
+          225459,
+          225431
+        ],
+        "candidate_cycles": [
+          213578,
+          212229
+        ],
+        "state_hash": 3528497698,
+        "saving_percent": 5.562997626915656
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 2,
+        "round": 0,
+        "reference_cycles": [
+          995650,
+          995724
+        ],
+        "candidate_cycles": [
+          982547,
+          983860
+        ],
+        "state_hash": 3089583307,
+        "saving_percent": 1.2537574559073228
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 2,
+        "round": 1,
+        "reference_cycles": [
+          995656,
+          996324
+        ],
+        "candidate_cycles": [
+          984413,
+          984231
+        ],
+        "state_hash": 3089583307,
+        "saving_percent": 1.1714977058002618
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 2,
+        "round": 2,
+        "reference_cycles": [
+          995866,
+          996394
+        ],
+        "candidate_cycles": [
+          984426,
+          984416
+        ],
+        "state_hash": 3089583307,
+        "saving_percent": 1.1754489875819396
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 2,
+        "round": 3,
+        "reference_cycles": [
+          995925,
+          996265
+        ],
+        "candidate_cycles": [
+          984413,
+          984258
+        ],
+        "state_hash": 3089583307,
+        "saving_percent": 1.180560087140281
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 2,
+        "round": 4,
+        "reference_cycles": [
+          995967,
+          996168
+        ],
+        "candidate_cycles": [
+          984221,
+          984153
+        ],
+        "state_hash": 3089583307,
+        "saving_percent": 1.1927404518268125
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 2,
+        "round": 5,
+        "reference_cycles": [
+          995830,
+          996305
+        ],
+        "candidate_cycles": [
+          984220,
+          984096
+        ],
+        "state_hash": 3089583307,
+        "saving_percent": 1.1956519011010802
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 2,
+        "round": 6,
+        "reference_cycles": [
+          995702,
+          996250
+        ],
+        "candidate_cycles": [
+          984439,
+          984380
+        ],
+        "state_hash": 3089583307,
+        "saving_percent": 1.1613231644135968
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 2,
+        "round": 7,
+        "reference_cycles": [
+          997978,
+          996493
+        ],
+        "candidate_cycles": [
+          984335,
+          984215
+        ],
+        "state_hash": 3089583307,
+        "saving_percent": 1.2996428626939172
+      },
+      {
+        "memory": 0,
+        "scene": 4,
+        "delta_index": 2,
+        "round": 8,
+        "reference_cycles": [
+          995690,
+          996321
+        ],
+        "candidate_cycles": [
+          984463,
+          983973
+        ],
+        "state_hash": 3089583307,
+        "saving_percent": 1.1834774004762072
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 0,
+        "round": 0,
+        "reference_cycles": [
+          61248,
+          61239
+        ],
+        "candidate_cycles": [
+          53235,
+          53355
+        ],
+        "state_hash": 4272687113,
+        "saving_percent": 12.978520169487373
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 0,
+        "round": 1,
+        "reference_cycles": [
+          62665,
+          61243
+        ],
+        "candidate_cycles": [
+          53663,
+          53328
+        ],
+        "state_hash": 4272687113,
+        "saving_percent": 13.652871485295536
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 0,
+        "round": 2,
+        "reference_cycles": [
+          62698,
+          61249
+        ],
+        "candidate_cycles": [
+          53663,
+          53588
+        ],
+        "state_hash": 4272687113,
+        "saving_percent": 13.470273584677317
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 0,
+        "round": 3,
+        "reference_cycles": [
+          62654,
+          61243
+        ],
+        "candidate_cycles": [
+          53663,
+          53329
+        ],
+        "state_hash": 4272687113,
+        "saving_percent": 13.644398169447204
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 0,
+        "round": 4,
+        "reference_cycles": [
+          62721,
+          61243
+        ],
+        "candidate_cycles": [
+          53663,
+          53328
+        ],
+        "state_hash": 4272687113,
+        "saving_percent": 13.691878287244686
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 0,
+        "round": 5,
+        "reference_cycles": [
+          62688,
+          61243
+        ],
+        "candidate_cycles": [
+          53663,
+          53328
+        ],
+        "state_hash": 4272687113,
+        "saving_percent": 13.668896402030162
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 0,
+        "round": 6,
+        "reference_cycles": [
+          62720,
+          61241
+        ],
+        "candidate_cycles": [
+          54639,
+          54580
+        ],
+        "state_hash": 4272687113,
+        "saving_percent": 11.89245004477215
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 0,
+        "round": 7,
+        "reference_cycles": [
+          62696,
+          61241
+        ],
+        "candidate_cycles": [
+          54639,
+          54583
+        ],
+        "state_hash": 4272687113,
+        "saving_percent": 11.872967717469363
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 0,
+        "round": 8,
+        "reference_cycles": [
+          62710,
+          61241
+        ],
+        "candidate_cycles": [
+          54639,
+          54584
+        ],
+        "state_hash": 4272687113,
+        "saving_percent": 11.88211470661794
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 1,
+        "round": 0,
+        "reference_cycles": [
+          164605,
+          165342
+        ],
+        "candidate_cycles": [
+          152519,
+          153330
+        ],
+        "state_hash": 3696060535,
+        "saving_percent": 7.303597244405924
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 1,
+        "round": 1,
+        "reference_cycles": [
+          166493,
+          166047
+        ],
+        "candidate_cycles": [
+          153090,
+          154303
+        ],
+        "state_hash": 3696060535,
+        "saving_percent": 7.562097792746735
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 1,
+        "round": 2,
+        "reference_cycles": [
+          166340,
+          166047
+        ],
+        "candidate_cycles": [
+          153064,
+          154276
+        ],
+        "state_hash": 3696060535,
+        "saving_percent": 7.535493265380411
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 1,
+        "round": 3,
+        "reference_cycles": [
+          167378,
+          165213
+        ],
+        "candidate_cycles": [
+          152786,
+          154188
+        ],
+        "state_hash": 3696060535,
+        "saving_percent": 7.70225291724671
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 1,
+        "round": 4,
+        "reference_cycles": [
+          166409,
+          165133
+        ],
+        "candidate_cycles": [
+          152784,
+          154108
+        ],
+        "state_hash": 3696060535,
+        "saving_percent": 7.434955450591474
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 1,
+        "round": 5,
+        "reference_cycles": [
+          166416,
+          165109
+        ],
+        "candidate_cycles": [
+          152780,
+          154160
+        ],
+        "state_hash": 3696060535,
+        "saving_percent": 7.415730337078652
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 1,
+        "round": 6,
+        "reference_cycles": [
+          167408,
+          165129
+        ],
+        "candidate_cycles": [
+          152798,
+          154248
+        ],
+        "state_hash": 3696060535,
+        "saving_percent": 7.665613149814909
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 1,
+        "round": 7,
+        "reference_cycles": [
+          166399,
+          165961
+        ],
+        "candidate_cycles": [
+          153022,
+          154328
+        ],
+        "state_hash": 3696060535,
+        "saving_percent": 7.524972920929118
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 1,
+        "round": 8,
+        "reference_cycles": [
+          166327,
+          164748
+        ],
+        "candidate_cycles": [
+          153026,
+          153529
+        ],
+        "state_hash": 3696060535,
+        "saving_percent": 7.406176848146195
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 2,
+        "round": 0,
+        "reference_cycles": [
+          683924,
+          683833
+        ],
+        "candidate_cycles": [
+          673013,
+          672956
+        ],
+        "state_hash": 2753132261,
+        "saving_percent": 1.592973020792432
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 2,
+        "round": 1,
+        "reference_cycles": [
+          684108,
+          683886
+        ],
+        "candidate_cycles": [
+          673181,
+          673145
+        ],
+        "state_hash": 2753132261,
+        "saving_percent": 1.583925075694781
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 2,
+        "round": 2,
+        "reference_cycles": [
+          684076,
+          683872
+        ],
+        "candidate_cycles": [
+          673077,
+          673285
+        ],
+        "state_hash": 2753132261,
+        "saving_percent": 1.5779839584545652
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 2,
+        "round": 3,
+        "reference_cycles": [
+          683984,
+          683870
+        ],
+        "candidate_cycles": [
+          673257,
+          673218
+        ],
+        "state_hash": 2753132261,
+        "saving_percent": 1.5629592047104457
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 2,
+        "round": 4,
+        "reference_cycles": [
+          684080,
+          683871
+        ],
+        "candidate_cycles": [
+          673387,
+          673280
+        ],
+        "state_hash": 2753132261,
+        "saving_percent": 1.5559036836845785
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 2,
+        "round": 5,
+        "reference_cycles": [
+          684056,
+          683865
+        ],
+        "candidate_cycles": [
+          673236,
+          673295
+        ],
+        "state_hash": 2753132261,
+        "saving_percent": 1.563686791854213
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 2,
+        "round": 6,
+        "reference_cycles": [
+          684083,
+          683856
+        ],
+        "candidate_cycles": [
+          673264,
+          673266
+        ],
+        "state_hash": 2753132261,
+        "saving_percent": 1.5650551669336155
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 2,
+        "round": 7,
+        "reference_cycles": [
+          684053,
+          683856
+        ],
+        "candidate_cycles": [
+          673236,
+          673254
+        ],
+        "state_hash": 2753132261,
+        "saving_percent": 1.565820533383433
+      },
+      {
+        "memory": 0,
+        "scene": 5,
+        "delta_index": 2,
+        "round": 8,
+        "reference_cycles": [
+          684078,
+          683886
+        ],
+        "candidate_cycles": [
+          673229,
+          673129
+        ],
+        "state_hash": 2753132261,
+        "saving_percent": 1.5794275287946191
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 0,
+        "round": 0,
+        "reference_cycles": [
+          73428,
+          74716
+        ],
+        "candidate_cycles": [
+          63181,
+          63000
+        ],
+        "state_hash": 1196172350,
+        "saving_percent": 14.82544011232314
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 0,
+        "round": 1,
+        "reference_cycles": [
+          74863,
+          73409
+        ],
+        "candidate_cycles": [
+          63098,
+          63020
+        ],
+        "state_hash": 1196172350,
+        "saving_percent": 14.94145894032589
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 0,
+        "round": 2,
+        "reference_cycles": [
+          74871,
+          73409
+        ],
+        "candidate_cycles": [
+          63098,
+          63021
+        ],
+        "state_hash": 1196172350,
+        "saving_percent": 14.94537361748044
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 0,
+        "round": 3,
+        "reference_cycles": [
+          74877,
+          73409
+        ],
+        "candidate_cycles": [
+          63098,
+          63058
+        ],
+        "state_hash": 1196172350,
+        "saving_percent": 14.92386334515733
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 0,
+        "round": 4,
+        "reference_cycles": [
+          74932,
+          73409
+        ],
+        "candidate_cycles": [
+          63098,
+          63022
+        ],
+        "state_hash": 1196172350,
+        "saving_percent": 14.979675207798248
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 0,
+        "round": 5,
+        "reference_cycles": [
+          74883,
+          73409
+        ],
+        "candidate_cycles": [
+          63098,
+          63058
+        ],
+        "state_hash": 1196172350,
+        "saving_percent": 14.927305586275729
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 0,
+        "round": 6,
+        "reference_cycles": [
+          74911,
+          73409
+        ],
+        "candidate_cycles": [
+          63098,
+          63022
+        ],
+        "state_hash": 1196172350,
+        "saving_percent": 14.967637540453072
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 0,
+        "round": 7,
+        "reference_cycles": [
+          75109,
+          73694
+        ],
+        "candidate_cycles": [
+          63542,
+          63338
+        ],
+        "state_hash": 1196172350,
+        "saving_percent": 14.732901890418882
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 0,
+        "round": 8,
+        "reference_cycles": [
+          75147,
+          73694
+        ],
+        "candidate_cycles": [
+          63542,
+          63337
+        ],
+        "state_hash": 1196172350,
+        "saving_percent": 14.75534294985924
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 1,
+        "round": 0,
+        "reference_cycles": [
+          237668,
+          238441
+        ],
+        "candidate_cycles": [
+          234109,
+          234564
+        ],
+        "state_hash": 448865189,
+        "saving_percent": 1.5618272286388235
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 1,
+        "round": 1,
+        "reference_cycles": [
+          239934,
+          238415
+        ],
+        "candidate_cycles": [
+          234828,
+          233436
+        ],
+        "state_hash": 448865189,
+        "saving_percent": 2.108293317222365
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 1,
+        "round": 2,
+        "reference_cycles": [
+          239900,
+          238413
+        ],
+        "candidate_cycles": [
+          234820,
+          233438
+        ],
+        "state_hash": 448865189,
+        "saving_percent": 2.102179953294181
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 1,
+        "round": 3,
+        "reference_cycles": [
+          239929,
+          238415
+        ],
+        "candidate_cycles": [
+          234132,
+          233282
+        ],
+        "state_hash": 448865189,
+        "saving_percent": 2.2849664676467096
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 1,
+        "round": 4,
+        "reference_cycles": [
+          239941,
+          238415
+        ],
+        "candidate_cycles": [
+          234120,
+          233280
+        ],
+        "state_hash": 448865189,
+        "saving_percent": 2.29034442967162
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 1,
+        "round": 5,
+        "reference_cycles": [
+          239789,
+          238415
+        ],
+        "candidate_cycles": [
+          234136,
+          233282
+        ],
+        "state_hash": 448865189,
+        "saving_percent": 2.2555227476139916
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 1,
+        "round": 6,
+        "reference_cycles": [
+          239919,
+          238417
+        ],
+        "candidate_cycles": [
+          234164,
+          233280
+        ],
+        "state_hash": 448865189,
+        "saving_percent": 2.2770604763179048
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 1,
+        "round": 7,
+        "reference_cycles": [
+          239959,
+          238413
+        ],
+        "candidate_cycles": [
+          234126,
+          233282
+        ],
+        "state_hash": 448865189,
+        "saving_percent": 2.2919401637219616
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 1,
+        "round": 8,
+        "reference_cycles": [
+          239851,
+          238455
+        ],
+        "candidate_cycles": [
+          234100,
+          233260
+        ],
+        "state_hash": 448865189,
+        "saving_percent": 2.28849314037457
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 2,
+        "round": 0,
+        "reference_cycles": [
+          1151285,
+          1150280
+        ],
+        "candidate_cycles": [
+          1181634,
+          1182218
+        ],
+        "state_hash": 468220276,
+        "saving_percent": -2.7062889816277247
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 2,
+        "round": 1,
+        "reference_cycles": [
+          1153319,
+          1151859
+        ],
+        "candidate_cycles": [
+          1181707,
+          1179825
+        ],
+        "state_hash": 468220276,
+        "saving_percent": -2.4446702163563927
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 2,
+        "round": 2,
+        "reference_cycles": [
+          1153227,
+          1151501
+        ],
+        "candidate_cycles": [
+          1181670,
+          1180071
+        ],
+        "state_hash": 468220276,
+        "saving_percent": -2.473740936023683
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 2,
+        "round": 3,
+        "reference_cycles": [
+          1153152,
+          1151642
+        ],
+        "candidate_cycles": [
+          1181850,
+          1180087
+        ],
+        "state_hash": 468220276,
+        "saving_percent": -2.4793105153866346
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 2,
+        "round": 4,
+        "reference_cycles": [
+          1151635,
+          1152050
+        ],
+        "candidate_cycles": [
+          1181518,
+          1180512
+        ],
+        "state_hash": 468220276,
+        "saving_percent": -2.5326813344706434
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 2,
+        "round": 5,
+        "reference_cycles": [
+          1153290,
+          1151455
+        ],
+        "candidate_cycles": [
+          1181592,
+          1180485
+        ],
+        "state_hash": 468220276,
+        "saving_percent": -2.487563700105655
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 2,
+        "round": 6,
+        "reference_cycles": [
+          1153191,
+          1151504
+        ],
+        "candidate_cycles": [
+          1181433,
+          1180120
+        ],
+        "state_hash": 468220276,
+        "saving_percent": -2.467050954681649
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 2,
+        "round": 7,
+        "reference_cycles": [
+          1153105,
+          1151611
+        ],
+        "candidate_cycles": [
+          1181571,
+          1180436
+        ],
+        "state_hash": 468220276,
+        "saving_percent": -2.485816039807065
+      },
+      {
+        "memory": 0,
+        "scene": 6,
+        "delta_index": 2,
+        "round": 8,
+        "reference_cycles": [
+          1153191,
+          1151888
+        ],
+        "candidate_cycles": [
+          1181678,
+          1179383
+        ],
+        "state_hash": 468220276,
+        "saving_percent": -2.428636936087658
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 0,
+        "round": 0,
+        "reference_cycles": [
+          24255,
+          24261
+        ],
+        "candidate_cycles": [
+          21962,
+          21951
+        ],
+        "state_hash": 3466778995,
+        "saving_percent": 9.487591722318411
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 0,
+        "round": 1,
+        "reference_cycles": [
+          25618,
+          24096
+        ],
+        "candidate_cycles": [
+          21227,
+          21191
+        ],
+        "state_hash": 3466778995,
+        "saving_percent": 14.67594641348513
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 0,
+        "round": 2,
+        "reference_cycles": [
+          24154,
+          24086
+        ],
+        "candidate_cycles": [
+          22757,
+          22689
+        ],
+        "state_hash": 3466778995,
+        "saving_percent": 5.791873963515759
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 0,
+        "round": 3,
+        "reference_cycles": [
+          24148,
+          24092
+        ],
+        "candidate_cycles": [
+          21232,
+          21191
+        ],
+        "state_hash": 3466778995,
+        "saving_percent": 12.058457711442783
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 0,
+        "round": 4,
+        "reference_cycles": [
+          24154,
+          24086
+        ],
+        "candidate_cycles": [
+          22728,
+          22689
+        ],
+        "state_hash": 3466778995,
+        "saving_percent": 5.851990049751244
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 0,
+        "round": 5,
+        "reference_cycles": [
+          24148,
+          24092
+        ],
+        "candidate_cycles": [
+          21232,
+          21194
+        ],
+        "state_hash": 3466778995,
+        "saving_percent": 12.05223880597015
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 0,
+        "round": 6,
+        "reference_cycles": [
+          24154,
+          24086
+        ],
+        "candidate_cycles": [
+          22728,
+          22689
+        ],
+        "state_hash": 3466778995,
+        "saving_percent": 5.851990049751244
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 0,
+        "round": 7,
+        "reference_cycles": [
+          24148,
+          24092
+        ],
+        "candidate_cycles": [
+          21232,
+          21191
+        ],
+        "state_hash": 3466778995,
+        "saving_percent": 12.058457711442783
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 0,
+        "round": 8,
+        "reference_cycles": [
+          24154,
+          24086
+        ],
+        "candidate_cycles": [
+          22728,
+          22689
+        ],
+        "state_hash": 3466778995,
+        "saving_percent": 5.851990049751244
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 1,
+        "round": 0,
+        "reference_cycles": [
+          24092,
+          24100
+        ],
+        "candidate_cycles": [
+          22525,
+          21196
+        ],
+        "state_hash": 2963158285,
+        "saving_percent": 9.277473439575035
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 1,
+        "round": 1,
+        "reference_cycles": [
+          24154,
+          24090
+        ],
+        "candidate_cycles": [
+          22749,
+          22681
+        ],
+        "state_hash": 2963158285,
+        "saving_percent": 5.83284968078932
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 1,
+        "round": 2,
+        "reference_cycles": [
+          24148,
+          24092
+        ],
+        "candidate_cycles": [
+          21237,
+          21194
+        ],
+        "state_hash": 2963158285,
+        "saving_percent": 12.041873963515759
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 1,
+        "round": 3,
+        "reference_cycles": [
+          24154,
+          24086
+        ],
+        "candidate_cycles": [
+          22754,
+          22689
+        ],
+        "state_hash": 2963158285,
+        "saving_percent": 5.798092868988391
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 1,
+        "round": 4,
+        "reference_cycles": [
+          24148,
+          24092
+        ],
+        "candidate_cycles": [
+          21237,
+          21194
+        ],
+        "state_hash": 2963158285,
+        "saving_percent": 12.041873963515759
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 1,
+        "round": 5,
+        "reference_cycles": [
+          24154,
+          24090
+        ],
+        "candidate_cycles": [
+          22749,
+          22681
+        ],
+        "state_hash": 2963158285,
+        "saving_percent": 5.83284968078932
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 1,
+        "round": 6,
+        "reference_cycles": [
+          24148,
+          24092
+        ],
+        "candidate_cycles": [
+          21237,
+          21191
+        ],
+        "state_hash": 2963158285,
+        "saving_percent": 12.048092868988391
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 1,
+        "round": 7,
+        "reference_cycles": [
+          24154,
+          24086
+        ],
+        "candidate_cycles": [
+          22754,
+          22689
+        ],
+        "state_hash": 2963158285,
+        "saving_percent": 5.798092868988391
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 1,
+        "round": 8,
+        "reference_cycles": [
+          24148,
+          24092
+        ],
+        "candidate_cycles": [
+          21237,
+          21194
+        ],
+        "state_hash": 2963158285,
+        "saving_percent": 12.041873963515759
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 2,
+        "round": 0,
+        "reference_cycles": [
+          24090,
+          24090
+        ],
+        "candidate_cycles": [
+          22017,
+          22713
+        ],
+        "state_hash": 2230327747,
+        "saving_percent": 7.1606475716064715
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 2,
+        "round": 1,
+        "reference_cycles": [
+          24148,
+          24092
+        ],
+        "candidate_cycles": [
+          21237,
+          21191
+        ],
+        "state_hash": 2230327747,
+        "saving_percent": 12.048092868988391
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 2,
+        "round": 2,
+        "reference_cycles": [
+          24154,
+          24086
+        ],
+        "candidate_cycles": [
+          22754,
+          22689
+        ],
+        "state_hash": 2230327747,
+        "saving_percent": 5.798092868988391
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 2,
+        "round": 3,
+        "reference_cycles": [
+          24148,
+          24092
+        ],
+        "candidate_cycles": [
+          21237,
+          21194
+        ],
+        "state_hash": 2230327747,
+        "saving_percent": 12.041873963515759
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 2,
+        "round": 4,
+        "reference_cycles": [
+          24154,
+          24086
+        ],
+        "candidate_cycles": [
+          22754,
+          22689
+        ],
+        "state_hash": 2230327747,
+        "saving_percent": 5.798092868988391
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 2,
+        "round": 5,
+        "reference_cycles": [
+          24148,
+          24092
+        ],
+        "candidate_cycles": [
+          21237,
+          21191
+        ],
+        "state_hash": 2230327747,
+        "saving_percent": 12.048092868988391
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 2,
+        "round": 6,
+        "reference_cycles": [
+          24154,
+          24086
+        ],
+        "candidate_cycles": [
+          22754,
+          22689
+        ],
+        "state_hash": 2230327747,
+        "saving_percent": 5.798092868988391
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 2,
+        "round": 7,
+        "reference_cycles": [
+          24148,
+          24092
+        ],
+        "candidate_cycles": [
+          21237,
+          21194
+        ],
+        "state_hash": 2230327747,
+        "saving_percent": 12.041873963515759
+      },
+      {
+        "memory": 1,
+        "scene": 0,
+        "delta_index": 2,
+        "round": 8,
+        "reference_cycles": [
+          24154,
+          24086
+        ],
+        "candidate_cycles": [
+          22754,
+          22689
+        ],
+        "state_hash": 2230327747,
+        "saving_percent": 5.798092868988391
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 0,
+        "round": 0,
+        "reference_cycles": [
+          62153,
+          62157
+        ],
+        "candidate_cycles": [
+          52830,
+          52815
+        ],
+        "state_hash": 1092516286,
+        "saving_percent": 15.014882149465048
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 0,
+        "round": 1,
+        "reference_cycles": [
+          63632,
+          62176
+        ],
+        "candidate_cycles": [
+          52876,
+          52809
+        ],
+        "state_hash": 1092516286,
+        "saving_percent": 15.995008266564925
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 0,
+        "round": 2,
+        "reference_cycles": [
+          63622,
+          62176
+        ],
+        "candidate_cycles": [
+          52868,
+          52808
+        ],
+        "state_hash": 1092516286,
+        "saving_percent": 15.99548482487798
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 0,
+        "round": 3,
+        "reference_cycles": [
+          63595,
+          62176
+        ],
+        "candidate_cycles": [
+          52868,
+          52808
+        ],
+        "state_hash": 1092516286,
+        "saving_percent": 15.9774510817279
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 0,
+        "round": 4,
+        "reference_cycles": [
+          63652,
+          62176
+        ],
+        "candidate_cycles": [
+          52868,
+          52808
+        ],
+        "state_hash": 1092516286,
+        "saving_percent": 16.015513240296276
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 0,
+        "round": 5,
+        "reference_cycles": [
+          63610,
+          62176
+        ],
+        "candidate_cycles": [
+          52868,
+          52808
+        ],
+        "state_hash": 1092516286,
+        "saving_percent": 15.987470783712022
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 0,
+        "round": 6,
+        "reference_cycles": [
+          63650,
+          62176
+        ],
+        "candidate_cycles": [
+          52868,
+          52808
+        ],
+        "state_hash": 1092516286,
+        "saving_percent": 16.01417830972931
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 0,
+        "round": 7,
+        "reference_cycles": [
+          63610,
+          62176
+        ],
+        "candidate_cycles": [
+          52868,
+          52808
+        ],
+        "state_hash": 1092516286,
+        "saving_percent": 15.987470783712022
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 0,
+        "round": 8,
+        "reference_cycles": [
+          63650,
+          62176
+        ],
+        "candidate_cycles": [
+          52868,
+          52808
+        ],
+        "state_hash": 1092516286,
+        "saving_percent": 16.01417830972931
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 1,
+        "round": 0,
+        "reference_cycles": [
+          124449,
+          124447
+        ],
+        "candidate_cycles": [
+          114121,
+          112676
+        ],
+        "state_hash": 3003201358,
+        "saving_percent": 8.878808819748008
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 1,
+        "round": 1,
+        "reference_cycles": [
+          125922,
+          124433
+        ],
+        "candidate_cycles": [
+          112606,
+          112530
+        ],
+        "state_hash": 3003201358,
+        "saving_percent": 10.073295919793889
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 1,
+        "round": 2,
+        "reference_cycles": [
+          125868,
+          124431
+        ],
+        "candidate_cycles": [
+          112619,
+          112538
+        ],
+        "state_hash": 3003201358,
+        "saving_percent": 10.044786435423237
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 1,
+        "round": 3,
+        "reference_cycles": [
+          126076,
+          124431
+        ],
+        "candidate_cycles": [
+          112619,
+          112538
+        ],
+        "state_hash": 3003201358,
+        "saving_percent": 10.119477699225964
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 1,
+        "round": 4,
+        "reference_cycles": [
+          125848,
+          124433
+        ],
+        "candidate_cycles": [
+          112747,
+          112672
+        ],
+        "state_hash": 3003201358,
+        "saving_percent": 9.933634594715535
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 1,
+        "round": 5,
+        "reference_cycles": [
+          125870,
+          124433
+        ],
+        "candidate_cycles": [
+          112745,
+          112672
+        ],
+        "state_hash": 3003201358,
+        "saving_percent": 9.94234987195519
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 1,
+        "round": 6,
+        "reference_cycles": [
+          125882,
+          124433
+        ],
+        "candidate_cycles": [
+          112748,
+          112672
+        ],
+        "state_hash": 3003201358,
+        "saving_percent": 9.94546870942612
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 1,
+        "round": 7,
+        "reference_cycles": [
+          125858,
+          124433
+        ],
+        "candidate_cycles": [
+          112741,
+          112658
+        ],
+        "state_hash": 3003201358,
+        "saving_percent": 9.945223759543886
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 1,
+        "round": 8,
+        "reference_cycles": [
+          125926,
+          124431
+        ],
+        "candidate_cycles": [
+          112622,
+          112538
+        ],
+        "state_hash": 3003201358,
+        "saving_percent": 10.064427996820536
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 2,
+        "round": 0,
+        "reference_cycles": [
+          443959,
+          445208
+        ],
+        "candidate_cycles": [
+          430369,
+          430371
+        ],
+        "state_hash": 887282019,
+        "saving_percent": 3.197037226977606
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 2,
+        "round": 1,
+        "reference_cycles": [
+          445862,
+          444298
+        ],
+        "candidate_cycles": [
+          430533,
+          430394
+        ],
+        "state_hash": 887282019,
+        "saving_percent": 3.284016356610042
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 2,
+        "round": 2,
+        "reference_cycles": [
+          445955,
+          444309
+        ],
+        "candidate_cycles": [
+          430526,
+          430414
+        ],
+        "state_hash": 887282019,
+        "saving_percent": 3.293854407232011
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 2,
+        "round": 3,
+        "reference_cycles": [
+          445876,
+          444097
+        ],
+        "candidate_cycles": [
+          430541,
+          430353
+        ],
+        "state_hash": 887282019,
+        "saving_percent": 3.267402494232974
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 2,
+        "round": 4,
+        "reference_cycles": [
+          445863,
+          444256
+        ],
+        "candidate_cycles": [
+          430514,
+          430416
+        ],
+        "state_hash": 887282019,
+        "saving_percent": 3.279224463245922
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 2,
+        "round": 5,
+        "reference_cycles": [
+          445761,
+          444063
+        ],
+        "candidate_cycles": [
+          430481,
+          430385
+        ],
+        "state_hash": 887282019,
+        "saving_percent": 3.254351422303736
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 2,
+        "round": 6,
+        "reference_cycles": [
+          445770,
+          444305
+        ],
+        "candidate_cycles": [
+          430566,
+          430402
+        ],
+        "state_hash": 887282019,
+        "saving_percent": 3.2701738617532228
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 2,
+        "round": 7,
+        "reference_cycles": [
+          445783,
+          444042
+        ],
+        "candidate_cycles": [
+          430503,
+          430422
+        ],
+        "state_hash": 887282019,
+        "saving_percent": 3.247829629421517
+      },
+      {
+        "memory": 1,
+        "scene": 1,
+        "delta_index": 2,
+        "round": 8,
+        "reference_cycles": [
+          445740,
+          444201
+        ],
+        "candidate_cycles": [
+          430707,
+          430577
+        ],
+        "state_hash": 887282019,
+        "saving_percent": 3.2201011078262454
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 0,
+        "round": 0,
+        "reference_cycles": [
+          65598,
+          65598
+        ],
+        "candidate_cycles": [
+          56003,
+          56016
+        ],
+        "state_hash": 1447464196,
+        "saving_percent": 14.617061495777307
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 0,
+        "round": 1,
+        "reference_cycles": [
+          67061,
+          65598
+        ],
+        "candidate_cycles": [
+          56074,
+          56017
+        ],
+        "state_hash": 1447464196,
+        "saving_percent": 15.504413571638565
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 0,
+        "round": 2,
+        "reference_cycles": [
+          66977,
+          65598
+        ],
+        "candidate_cycles": [
+          56074,
+          56018
+        ],
+        "state_hash": 1447464196,
+        "saving_percent": 15.450122572128988
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 0,
+        "round": 3,
+        "reference_cycles": [
+          67027,
+          65598
+        ],
+        "candidate_cycles": [
+          56074,
+          56017
+        ],
+        "state_hash": 1447464196,
+        "saving_percent": 15.482752120640908
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 0,
+        "round": 4,
+        "reference_cycles": [
+          66983,
+          65598
+        ],
+        "candidate_cycles": [
+          56074,
+          56013
+        ],
+        "state_hash": 1447464196,
+        "saving_percent": 15.45772018615036
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 0,
+        "round": 5,
+        "reference_cycles": [
+          67019,
+          65598
+        ],
+        "candidate_cycles": [
+          56074,
+          56014
+        ],
+        "state_hash": 1447464196,
+        "saving_percent": 15.4799158478928
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 0,
+        "round": 6,
+        "reference_cycles": [
+          66993,
+          65598
+        ],
+        "candidate_cycles": [
+          56074,
+          56017
+        ],
+        "state_hash": 1447464196,
+        "saving_percent": 15.461079560452816
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 0,
+        "round": 7,
+        "reference_cycles": [
+          67021,
+          65598
+        ],
+        "candidate_cycles": [
+          56074,
+          56016
+        ],
+        "state_hash": 1447464196,
+        "saving_percent": 15.47968239844969
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 0,
+        "round": 8,
+        "reference_cycles": [
+          66993,
+          65598
+        ],
+        "candidate_cycles": [
+          56074,
+          56017
+        ],
+        "state_hash": 1447464196,
+        "saving_percent": 15.461079560452816
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 1,
+        "round": 0,
+        "reference_cycles": [
+          158967,
+          158978
+        ],
+        "candidate_cycles": [
+          148982,
+          148965
+        ],
+        "state_hash": 3543246349,
+        "saving_percent": 6.289767098082999
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 1,
+        "round": 1,
+        "reference_cycles": [
+          159109,
+          157732
+        ],
+        "candidate_cycles": [
+          149014,
+          149899
+        ],
+        "state_hash": 3543246349,
+        "saving_percent": 5.658358608892156
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 1,
+        "round": 2,
+        "reference_cycles": [
+          159180,
+          157757
+        ],
+        "candidate_cycles": [
+          149050,
+          150335
+        ],
+        "state_hash": 3543246349,
+        "saving_percent": 5.5380091311522435
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 1,
+        "round": 3,
+        "reference_cycles": [
+          158910,
+          157761
+        ],
+        "candidate_cycles": [
+          149095,
+          150317
+        ],
+        "state_hash": 3543246349,
+        "saving_percent": 5.450135945508117
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 1,
+        "round": 4,
+        "reference_cycles": [
+          159164,
+          157757
+        ],
+        "candidate_cycles": [
+          149050,
+          150335
+        ],
+        "state_hash": 3543246349,
+        "saving_percent": 5.533240145020368
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 1,
+        "round": 5,
+        "reference_cycles": [
+          159162,
+          157754
+        ],
+        "candidate_cycles": [
+          149052,
+          150324
+        ],
+        "state_hash": 3543246349,
+        "saving_percent": 5.534589607340745
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 1,
+        "round": 6,
+        "reference_cycles": [
+          159130,
+          157754
+        ],
+        "candidate_cycles": [
+          149052,
+          150339
+        ],
+        "state_hash": 3543246349,
+        "saving_percent": 5.520316582724282
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 1,
+        "round": 7,
+        "reference_cycles": [
+          159163,
+          157756
+        ],
+        "candidate_cycles": [
+          149052,
+          150338
+        ],
+        "state_hash": 3543246349,
+        "saving_percent": 5.531066297697517
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 1,
+        "round": 8,
+        "reference_cycles": [
+          159126,
+          157757
+        ],
+        "candidate_cycles": [
+          149048,
+          150338
+        ],
+        "state_hash": 3543246349,
+        "saving_percent": 5.521596298949449
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 2,
+        "round": 0,
+        "reference_cycles": [
+          634521,
+          634459
+        ],
+        "candidate_cycles": [
+          633339,
+          634706
+        ],
+        "state_hash": 3452512413,
+        "saving_percent": 0.07368122429037838
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 2,
+        "round": 1,
+        "reference_cycles": [
+          634759,
+          634645
+        ],
+        "candidate_cycles": [
+          634270,
+          634160
+        ],
+        "state_hash": 3452512413,
+        "saving_percent": 0.07672892160415223
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 2,
+        "round": 2,
+        "reference_cycles": [
+          634896,
+          634464
+        ],
+        "candidate_cycles": [
+          634197,
+          634045
+        ],
+        "state_hash": 3452512413,
+        "saving_percent": 0.0880758807588089
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 2,
+        "round": 3,
+        "reference_cycles": [
+          634769,
+          634111
+        ],
+        "candidate_cycles": [
+          632551,
+          631933
+        ],
+        "state_hash": 3452512413,
+        "saving_percent": 0.34644726057625475
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 2,
+        "round": 4,
+        "reference_cycles": [
+          634861,
+          634700
+        ],
+        "candidate_cycles": [
+          634291,
+          634164
+        ],
+        "state_hash": 3452512413,
+        "saving_percent": 0.08711672775076895
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 2,
+        "round": 5,
+        "reference_cycles": [
+          634908,
+          634466
+        ],
+        "candidate_cycles": [
+          634218,
+          634038
+        ],
+        "state_hash": 3452512413,
+        "saving_percent": 0.08807490936477702
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 2,
+        "round": 6,
+        "reference_cycles": [
+          634718,
+          634261
+        ],
+        "candidate_cycles": [
+          632402,
+          632180
+        ],
+        "state_hash": 3452512413,
+        "saving_percent": 0.34649903583905406
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 2,
+        "round": 7,
+        "reference_cycles": [
+          634858,
+          634437
+        ],
+        "candidate_cycles": [
+          634155,
+          634039
+        ],
+        "state_hash": 3452512413,
+        "saving_percent": 0.08674106492186917
+      },
+      {
+        "memory": 1,
+        "scene": 2,
+        "delta_index": 2,
+        "round": 8,
+        "reference_cycles": [
+          634860,
+          634464
+        ],
+        "candidate_cycles": [
+          634201,
+          634037
+        ],
+        "state_hash": 3452512413,
+        "saving_percent": 0.08555735178724655
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 0,
+        "round": 0,
+        "reference_cycles": [
+          76887,
+          78224
+        ],
+        "candidate_cycles": [
+          66613,
+          66599
+        ],
+        "state_hash": 364478206,
+        "saving_percent": 14.118276589023349
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 0,
+        "round": 1,
+        "reference_cycles": [
+          78364,
+          76879
+        ],
+        "candidate_cycles": [
+          66673,
+          66602
+        ],
+        "state_hash": 364478206,
+        "saving_percent": 14.150718550916952
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 0,
+        "round": 2,
+        "reference_cycles": [
+          78390,
+          76878
+        ],
+        "candidate_cycles": [
+          66692,
+          66599
+        ],
+        "state_hash": 364478206,
+        "saving_percent": 14.154236545843313
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 0,
+        "round": 3,
+        "reference_cycles": [
+          78355,
+          76879
+        ],
+        "candidate_cycles": [
+          66693,
+          66603
+        ],
+        "state_hash": 364478206,
+        "saving_percent": 14.132213303786545
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 0,
+        "round": 4,
+        "reference_cycles": [
+          78410,
+          76878
+        ],
+        "candidate_cycles": [
+          66692,
+          66603
+        ],
+        "state_hash": 364478206,
+        "saving_percent": 14.162717016124882
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 0,
+        "round": 5,
+        "reference_cycles": [
+          78381,
+          76879
+        ],
+        "candidate_cycles": [
+          66673,
+          66603
+        ],
+        "state_hash": 364478206,
+        "saving_percent": 14.159474429988405
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 0,
+        "round": 6,
+        "reference_cycles": [
+          78378,
+          76878
+        ],
+        "candidate_cycles": [
+          66672,
+          66603
+        ],
+        "state_hash": 364478206,
+        "saving_percent": 14.157906940794563
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 0,
+        "round": 7,
+        "reference_cycles": [
+          78387,
+          76879
+        ],
+        "candidate_cycles": [
+          66693,
+          66599
+        ],
+        "state_hash": 364478206,
+        "saving_percent": 14.15248670024345
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 0,
+        "round": 8,
+        "reference_cycles": [
+          78367,
+          76878
+        ],
+        "candidate_cycles": [
+          66672,
+          66601
+        ],
+        "state_hash": 364478206,
+        "saving_percent": 14.153112821668978
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 1,
+        "round": 0,
+        "reference_cycles": [
+          268962,
+          270332
+        ],
+        "candidate_cycles": [
+          265013,
+          267048
+        ],
+        "state_hash": 63268611,
+        "saving_percent": 1.3411979365615
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 1,
+        "round": 1,
+        "reference_cycles": [
+          270448,
+          270260
+        ],
+        "candidate_cycles": [
+          267005,
+          266778
+        ],
+        "state_hash": 63268611,
+        "saving_percent": 1.2807282303942236
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 1,
+        "round": 2,
+        "reference_cycles": [
+          270405,
+          270383
+        ],
+        "candidate_cycles": [
+          267024,
+          267209
+        ],
+        "state_hash": 63268611,
+        "saving_percent": 1.212120091422142
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 1,
+        "round": 3,
+        "reference_cycles": [
+          270431,
+          270250
+        ],
+        "candidate_cycles": [
+          267048,
+          267056
+        ],
+        "state_hash": 63268611,
+        "saving_percent": 1.2164289109474868
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 1,
+        "round": 4,
+        "reference_cycles": [
+          270396,
+          270291
+        ],
+        "candidate_cycles": [
+          267014,
+          267027
+        ],
+        "state_hash": 63268611,
+        "saving_percent": 1.2291769545041742
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 1,
+        "round": 5,
+        "reference_cycles": [
+          270471,
+          270412
+        ],
+        "candidate_cycles": [
+          267334,
+          267427
+        ],
+        "state_hash": 63268611,
+        "saving_percent": 1.1318529145859624
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 1,
+        "round": 6,
+        "reference_cycles": [
+          270518,
+          270388
+        ],
+        "candidate_cycles": [
+          266658,
+          266625
+        ],
+        "state_hash": 63268611,
+        "saving_percent": 1.409302170802318
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 1,
+        "round": 7,
+        "reference_cycles": [
+          270433,
+          270265
+        ],
+        "candidate_cycles": [
+          267053,
+          266806
+        ],
+        "state_hash": 63268611,
+        "saving_percent": 1.2648465501999273
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 1,
+        "round": 8,
+        "reference_cycles": [
+          270409,
+          270256
+        ],
+        "candidate_cycles": [
+          267005,
+          267056
+        ],
+        "state_hash": 63268611,
+        "saving_percent": 1.2214587591207082
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 2,
+        "round": 0,
+        "reference_cycles": [
+          1273284,
+          1273200
+        ],
+        "candidate_cycles": [
+          1311785,
+          1310392
+        ],
+        "state_hash": 3513894667,
+        "saving_percent": -2.9724514271442404
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 2,
+        "round": 1,
+        "reference_cycles": [
+          1273598,
+          1273282
+        ],
+        "candidate_cycles": [
+          1312256,
+          1311387
+        ],
+        "state_hash": 3513894667,
+        "saving_percent": -3.0140014449051344
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 2,
+        "round": 2,
+        "reference_cycles": [
+          1273518,
+          1273463
+        ],
+        "candidate_cycles": [
+          1311715,
+          1310470
+        ],
+        "state_hash": 3513894667,
+        "saving_percent": -2.952672202894324
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 2,
+        "round": 3,
+        "reference_cycles": [
+          1273612,
+          1273275
+        ],
+        "candidate_cycles": [
+          1311849,
+          1310483
+        ],
+        "state_hash": 3513894667,
+        "saving_percent": -2.9622437116369804
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 2,
+        "round": 4,
+        "reference_cycles": [
+          1273668,
+          1273318
+        ],
+        "candidate_cycles": [
+          1311760,
+          1310487
+        ],
+        "state_hash": 3513894667,
+        "saving_percent": -2.9549043457639756
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 2,
+        "round": 5,
+        "reference_cycles": [
+          1273624,
+          1273232
+        ],
+        "candidate_cycles": [
+          1311817,
+          1310522
+        ],
+        "state_hash": 3513894667,
+        "saving_percent": -2.9637718033528326
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 2,
+        "round": 6,
+        "reference_cycles": [
+          1273529,
+          1273348
+        ],
+        "candidate_cycles": [
+          1311460,
+          1310071
+        ],
+        "state_hash": 3513894667,
+        "saving_percent": -2.9311976982005827
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 2,
+        "round": 7,
+        "reference_cycles": [
+          1273328,
+          1273268
+        ],
+        "candidate_cycles": [
+          1311401,
+          1310040
+        ],
+        "state_hash": 3513894667,
+        "saving_percent": -2.9390213445713353
+      },
+      {
+        "memory": 1,
+        "scene": 3,
+        "delta_index": 2,
+        "round": 8,
+        "reference_cycles": [
+          1273501,
+          1273399
+        ],
+        "candidate_cycles": [
+          1311273,
+          1310011
+        ],
+        "state_hash": 3513894667,
+        "saving_percent": -2.920570104833331
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 0,
+        "round": 0,
+        "reference_cycles": [
+          77432,
+          77262
+        ],
+        "candidate_cycles": [
+          65381,
+          65275
+        ],
+        "state_hash": 157625479,
+        "saving_percent": 15.539064217099563
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 0,
+        "round": 1,
+        "reference_cycles": [
+          77596,
+          76026
+        ],
+        "candidate_cycles": [
+          65263,
+          65213
+        ],
+        "state_hash": 157625479,
+        "saving_percent": 15.066852403952558
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 0,
+        "round": 2,
+        "reference_cycles": [
+          77470,
+          75985
+        ],
+        "candidate_cycles": [
+          65210,
+          65228
+        ],
+        "state_hash": 157625479,
+        "saving_percent": 14.99918542895311
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 0,
+        "round": 3,
+        "reference_cycles": [
+          77420,
+          76042
+        ],
+        "candidate_cycles": [
+          65161,
+          65161
+        ],
+        "state_hash": 157625479,
+        "saving_percent": 15.078651392527142
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 0,
+        "round": 4,
+        "reference_cycles": [
+          77452,
+          75946
+        ],
+        "candidate_cycles": [
+          65251,
+          65178
+        ],
+        "state_hash": 157625479,
+        "saving_percent": 14.973467711443433
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 0,
+        "round": 5,
+        "reference_cycles": [
+          77574,
+          76091
+        ],
+        "candidate_cycles": [
+          65227,
+          65206
+        ],
+        "state_hash": 157625479,
+        "saving_percent": 15.118602154036376
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 0,
+        "round": 6,
+        "reference_cycles": [
+          77519,
+          75948
+        ],
+        "candidate_cycles": [
+          65373,
+          65615
+        ],
+        "state_hash": 157625479,
+        "saving_percent": 14.647448637166294
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 0,
+        "round": 7,
+        "reference_cycles": [
+          77308,
+          75751
+        ],
+        "candidate_cycles": [
+          65229,
+          65150
+        ],
+        "state_hash": 157625479,
+        "saving_percent": 14.817815352249786
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 0,
+        "round": 8,
+        "reference_cycles": [
+          77278,
+          75932
+        ],
+        "candidate_cycles": [
+          65232,
+          65204
+        ],
+        "state_hash": 157625479,
+        "saving_percent": 14.864564976176487
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 1,
+        "round": 0,
+        "reference_cycles": [
+          225966,
+          225731
+        ],
+        "candidate_cycles": [
+          214250,
+          212852
+        ],
+        "state_hash": 3528497698,
+        "saving_percent": 5.445021773445468
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 1,
+        "round": 1,
+        "reference_cycles": [
+          226143,
+          225957
+        ],
+        "candidate_cycles": [
+          214108,
+          212865
+        ],
+        "state_hash": 3528497698,
+        "saving_percent": 5.557841185578416
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 1,
+        "round": 2,
+        "reference_cycles": [
+          225540,
+          225981
+        ],
+        "candidate_cycles": [
+          214066,
+          212689
+        ],
+        "state_hash": 3528497698,
+        "saving_percent": 5.485016200796866
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 1,
+        "round": 3,
+        "reference_cycles": [
+          225523,
+          225862
+        ],
+        "candidate_cycles": [
+          214138,
+          212675
+        ],
+        "state_hash": 3528497698,
+        "saving_percent": 5.4436899764059525
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 1,
+        "round": 4,
+        "reference_cycles": [
+          226124,
+          225860
+        ],
+        "candidate_cycles": [
+          213927,
+          212653
+        ],
+        "state_hash": 3528497698,
+        "saving_percent": 5.620552939927082
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 1,
+        "round": 5,
+        "reference_cycles": [
+          225499,
+          226026
+        ],
+        "candidate_cycles": [
+          214114,
+          212686
+        ],
+        "state_hash": 3528497698,
+        "saving_percent": 5.475887270915236
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 1,
+        "round": 6,
+        "reference_cycles": [
+          225517,
+          225999
+        ],
+        "candidate_cycles": [
+          214187,
+          212676
+        ],
+        "state_hash": 3528497698,
+        "saving_percent": 5.460050142187656
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 1,
+        "round": 7,
+        "reference_cycles": [
+          225498,
+          225876
+        ],
+        "candidate_cycles": [
+          214198,
+          212864
+        ],
+        "state_hash": 3528497698,
+        "saving_percent": 5.38622073934254
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 1,
+        "round": 8,
+        "reference_cycles": [
+          225558,
+          225915
+        ],
+        "candidate_cycles": [
+          214188,
+          212869
+        ],
+        "state_hash": 3528497698,
+        "saving_percent": 5.408075344483498
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 2,
+        "round": 0,
+        "reference_cycles": [
+          995682,
+          995880
+        ],
+        "candidate_cycles": [
+          982332,
+          983867
+        ],
+        "state_hash": 3089583307,
+        "saving_percent": 1.2735229935096126
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 2,
+        "round": 1,
+        "reference_cycles": [
+          995566,
+          995771
+        ],
+        "candidate_cycles": [
+          983999,
+          983759
+        ],
+        "state_hash": 3089583307,
+        "saving_percent": 1.184078837484559
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 2,
+        "round": 2,
+        "reference_cycles": [
+          995937,
+          995868
+        ],
+        "candidate_cycles": [
+          983961,
+          983757
+        ],
+        "state_hash": 3089583307,
+        "saving_percent": 1.2093051277609956
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 2,
+        "round": 3,
+        "reference_cycles": [
+          996760,
+          996503
+        ],
+        "candidate_cycles": [
+          983896,
+          984347
+        ],
+        "state_hash": 3089583307,
+        "saving_percent": 1.255228236314021
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 2,
+        "round": 4,
+        "reference_cycles": [
+          996709,
+          995928
+        ],
+        "candidate_cycles": [
+          985084,
+          984332
+        ],
+        "state_hash": 3089583307,
+        "saving_percent": 1.1653401999460966
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 2,
+        "round": 5,
+        "reference_cycles": [
+          996334,
+          995852
+        ],
+        "candidate_cycles": [
+          983888,
+          983763
+        ],
+        "state_hash": 3089583307,
+        "saving_percent": 1.2315617116072541
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 2,
+        "round": 6,
+        "reference_cycles": [
+          996262,
+          995854
+        ],
+        "candidate_cycles": [
+          984068,
+          983698
+        ],
+        "state_hash": 3089583307,
+        "saving_percent": 1.2223183790502135
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 2,
+        "round": 7,
+        "reference_cycles": [
+          996338,
+          995844
+        ],
+        "candidate_cycles": [
+          983867,
+          983693
+        ],
+        "state_hash": 3089583307,
+        "saving_percent": 1.2359312552768786
+      },
+      {
+        "memory": 1,
+        "scene": 4,
+        "delta_index": 2,
+        "round": 8,
+        "reference_cycles": [
+          996269,
+          995778
+        ],
+        "candidate_cycles": [
+          984015,
+          983798
+        ],
+        "state_hash": 3089583307,
+        "saving_percent": 1.216537561613762
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 0,
+        "round": 0,
+        "reference_cycles": [
+          62928,
+          62915
+        ],
+        "candidate_cycles": [
+          52070,
+          52182
+        ],
+        "state_hash": 4272687113,
+        "saving_percent": 17.157092567723275
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 0,
+        "round": 1,
+        "reference_cycles": [
+          64326,
+          62915
+        ],
+        "candidate_cycles": [
+          52803,
+          52178
+        ],
+        "state_hash": 4272687113,
+        "saving_percent": 17.494361094301368
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 0,
+        "round": 2,
+        "reference_cycles": [
+          64410,
+          62915
+        ],
+        "candidate_cycles": [
+          52803,
+          52178
+        ],
+        "state_hash": 4272687113,
+        "saving_percent": 17.548792460239547
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 0,
+        "round": 3,
+        "reference_cycles": [
+          64364,
+          62915
+        ],
+        "candidate_cycles": [
+          52803,
+          52178
+        ],
+        "state_hash": 4272687113,
+        "saving_percent": 17.51899370673874
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 0,
+        "round": 4,
+        "reference_cycles": [
+          64342,
+          62915
+        ],
+        "candidate_cycles": [
+          52803,
+          52178
+        ],
+        "state_hash": 4272687113,
+        "saving_percent": 17.504734513622044
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 0,
+        "round": 5,
+        "reference_cycles": [
+          64345,
+          62915
+        ],
+        "candidate_cycles": [
+          52803,
+          52178
+        ],
+        "state_hash": 4272687113,
+        "saving_percent": 17.506679239352508
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 0,
+        "round": 6,
+        "reference_cycles": [
+          64387,
+          62915
+        ],
+        "candidate_cycles": [
+          52797,
+          52171
+        ],
+        "state_hash": 4272687113,
+        "saving_percent": 17.544107712369016
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 0,
+        "round": 7,
+        "reference_cycles": [
+          64344,
+          62915
+        ],
+        "candidate_cycles": [
+          52803,
+          52178
+        ],
+        "state_hash": 4272687113,
+        "saving_percent": 17.506031007630106
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 0,
+        "round": 8,
+        "reference_cycles": [
+          64384,
+          62915
+        ],
+        "candidate_cycles": [
+          52797,
+          52171
+        ],
+        "state_hash": 4272687113,
+        "saving_percent": 17.542164510326085
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 1,
+        "round": 0,
+        "reference_cycles": [
+          167155,
+          165194
+        ],
+        "candidate_cycles": [
+          152826,
+          154151
+        ],
+        "state_hash": 3696060535,
+        "saving_percent": 7.634143626127954
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 1,
+        "round": 1,
+        "reference_cycles": [
+          167457,
+          165863
+        ],
+        "candidate_cycles": [
+          152931,
+          154223
+        ],
+        "state_hash": 3696060535,
+        "saving_percent": 7.850114004560183
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 1,
+        "round": 2,
+        "reference_cycles": [
+          167648,
+          166083
+        ],
+        "candidate_cycles": [
+          152929,
+          154223
+        ],
+        "state_hash": 3696060535,
+        "saving_percent": 7.964198710937853
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 1,
+        "round": 3,
+        "reference_cycles": [
+          170334,
+          165137
+        ],
+        "candidate_cycles": [
+          153398,
+          153205
+        ],
+        "state_hash": 3696060535,
+        "saving_percent": 8.605214757758494
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 1,
+        "round": 4,
+        "reference_cycles": [
+          166754,
+          165135
+        ],
+        "candidate_cycles": [
+          152943,
+          154153
+        ],
+        "state_hash": 3696060535,
+        "saving_percent": 7.470268674165159
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 1,
+        "round": 5,
+        "reference_cycles": [
+          167689,
+          165135
+        ],
+        "candidate_cycles": [
+          152949,
+          154169
+        ],
+        "state_hash": 3696060535,
+        "saving_percent": 7.723601663341584
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 1,
+        "round": 6,
+        "reference_cycles": [
+          166853,
+          169329
+        ],
+        "candidate_cycles": [
+          153408,
+          154639
+        ],
+        "state_hash": 3696060535,
+        "saving_percent": 8.36897870796176
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 1,
+        "round": 7,
+        "reference_cycles": [
+          170138,
+          168913
+        ],
+        "candidate_cycles": [
+          153408,
+          154610
+        ],
+        "state_hash": 3696060535,
+        "saving_percent": 9.152900301134636
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 1,
+        "round": 8,
+        "reference_cycles": [
+          170560,
+          169322
+        ],
+        "candidate_cycles": [
+          153410,
+          154620
+        ],
+        "state_hash": 3696060535,
+        "saving_percent": 9.371487751631447
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 2,
+        "round": 0,
+        "reference_cycles": [
+          683617,
+          683656
+        ],
+        "candidate_cycles": [
+          673234,
+          673103
+        ],
+        "state_hash": 2753132261,
+        "saving_percent": 1.5312230988251851
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 2,
+        "round": 1,
+        "reference_cycles": [
+          683813,
+          683739
+        ],
+        "candidate_cycles": [
+          673223,
+          673257
+        ],
+        "state_hash": 2753132261,
+        "saving_percent": 1.5408554848371447
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 2,
+        "round": 2,
+        "reference_cycles": [
+          683829,
+          683669
+        ],
+        "candidate_cycles": [
+          673217,
+          673037
+        ],
+        "state_hash": 2753132261,
+        "saving_percent": 1.5534940453294954
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 2,
+        "round": 3,
+        "reference_cycles": [
+          683805,
+          683650
+        ],
+        "candidate_cycles": [
+          673045,
+          672955
+        ],
+        "state_hash": 2753132261,
+        "saving_percent": 1.568973019221842
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 2,
+        "round": 4,
+        "reference_cycles": [
+          683822,
+          683657
+        ],
+        "candidate_cycles": [
+          673079,
+          672990
+        ],
+        "state_hash": 2753132261,
+        "saving_percent": 1.5656547559414036
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 2,
+        "round": 5,
+        "reference_cycles": [
+          683816,
+          683688
+        ],
+        "candidate_cycles": [
+          673039,
+          673017
+        ],
+        "state_hash": 2753132261,
+        "saving_percent": 1.568404918742472
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 2,
+        "round": 6,
+        "reference_cycles": [
+          683816,
+          683663
+        ],
+        "candidate_cycles": [
+          673145,
+          672867
+        ],
+        "state_hash": 2753132261,
+        "saving_percent": 1.56982301007913
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 2,
+        "round": 7,
+        "reference_cycles": [
+          684479,
+          685218
+        ],
+        "candidate_cycles": [
+          674640,
+          674435
+        ],
+        "state_hash": 2753132261,
+        "saving_percent": 1.505588462265739
+      },
+      {
+        "memory": 1,
+        "scene": 5,
+        "delta_index": 2,
+        "round": 8,
+        "reference_cycles": [
+          685321,
+          685149
+        ],
+        "candidate_cycles": [
+          674650,
+          674483
+        ],
+        "state_hash": 2753132261,
+        "saving_percent": 1.556911132677108
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 0,
+        "round": 0,
+        "reference_cycles": [
+          73778,
+          74897
+        ],
+        "candidate_cycles": [
+          64396,
+          64110
+        ],
+        "state_hash": 1196172350,
+        "saving_percent": 13.565831511686566
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 0,
+        "round": 1,
+        "reference_cycles": [
+          75103,
+          73762
+        ],
+        "candidate_cycles": [
+          64622,
+          64256
+        ],
+        "state_hash": 1196172350,
+        "saving_percent": 13.426258690760084
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 0,
+        "round": 2,
+        "reference_cycles": [
+          75225,
+          73625
+        ],
+        "candidate_cycles": [
+          64166,
+          64550
+        ],
+        "state_hash": 1196172350,
+        "saving_percent": 13.52636882767887
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 0,
+        "round": 3,
+        "reference_cycles": [
+          75086,
+          73592
+        ],
+        "candidate_cycles": [
+          64310,
+          64077
+        ],
+        "state_hash": 1196172350,
+        "saving_percent": 13.647614307429478
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 0,
+        "round": 4,
+        "reference_cycles": [
+          75054,
+          73762
+        ],
+        "candidate_cycles": [
+          64622,
+          64256
+        ],
+        "state_hash": 1196172350,
+        "saving_percent": 13.397752929792494
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 0,
+        "round": 5,
+        "reference_cycles": [
+          75273,
+          73625
+        ],
+        "candidate_cycles": [
+          64166,
+          64551
+        ],
+        "state_hash": 1196172350,
+        "saving_percent": 13.553573587287937
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 0,
+        "round": 6,
+        "reference_cycles": [
+          75136,
+          73672
+        ],
+        "candidate_cycles": [
+          64415,
+          64152
+        ],
+        "state_hash": 1196172350,
+        "saving_percent": 13.602091285414764
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 0,
+        "round": 7,
+        "reference_cycles": [
+          75168,
+          73841
+        ],
+        "candidate_cycles": [
+          64829,
+          64516
+        ],
+        "state_hash": 1196172350,
+        "saving_percent": 13.196518331107521
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 0,
+        "round": 8,
+        "reference_cycles": [
+          75296,
+          73841
+        ],
+        "candidate_cycles": [
+          64875,
+          64437
+        ],
+        "state_hash": 1196172350,
+        "saving_percent": 13.293146569932347
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 1,
+        "round": 0,
+        "reference_cycles": [
+          239096,
+          239918
+        ],
+        "candidate_cycles": [
+          235462,
+          235967
+        ],
+        "state_hash": 448865189,
+        "saving_percent": 1.5834610261913018
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 1,
+        "round": 1,
+        "reference_cycles": [
+          241228,
+          240020
+        ],
+        "candidate_cycles": [
+          235677,
+          234741
+        ],
+        "state_hash": 448865189,
+        "saving_percent": 2.2503989626969867
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 1,
+        "round": 2,
+        "reference_cycles": [
+          241386,
+          240024
+        ],
+        "candidate_cycles": [
+          235697,
+          234743
+        ],
+        "state_hash": 448865189,
+        "saving_percent": 2.2787229180947666
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 1,
+        "round": 3,
+        "reference_cycles": [
+          241307,
+          240024
+        ],
+        "candidate_cycles": [
+          235664,
+          234747
+        ],
+        "state_hash": 448865189,
+        "saving_percent": 2.2687090588389247
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 1,
+        "round": 4,
+        "reference_cycles": [
+          241351,
+          240023
+        ],
+        "candidate_cycles": [
+          236090,
+          234711
+        ],
+        "state_hash": 448865189,
+        "saving_percent": 2.196421077997568
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 1,
+        "round": 5,
+        "reference_cycles": [
+          241347,
+          240024
+        ],
+        "candidate_cycles": [
+          235685,
+          234743
+        ],
+        "state_hash": 448865189,
+        "saving_percent": 2.273298557661352
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 1,
+        "round": 6,
+        "reference_cycles": [
+          241217,
+          240022
+        ],
+        "candidate_cycles": [
+          235675,
+          234741
+        ],
+        "state_hash": 448865189,
+        "saving_percent": 2.2489864703400975
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 1,
+        "round": 7,
+        "reference_cycles": [
+          241204,
+          240024
+        ],
+        "candidate_cycles": [
+          235664,
+          234743
+        ],
+        "state_hash": 448865189,
+        "saving_percent": 2.2486222746806117
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 1,
+        "round": 8,
+        "reference_cycles": [
+          241317,
+          240023
+        ],
+        "candidate_cycles": [
+          236093,
+          234713
+        ],
+        "state_hash": 448865189,
+        "saving_percent": 2.1884738438525786
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 2,
+        "round": 0,
+        "reference_cycles": [
+          1153950,
+          1152968
+        ],
+        "candidate_cycles": [
+          1179835,
+          1180502
+        ],
+        "state_hash": 468220276,
+        "saving_percent": -2.315600294418796
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 2,
+        "round": 1,
+        "reference_cycles": [
+          1155523,
+          1152847
+        ],
+        "candidate_cycles": [
+          1179858,
+          1179258
+        ],
+        "state_hash": 468220276,
+        "saving_percent": -2.1983477518768613
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 2,
+        "round": 2,
+        "reference_cycles": [
+          1154335,
+          1154242
+        ],
+        "candidate_cycles": [
+          1179796,
+          1179169
+        ],
+        "state_hash": 468220276,
+        "saving_percent": -2.1826432473337487
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 2,
+        "round": 3,
+        "reference_cycles": [
+          1155535,
+          1154161
+        ],
+        "candidate_cycles": [
+          1179832,
+          1179021
+        ],
+        "state_hash": 468220276,
+        "saving_percent": -2.128288744492779
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 2,
+        "round": 4,
+        "reference_cycles": [
+          1155220,
+          1154210
+        ],
+        "candidate_cycles": [
+          1179872,
+          1179303
+        ],
+        "state_hash": 468220276,
+        "saving_percent": -2.1539947086510525
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 2,
+        "round": 5,
+        "reference_cycles": [
+          1155316,
+          1154051
+        ],
+        "candidate_cycles": [
+          1179883,
+          1179229
+        ],
+        "state_hash": 468220276,
+        "saving_percent": -2.154053470063433
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 2,
+        "round": 6,
+        "reference_cycles": [
+          1153846,
+          1152904
+        ],
+        "candidate_cycles": [
+          1179737,
+          1179254
+        ],
+        "state_hash": 468220276,
+        "saving_percent": -2.2647014197463955
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 2,
+        "round": 7,
+        "reference_cycles": [
+          1153017,
+          1153140
+        ],
+        "candidate_cycles": [
+          1179900,
+          1179205
+        ],
+        "state_hash": 468220276,
+        "saving_percent": -2.295940822762721
+      },
+      {
+        "memory": 1,
+        "scene": 6,
+        "delta_index": 2,
+        "round": 8,
+        "reference_cycles": [
+          1153479,
+          1152849
+        ],
+        "candidate_cycles": [
+          1179827,
+          1179156
+        ],
+        "state_hash": 468220276,
+        "saving_percent": -2.2830664155315317
+      }
+    ]
+  },
+  "production_header_changed": false,
+  "limitations": [
+    "Kernel timing only; no full-app candidate integration",
+    "S3 objects compile; S3 runtime unmeasured",
+    "Canonical snapshots cover DOC structure fields; static caches are exercised through API behavior",
+    "Normal embedded firmware not rebuilt; production source unchanged; both isolated audio objects compile"
+  ],
+  "restoration": {
+    "full_16mb_flash_digest_verified": true,
+    "guest_exact_match": true,
+    "lcd_exact_match": true,
+    "previous_firmware_and_settings_restored": true
+  }
+}

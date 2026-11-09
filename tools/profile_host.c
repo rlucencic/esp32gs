@@ -12,6 +12,7 @@
 #include <string.h>
 #include "gs_internal.h"
 #include "clem_mmio_defs.h"
+#include "doc_snapshot.h"
 int gs_host_no_iwm_skip, gs_host_no_iwm_lean;
 unsigned long gs_host_iwm_cells[2];
 static uint8_t *load(const char *path, size_t wanted) {
@@ -67,7 +68,8 @@ int main(int argc,char **argv) {
         gs.cpu.pbr,gs.cpu.dbr,gs.cpu.p,gs.cpu.e,gs.cpu.stopped,gs.cpu.waiting,
         gs.cpu.irq,gs.cpu.nmi,(uint64_t)gs.cpu.penalty,gs.cpu.vector_bank,gs.cpu.cycles};
     save(argv[5],".cpu",state,sizeof(state));
-    save(argv[5],".doc",doc,sizeof(*doc));
+    uint8_t doc_bytes[DOC_STATE_BYTES];doc_snapshot(doc_bytes,doc);
+    save(argv[5],".doc",doc_bytes,sizeof(doc_bytes));
     save(argv[5],".ram",cfg.ram,1024*1024);
     save(argv[5],".mega2",cfg.mega2,128*1024);
     save(argv[5],".vram",gs.mmio->e1_bank+0x2000,0x8000);

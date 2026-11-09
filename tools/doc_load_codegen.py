@@ -20,7 +20,7 @@ for variant in ['reference','inline','layout','layout-inline']:
  for h in clem.glob('*.h'):shutil.copyfile(h,out/h.name)
  (out/'clem_mmio_types.h').write_text(header)
  text=source
- if 'inline' in variant:text=text.replace('uint8_t clem_ensoniq_oscillator_cycle(', 'static uint8_t clem_ensoniq_oscillator_cycle(')
+ if 'inline' in variant and 'static uint8_t clem_ensoniq_oscillator_cycle(' not in text:text=text.replace('uint8_t clem_ensoniq_oscillator_cycle(', 'static uint8_t clem_ensoniq_oscillator_cycle(')
  if 'layout' in variant:
   h=header.replace('    uint8_t sound_ram[65536];\n','')
   begin=h.index('struct ClemensDeviceEnsoniq {');end=h.index('\n};',begin)
