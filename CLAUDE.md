@@ -249,6 +249,18 @@ stepping on a data register read). The MaTouch's budget is 4,000 a frame.
 
 ## Testing
 
+- **DOC real-software replay (2026-11-09)**:
+  [report](docs/doc-software-replay-2026-11-09.md). Tour boot/music passes
+  21,601 native frames against pre-pointer/normalization audio: exact PCM,
+  CPU/DOC/RAM/pixels and disk bytes. Up to 16 audible oscillators at frame
+  boundaries; original media unchanged. Reusable `doc_software_test.py`
+  mounts disposable copies. Three complete Tab5 music captures total
+  96,000 samples: DOC scheduler 8.7–9.0%, mixer 2.6–3.2%, idle 38.2–39.3%.
+  Five observed speaker checkpoints add no missing frames; boot already
+  accumulated misses. Candidate-only hardware check, no real-program
+  speedup or S3 runtime claim. Next trial DOC scheduling with cycle/order,
+  partner activation and IRQ equivalence before matched hardware A/B.
+
 - **DOC normalization integration (2026-11-08)**:
   [report](docs/doc-normalization-integration-2026-11-08.md). Retain the
   shared 1 KB table after six exact native PCM/CPU/DOC/RAM/pixel replay pairs,
