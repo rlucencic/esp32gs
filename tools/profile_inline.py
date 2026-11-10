@@ -13,6 +13,8 @@ from pathlib import Path
 import re
 import subprocess
 
+CPU_FETCH = {'fetch', 'fetch16', 'fetch_slow', 'refill'}
+
 DOC = {'clem_ensoniq_sync', 'clem_ensoniq_oscillator_cycle',
        '_clem_ensoniq_reset_osc', '_clem_ensoniq_set_irq'}
 
@@ -39,7 +41,7 @@ def analyze(elf, pcs, nm, rom=None):
         else:
             groups[current].append(line)
     physical, leaf, ancestry = Counter(), Counter(), Counter()
-    kernel = oscillator = 0
+    kernel = oscillator = cpu_core = cpu_fetch = 0
     for pc, count in counts.items():
         index = bisect.bisect_right(starts, pc)-1
         name = symbols[index][2] if index >= 0 and pc < symbols[index][0]+max(symbols[index][1], 1) else '?'
@@ -52,9 +54,15 @@ def analyze(elf, pcs, nm, rom=None):
             ancestry[frame] += count
         kernel += count if known & DOC else 0
         oscillator += count if 'clem_ensoniq_oscillator_cycle' in known else 0
+        # File identity avoids counting unrelated generic helper names.
+        core = any(Path(location.split(':',1)[0]).name == 'w65816.c'
+                   for location in groups[pc][1::2])
+        cpu_core += count if core else 0
+        cpu_fetch += count if core and known & CPU_FETCH else 0
     return {'samples': len(pcs), 'physical': dict(physical.most_common()),
             'leaf': dict(leaf.most_common()), 'inline_ancestry': dict(ancestry.most_common()),
-            'doc_kernel_union': kernel, 'oscillator_ancestry': oscillator}
+            'doc_kernel_union': kernel, 'oscillator_ancestry': oscillator,
+            'cpu_core_union': cpu_core, 'cpu_fetch_union': cpu_fetch}
 
 
 def main():

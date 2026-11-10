@@ -254,6 +254,32 @@ stepping on a data register read). The MaTouch's budget is 4,000 a frame.
 
 ## Testing
 
+- **65C816 fetch integration — USB pending (2026-11-09)**:
+  [report](docs/cpu-fetch-integration-2026-11-09.md). The exact combined
+  candidate is applied to shared source for validation. All 24 normal
+  project/board builds and the actual production host object's six fixtures /
+  21,601-frame Tour replay pass. A/B static idle 44.9–45.2% → 50.1–50.2%,
+  animated 25.4–25.9% → 33.5–33.9%; live Tour CPU share ~30.5% → 26.9–27.2%.
+  36 complete captures / 28 timing windows add no missing-speaker frames.
+  Eight fixture checkpoints and six Tour image pairs match. Both test disk
+  copies verified unchanged and removed. Final reference C and full MSX
+  restoration are pending: Tab5 disappeared from USB while Wi-Fi still
+  responds. Fresh full backup preserved privately. No final drift/restore
+  pass is claimed; S3 runtime remains unmeasured.
+
+- **65C816 fetch trial (2026-11-09)**:
+  [report](docs/cpu-fetch-experiment-2026-11-09.md). Isolated paired-word /
+  split-byte-fetch candidates pass 129,748 sanitized frozen-core comparisons
+  with exact CPU/RAM/ordered callbacks and debugger register edits. Existing
+  IRQ suites and all three candidates' six full-core fixtures / 21,601-frame
+  Tour replay pass exactly. P4 672 ABBA groups / 2,688 timings select combined:
+  mixed CPU kernel cycles -18.7–20.3%, 16-bit immediate -27.1–27.4%; bus-only
+  +1.8%. Text +1,020 P4 / +926 S3 bytes, reported frames unchanged; S3 runtime
+  unmeasured. Shared runtime unchanged. Next full-app A/B/C with real Tour,
+  inline-aware profiling, cache/callback controls and required build matrix
+  before retaining a shared CPU change. Fresh full MSX backup restored and
+  digest-verified; final guest/LCD captures match exactly.
+
 - **DOC metadata-layout trial (2026-11-09)**:
   [report](docs/doc-metadata-layout-experiment-2026-11-09.md). Production
   layout unchanged: metadata-first saves 238 P4 / 190 S3 text bytes but
