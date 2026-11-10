@@ -254,7 +254,7 @@ stepping on a data register read). The MaTouch's budget is 4,000 a frame.
 
 ## Testing
 
-- **65C816 fetch integration — USB pending (2026-11-09)**:
+- **65C816 fetch integration (2026-11-09, closed 2026-11-10)**:
   [report](docs/cpu-fetch-integration-2026-11-09.md). The exact combined
   candidate is applied to shared source for validation. All 24 normal
   project/board builds and the actual production host object's six fixtures /
@@ -262,10 +262,11 @@ stepping on a data register read). The MaTouch's budget is 4,000 a frame.
   animated 25.4–25.9% → 33.5–33.9%; live Tour CPU share ~30.5% → 26.9–27.2%.
   36 complete captures / 28 timing windows add no missing-speaker frames.
   Eight fixture checkpoints and six Tour image pairs match. Both test disk
-  copies verified unchanged and removed. Final reference C and full MSX
-  restoration are pending: Tab5 disappeared from USB while Wi-Fi still
-  responds. Fresh full backup preserved privately. No final drift/restore
-  pass is claimed; S3 runtime remains unmeasured.
+  copies verified unchanged and removed. Tab5 then dropped off USB; the
+  host's reboot that brought it back cleared `/tmp` (work folder, isolated
+  images, fixtures, the MSX backup). Reference C was not run: no closing
+  drift bracket. The MSX was rebuilt (`631fe27`) and fully flashed, NVS
+  kept: Disk BASIC at 60 fps. S3 runtime remains unmeasured.
 
 - **65C816 fetch trial (2026-11-09)**:
   [report](docs/cpu-fetch-experiment-2026-11-09.md). Isolated paired-word /

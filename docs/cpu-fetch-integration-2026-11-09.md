@@ -124,12 +124,24 @@ stages and exact native PCM replay. These are capped-FPS CPU-share/headroom
 measurements, not an uncapped program-throughput gain.
 
 The final reference C startup was interrupted when Tab5's USB device
-disappeared from Linux. Its Wi-Fi status endpoint still responds, but the
-reference checkpoints and full MSX flash restoration require the USB data
-connection. Final drift verification and restoration remain pending until
-that connection is restored. Both Tour test copies are already verified
-unchanged and removed; the fresh full backup is preserved outside the repo.
+disappeared from Linux. Both Tour test copies were already verified
+unchanged and removed.
+
+## Closing (2026-11-10)
+
+USB came back only when the Linux host rebooted (2026-11-10 17:23). The
+reboot cleared `/tmp`, which held the work folder: the isolated reference
+and candidate images, the fixtures, the board scripts and the 16 MB MSX
+backup. Reference C (the dense static and animated repeats) was not run.
+A rebuilt harness would not be the one A and B were measured with, so the
+A/B above stands without its closing drift bracket.
+
+The MSX was restored by building esp32msx `631fe27` (its last commit, clean)
+with esp32emu `6de548d` and fully flashing it (bootloader, partition table,
+app, ROMs). NVS was not written. The boot log shows Wi-Fi connected and both
+BLE pairings. The setup screen shows the saved MSX settings, and Start gives
+MSX BASIC 2.1 / Disk BASIC 1.0 at 60 fps (100%). With the backup gone, the
+flash can't be shown byte-identical to it.
 
 [Current measurements](measurements/cpu-fetch-integration-2026-11-09.json)
-record the completed A/B cases and explicitly mark the pending reference /
-restoration checks.
+record the completed A/B cases, the missing reference C and the restoration.

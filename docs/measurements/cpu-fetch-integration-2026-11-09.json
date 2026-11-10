@@ -2,8 +2,8 @@
   "date": "2026-11-09",
   "machine_reference_revision": "99b32f1",
   "shared_reference_revision": "dbf4811",
-  "status": "awaiting USB reconnection for reference C and MSX restoration",
-  "decision": "combined candidate applied for validation; final drift check pending",
+  "status": "closed 2026-11-10: reference C not run (its isolated images, fixtures and scripts were lost); MSX rebuilt and flashed",
+  "decision": "combined candidate retained in shared source; A/B without a closing reference C bracket",
   "candidate_source_sha256": "cd83955a580b51a7387df2b742f6f432183eccb98d0adbfb7528c82a8f475273",
   "native": {
     "prior_sanitized_comparisons": 129748,
@@ -2453,12 +2453,16 @@
     "both_tour_copies_verified_unchanged_and_removed": true
   },
   "restoration": {
-    "fresh_full_16mb_backup_preserved": true,
-    "firmware_restored": false,
-    "usb_connection_required": true
+    "fresh_full_16mb_backup_preserved": false,
+    "backup_lost": "the Linux host rebooted 2026-11-10 17:23 and cleared /tmp, which held the backup and the work folder",
+    "firmware_restored": true,
+    "method": "esp32msx 631fe27 with esp32emu 6de548d, built and fully flashed (bootloader, partition table, app, ROMs); NVS not written",
+    "byte_identical_to_backup": "unknown: no backup left to compare",
+    "nvs_preserved": true,
+    "checks": "boot log: Wi-Fi up, two BLE pairings; setup screen shows the saved MSX settings; Start gives MSX BASIC 2.1 / Disk BASIC 1.0 at 60 fps (100%)"
   },
   "limitations": [
-    "Final reference C not measured yet",
+    "Final reference C not measured (work folder lost)",
     "Frame rate capped; no uncapped throughput claim",
     "Live Tour captures are nominal reset-relative phases",
     "S3 runtime unmeasured",
