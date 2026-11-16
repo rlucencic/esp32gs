@@ -122,7 +122,7 @@ the MaTouch and 979×720 on the Tab5, smoothly scaled.
 
 ### 1. What you need
 
-- [ESP-IDF](https://github.com/espressif/esp-idf) v5.5 (developed with v5.5.4)
+- [ESP-IDF](https://github.com/espressif/esp-idf) v5.5 (developed with v5.5.6)
 - [esp32emu](https://github.com/rlucencic/esp32emu), checked out next to this project (`../esp32emu`)
 - The IIGS ROM 3 and the IIe video ROM in `roms/` (see [roms/README.md](roms/README.md))
 - A microSD card, FAT32 or exFAT

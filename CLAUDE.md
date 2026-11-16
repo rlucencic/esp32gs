@@ -8,7 +8,7 @@ keyboard and mouse, the clock with battery RAM, the Ensoniq DOC and the
 speaker, the IWM with a 3.5" drive (slot 5) and a 5.25" drive (slot 6), and
 a hard disk card in slot 7 with two units. 1 MB on the MaTouch, 1-8 MB on
 the Tab5. An LVGL setup screen, a web page for disk images and live status.
-ESP-IDF v5.5.4, C.
+ESP-IDF v5.5.6, C.
 
 The board side (tasks, LCD, touch, SD, WiFi, BLE, setup screen, web page,
 console) and the 65C816 core are the shared library in `../esp32emu`, also
@@ -28,7 +28,7 @@ The Tab5 is `/dev/cu.usbmodem3101` (its hardware: `../esp32emu/CLAUDE.md`).
 
 ```sh
 bash -c '. $IDF_PATH/export.sh >/dev/null 2>&1; \
-  export IDF_PYTHON_ENV_PATH=/Users/robertlucencic/.espressif/tools/python/v5.5.4/venv; \
+  export IDF_PYTHON_ENV_PATH=/Users/robertlucencic/.espressif/tools/python/v5.5.6/venv; \
   export PATH=$IDF_PYTHON_ENV_PATH/bin:$PATH; \
   idf.py build && idf.py -p /dev/cu.usbmodem1101 app-flash'
 # the Tab5:
