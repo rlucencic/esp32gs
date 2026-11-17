@@ -5,7 +5,7 @@
 
 /*
  * The IIGS's ROMs: from the gs_roms flash partition (roms/<name> in the
- * project, written there by idf.py flash), else from the SD card's "roms"
+ * project, written there by idf.py flash), else from the SD card's "apple2gs/roms"
  * folder under the same names.
  */
 typedef enum {

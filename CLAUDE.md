@@ -42,7 +42,9 @@ bash -c '. $IDF_PATH/export.sh >/dev/null 2>&1; \
   `CMakeLists.txt`, `main/rom_store.c`). The partition overlaps the other
   machines' ROM partitions: switching a board needs a full `idf.py flash`
   there (and here). NVS (WiFi, BLE pairings) is shared. Without flashed
-  ROMs, `roms/` on the SD card (any case) works too.
+  ROMs, `apple2gs/roms/` on the SD card (any case) works too (until
+  2026-11-17 a shared `roms/`: esp32emu's `tools/sd_folders.ps1` moves an
+  old card's files).
 - The MaTouch and Tab5 builds share `managed_components/`: building one after
   the other recompiles everything once (~10 minutes).
 - `../esp32emu/tools/emu_console.py PORT log N | screenshot F.png | lcd F.png | send "cmd" ... | info | reset | profile ELF [N]`
