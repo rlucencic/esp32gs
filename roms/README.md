@@ -18,8 +18,7 @@ cat "Apple IIGS ROM 3 Banks FC-FD - 341-0737.bin" \
 
 (The older dump `341-0748` has its two banks the other way round.)
 
-Without flashing, the emulator also finds them in the `apple2gs/roms`
-folder on the SD card under the same names (any case). A card set up
-before 2026-11-17 has them in a shared `roms` folder: esp32emu's
-`tools/sd_folders.ps1 E:\` (PowerShell 7, the card in a card reader) moves
-them there.
+A file of the same name (any case) in the `apple2gs/roms` folder on the SD
+card is used instead of the flashed one. A card set up before 2026-11-17
+has them in a shared `roms` folder: esp32emu's `tools/sd_folders.ps1 E:\`
+(PowerShell 7, the card in a card reader) moves them there.

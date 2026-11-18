@@ -4,9 +4,9 @@
 #include <stdint.h>
 
 /*
- * The IIGS's ROMs: from the gs_roms flash partition (roms/<name> in the
- * project, written there by idf.py flash), else from the SD card's "apple2gs/roms"
- * folder under the same names.
+ * The IIGS's ROMs: built in, from the gs_roms flash partition (roms/<name>
+ * in the project, written there by idf.py flash). A file of the same name
+ * in the SD card's "apple2gs/roms" folder overrides one.
  */
 typedef enum {
     ROM_GS3,                    /* gs_rom3.rom: ROM 3, 256 KB (341-0737 + 341-0749) */

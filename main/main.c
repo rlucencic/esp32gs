@@ -105,8 +105,7 @@ static bool start(void)
         return false;
     }
     if (!rom_store_load(ROM_GS3, s_rom) || !rom_store_load(ROM_CHARGEN, s_chargen)) {
-        emu_set_message("No ROMs: put gs_rom3.rom and chargen.rom into roms/ and flash with idf.py flash, "
-                        "or copy them into the \"apple2gs/roms\" folder on the SD card.");
+        emu_set_message("No ROMs: put gs_rom3.rom and chargen.rom into roms/ and flash with idf.py flash.");
         return false;
     }
     s_cfg.ram_kb = RAM_CHOICE ? settings.ram_kb : 1024;
