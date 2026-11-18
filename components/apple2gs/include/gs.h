@@ -106,6 +106,33 @@ typedef struct {
     int track[GS_DRIVES];
 } gs_status_t;
 void gs_get_status(gs_status_t *s);
+
+/* The machine's registers for the web page: plain copies (benign races),
+ * safe from another task, no side effects
+ */
+typedef struct {
+    uint8_t shadow;             /* $C035 SHADOW: set bits inhibit (0 text 1, 1 hires 1, 2 hires 2,
+                                   3 Super Hi-Res, 4 aux hires, 5 text 2, 6 I/O and language card) */
+    uint8_t state;              /* $C068 STATEREG: 7 ALTZP, 6 PAGE2, 5 RAMRD, 4 RAMWRT, 3 RDROM, 2 LCBNK2, 0 INTCXROM */
+    uint8_t new_video;          /* $C029 NEWVIDEO: 7 Super Hi-Res, 6 linear, 5 monochrome double hires */
+    uint8_t speed;              /* $C036 CYAREG: 7 fast */
+    uint8_t slots;              /* $C02D: bit n set, slot n's card ROM (else the built-in port) */
+    uint8_t border;             /* $C034's low nibble */
+    uint8_t text_fg, text_bg;   /* $C022 TBCOLOR's nibbles */
+    uint8_t volume;             /* $C03C's low nibble, 0-15 */
+    bool text_mode, mixed, col80, hires, dhires, altchar, store80, mono, lc_write;
+    bool irq_vbl, irq_qsec, irq_1sec, irq_scanline;     /* interrupts enabled */
+    /* Super Hi-Res (E1 $9D00-$9FFF): lines in 640 mode, in fill mode, with
+     * a scanline interrupt; the palette most lines use and its colours (0RGB)
+     */
+    uint8_t shr_640, shr_fill, shr_irq, shr_palette, shr_palette_lines;
+    uint16_t palette[16];
+    /* The Ensoniq DOC: oscillators enabled ($E1), those not halted, those with their interrupt on */
+    uint8_t doc_oscillators;
+    uint32_t doc_playing, doc_irq;
+    bool speaker;               /* the speaker clicked in the last 1/20 s */
+} gs_machine_t;
+void gs_get_machine(gs_machine_t *m);
 /* Where a frame's time goes (thousands of cycles, the board only) */
 void gs_profile(char *buf, int len);
 /* Registers, the last bus callbacks and n bytes at addr (debugging) */

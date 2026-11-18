@@ -162,6 +162,15 @@ static void print_status(void)
     printf("host: frame %u pc %06X %s %s 3.5 t%d r%u w%u 5.25 t%d r%u w%u HD1 %u/%u HD2 %u/%u\n", s.frames, s.pc,
            s.fast ? "fast" : "slow", s.emulation ? "emu" : "native", s.track[0], s.reads[0], s.writes[0], s.track[1], s.reads[1],
            s.writes[1], s.reads[2], s.writes[2], s.reads[3], s.writes[3]);
+    gs_machine_t m;
+    gs_get_machine(&m);
+    printf("host: shadow %02X state %02X newvideo %02X speed %02X slots %02X border %u text %u/%u volume %u "
+           "text %d mixed %d 80col %d hires %d dbl %d alt %d 80store %d mono %d lcwrite %d irq vbl %d qsec %d 1sec %d "
+           "scan %d shr 640 %u fill %u irq %u palette %u (%u lines, colour 0 %03X 15 %03X) doc %u playing %08X irq %08X "
+           "speaker %d\n", m.shadow, m.state, m.new_video, m.speed, m.slots, m.border, m.text_fg, m.text_bg, m.volume,
+           m.text_mode, m.mixed, m.col80, m.hires, m.dhires, m.altchar, m.store80, m.mono, m.lc_write, m.irq_vbl,
+           m.irq_qsec, m.irq_1sec, m.irq_scanline, m.shr_640, m.shr_fill, m.shr_irq, m.shr_palette,
+           m.shr_palette_lines, m.palette[0], m.palette[15], m.doc_oscillators, m.doc_playing, m.doc_irq, m.speaker);
 }
 
 #define RD32(a) ((uint32_t)gs_bus_read(a) | (uint32_t)gs_bus_read((a) + 1) << 8 | \

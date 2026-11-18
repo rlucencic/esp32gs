@@ -483,25 +483,203 @@ static void every_second(void)
 
 /* ---- Status ---- */
 
+/* The IIGS's 16 colours ($C022, $C034, lores), as Apple names them */
+static const char *const colour_names[16] = {
+    "black", "deep red", "dark blue", "purple", "dark green", "dark gray", "medium blue", "light blue",
+    "brown", "orange", "light gray", "pink", "green", "yellow", "aquamarine", "white",
+};
+static const uint16_t colour_rgb[16] = {
+    0x000, 0xD03, 0x009, 0xD2D, 0x072, 0x555, 0x22F, 0x6AF, 0x850, 0xF60, 0xAAA, 0xF98, 0x1D0, 0xFF0, 0x4F9, 0xFFF,
+};
+
+/* A colour swatch (0RGB) */
+static int swatch(char *p, size_t size, unsigned rgb)
+{
+    return snprintf(p, size, "<b style=\"background:#%03x\">&nbsp;&nbsp;&nbsp;</b>", rgb & 0xFFF);
+}
+
+/* Oscillators (bits) as "0-7, 12, 30-31" */
+static int bit_ranges(char *p, size_t size, uint32_t bits)
+{
+    int n = 0;
+    for (int i = 0; i < 32 && (size_t)n < size; i++) {
+        if (!(bits >> i & 1)) {
+            continue;
+        }
+        int last = i;
+        while (last < 31 && (bits >> (last + 1) & 1)) {
+            last++;
+        }
+        n += snprintf(p + n, size - n, last > i ? "%s%d-%d" : "%s%d", n ? ", " : "", i, last);
+        i = last;
+    }
+    return n;
+}
+
+static void status_rows(emu_json_t *j, const gs_status_t *s)
+{
+    char text[400];
+    gs_machine_t m;
+    gs_get_machine(&m);
+    snprintf(text, sizeof(text), "Apple IIGS: a 65C816 at %s, %s mode; %u MB RAM + the Mega II's 128 KB",
+             s->fast ? "2.8 MHz" : (m.speed & 0x80) ? "1 MHz while a disk turns" : "1 MHz (slow)",
+             s->emulation ? "emulation (6502)" : "native", (unsigned)(s_cfg.ram_kb / 1024));
+    emu_json_row(j, "System", text);
+
+    /* Slot 7 set to "Your Card" in the Control Panel ($C02D bit 7): the hard disk card */
+    snprintf(text, sizeof(text), "ROM 3 (banks $FC-$FF) from %s; slot 7 %s ($C02D = $%02X)",
+             rom_store_from_sd(ROM_GS3) ? "the SD card" : "the flash",
+             (m.slots & 0x80) ? "the hard disk card" : "built in, the hard disk card off", m.slots);
+    emu_json_row(j, "ROM", text);
+
+    /* Shadowing ($C035, a set bit inhibits) and the language card ($C068) */
+    static const struct {
+        uint8_t bit;
+        const char *name;
+    } shadows[] = { { 0x01, "text 1" }, { 0x20, "text 2" }, { 0x02, "hires 1" }, { 0x04, "hires 2" },
+                    { 0x10, "aux hires" }, { 0x08, "Super Hi-Res" } };
+    int n = snprintf(text, sizeof(text), "Shadowing ($C035 = $%02X): ", m.shadow);
+    int shadowed = 0;
+    for (unsigned i = 0; i < sizeof(shadows) / sizeof(shadows[0]); i++) {
+        if (!(m.shadow & shadows[i].bit)) {
+            n += snprintf(text + n, sizeof(text) - n, "%s%s", shadowed++ ? ", " : "", shadows[i].name);
+        }
+    }
+    if (!shadowed) {
+        n += snprintf(text + n, sizeof(text) - n, "none");
+    }
+    n += snprintf(text + n, sizeof(text) - n, "%s; language card ($C068 = $%02X): %s, %s, bank %d",
+                  (m.shadow & 0x40) ? "; I/O off in bank $00" : "", m.state, (m.state & 0x08) ? "ROM" : "RAM",
+                  m.lc_write ? "writes RAM" : "write-protected", (m.state & 0x04) ? 2 : 1);
+    /* the //e's switches that are on: aux zero page and stack, aux reads, aux writes, 80STORE */
+    static const char *const switches[4] = { "ALTZP", "RAMRD", "RAMWRT", "80STORE" };
+    bool on[4] = { m.state & 0x80, m.state & 0x20, m.state & 0x10, m.store80 };
+    for (int i = 0; i < 4; i++) {
+        if (on[i]) {
+            n += snprintf(text + n, sizeof(text) - n, ", %s", switches[i]);
+        }
+    }
+    emu_json_row(j, "Memory", text);
+
+    /* Under GS/OS: its Memory Manager's free memory, of the RAM and the
+     * Mega II's 128 KB
+     */
+    uint32_t ram_free, largest, total = (s_cfg.ram_kb + 128) * 1024;
+    if (s_started && gs_ram_free(&ram_free, &largest)) {
+        snprintf(text, sizeof(text), "%lu KB of %lu KB <span class=\"dim\">(largest block %lu KB)</span>",
+                 (unsigned long)(ram_free / 1024), (unsigned long)(total / 1024), (unsigned long)(largest / 1024));
+        emu_json_row_bar(j, "Free RAM", text, 100 - (int)((uint64_t)ram_free * 100 / total));
+    }
+
+    /* The picture: Super Hi-Res (its lines' control bytes) or the Apple II modes */
+    bool shr = m.new_video & 0x80;
+    bool text_shown = !shr && (m.text_mode || m.mixed);
+    if (shr) {
+        unsigned lines640 = m.shr_640;
+        if (lines640 == 0 || lines640 == 200) {
+            n = snprintf(text, sizeof(text), "Super Hi-Res, %s", lines640 ? "640 × 200, 4 colours a pixel" :
+                         "320 × 200, 16 colours a pixel");
+        } else {
+            n = snprintf(text, sizeof(text), "Super Hi-Res: %u lines 640 wide (4 colours a pixel), %u lines 320 "
+                         "wide (16)", lines640, 200 - lines640);
+        }
+        if (m.shr_fill) {
+            n += snprintf(text + n, sizeof(text) - n, "; fill mode on %u lines", m.shr_fill);
+        }
+    } else {
+        const char *what;
+        if (m.text_mode) {
+            what = m.col80 ? "Text, 80 × 24" : "Text, 40 × 24";
+        } else if (!m.hires) {
+            what = m.dhires ? "Double lores, 80 × 48, 16 colours" : "Lores, 40 × 48, 16 colours";
+        } else if (m.dhires) {
+            what = m.mono ? "Double hires, 560 × 192, monochrome" : "Double hires, 140 × 192, 16 colours";
+        } else {
+            what = m.mono ? "Hires, 280 × 192, monochrome" : "Hires, 280 × 192, 6 colours";
+        }
+        bool page2 = (m.state & 0x40) && !m.store80;
+        n = snprintf(text, sizeof(text), "%s, page %d%s", what, page2 ? 2 : 1,
+                     m.text_mode ? "" : m.mixed ? (m.col80 ? ", 4 text lines of 80" : ", 4 text lines of 40") : "");
+        if (text_shown) {
+            n += snprintf(text + n, sizeof(text) - n, "; %s on %s, %s", colour_names[m.text_fg],
+                          colour_names[m.text_bg], m.altchar ? "MouseText" : "flashing characters");
+        }
+    }
+    snprintf(text + n, sizeof(text) - n, "; border %s", colour_names[m.border]);
+    emu_json_row(j, "Screen", text);
+
+    /* Super Hi-Res: the palette most lines use; else the text's and the border's colours */
+    static char swatches[1024];         /* (the web server's task only) */
+    if (shr) {
+        n = snprintf(swatches, sizeof(swatches), "Palette %u (%u lines): ", m.shr_palette, m.shr_palette_lines);
+        for (int i = 0; i < 16 && (size_t)n < sizeof(swatches); i++) {
+            n += swatch(swatches + n, sizeof(swatches) - n, m.palette[i]);
+        }
+    } else {
+        n = 0;
+        if (text_shown) {
+            n += snprintf(swatches + n, sizeof(swatches) - n, "Text ");
+            n += swatch(swatches + n, sizeof(swatches) - n, colour_rgb[m.text_fg]);
+            n += snprintf(swatches + n, sizeof(swatches) - n, " on ");
+            n += swatch(swatches + n, sizeof(swatches) - n, colour_rgb[m.text_bg]);
+            n += snprintf(swatches + n, sizeof(swatches) - n, ", border ");
+        } else {
+            n += snprintf(swatches + n, sizeof(swatches) - n, "Border ");
+        }
+        swatch(swatches + n, sizeof(swatches) - n, colour_rgb[m.border]);
+    }
+    emu_json_row(j, "Palette", swatches);
+
+    /* The Ensoniq DOC: oscillators scanned at 894.886 kHz / (enabled + 2) */
+    int playing = __builtin_popcount(m.doc_playing);
+    unsigned scan = 894886u / (m.doc_oscillators + 2u);
+    if (playing) {
+        char which[100];
+        n = snprintf(text, sizeof(text), "Ensoniq DOC: %d of %u oscillators", playing, m.doc_oscillators);
+        if (bit_ranges(which, sizeof(which), m.doc_playing) <= 24) {     /* (long lists left out) */
+            n += snprintf(text + n, sizeof(text) - n, " (%s)", which);
+        }
+        n += snprintf(text + n, sizeof(text) - n, " playing at %u.%u kHz", scan / 1000, scan % 1000 / 100);
+    } else {
+        n = snprintf(text, sizeof(text), "Ensoniq DOC: silent (%u oscillators enabled)", m.doc_oscillators);
+    }
+    snprintf(text + n, sizeof(text) - n, "; volume %u/15; the speaker %s", m.volume, m.speaker ? "clicking" : "quiet");
+    emu_json_row(j, "Sound", text);
+
+    n = 0;
+    uint32_t doc_irq = m.doc_irq & m.doc_playing;
+    if (m.irq_vbl) {
+        n += snprintf(text + n, sizeof(text) - n, "%sVBL", n ? ", " : "");
+    }
+    if (m.irq_scanline) {
+        n += snprintf(text + n, sizeof(text) - n, "%sscan line (%u lines)", n ? ", " : "", m.shr_irq);
+    }
+    if (m.irq_qsec) {
+        n += snprintf(text + n, sizeof(text) - n, "%squarter second", n ? ", " : "");
+    }
+    if (m.irq_1sec) {
+        n += snprintf(text + n, sizeof(text) - n, "%sone second", n ? ", " : "");
+    }
+    if (doc_irq) {
+        int count = __builtin_popcount(doc_irq);
+        n += snprintf(text + n, sizeof(text) - n, "%sDOC (%d oscillator%s)", n ? ", " : "", count, count > 1 ? "s" : "");
+    }
+    emu_json_row(j, "Interrupts", n ? text : "None enabled");
+
+    snprintf(text, sizeof(text), "By position: Alt Option, Windows Command, F12 or Pause Reset, Insert Help, Num Lock "
+             "Clear, Ctrl-Windows-Esc the Control Panel; Caps Lock %s", s_caps ? "on" : "off");
+    emu_json_row(j, "Keyboard", text);
+    emu_json_row(j, "Disks", "3.5\" (slot 5), 5.25\" (slot 6), two hard disks up to 32 MB (slot 7); .po .2mg .hdv "
+                 ".dsk .do .woz");
+}
+
 static void status(emu_json_t *j, int section)
 {
     char text[160];
     gs_status_t s;
     gs_get_status(&s);
     if (section == EMU_STATUS_ROWS) {
-        snprintf(text, sizeof(text), "Apple IIGS, ROM 3, %u MB", (unsigned)(s_cfg.ram_kb / 1024));
-        emu_json_row(j, "System", text);
-        emu_json_row(j, "CPU", s.fast ? "2.8 MHz (fast)" : "1 MHz (slow)");
-        /* Under GS/OS: its Memory Manager's free memory, of the RAM and the
-         * Mega II's 128 KB
-         */
-        uint32_t ram_free, largest, total = (s_cfg.ram_kb + 128) * 1024;
-        if (s_started && gs_ram_free(&ram_free, &largest)) {
-            snprintf(text, sizeof(text), "%lu KB of %lu KB <span class=\"dim\">(largest block %lu KB)</span>",
-                     (unsigned long)(ram_free / 1024), (unsigned long)(total / 1024),
-                     (unsigned long)(largest / 1024));
-            emu_json_row_bar(j, "Free RAM", text, 100 - (int)((uint64_t)ram_free * 100 / total));
-        }
+        status_rows(j, &s);
         return;
     }
     for (int d = 0; d < DRIVES; d++) {

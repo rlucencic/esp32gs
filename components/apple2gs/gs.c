@@ -1004,6 +1004,86 @@ void gs_get_status(gs_status_t *s)
     storage_status(s);
 }
 
+/* The registers as Apple's documents name them, from Clemens's state; read
+ * only (the web server's task, while the machine runs on the other core)
+ */
+void gs_get_machine(gs_machine_t *m)
+{
+    memset(m, 0, sizeof(*m));
+    const ClemensMMIO *mmio = gs.mmio;
+    if (mmio == NULL) {
+        return;
+    }
+    uint32_t mmap = mmio->mmap_register;
+    static const uint32_t shadow_bits[7] = {
+        CLEM_MEM_IO_MMAP_NSHADOW_TXT1, CLEM_MEM_IO_MMAP_NSHADOW_HGR1, CLEM_MEM_IO_MMAP_NSHADOW_HGR2,
+        CLEM_MEM_IO_MMAP_NSHADOW_SHGR, CLEM_MEM_IO_MMAP_NSHADOW_AUX, CLEM_MEM_IO_MMAP_NSHADOW_TXT2,
+        CLEM_MEM_IO_MMAP_NIOLC,
+    };
+    for (int i = 0; i < 7; i++) {
+        m->shadow |= (mmap & shadow_bits[i]) ? 1u << i : 0;
+    }
+    m->state = ((mmap & CLEM_MEM_IO_MMAP_ALTZPLC) ? 0x80 : 0) | ((mmap & CLEM_MEM_IO_MMAP_TXTPAGE2) ? 0x40 : 0) |
+               ((mmap & CLEM_MEM_IO_MMAP_RAMRD) ? 0x20 : 0) | ((mmap & CLEM_MEM_IO_MMAP_RAMWRT) ? 0x10 : 0) |
+               ((mmap & CLEM_MEM_IO_MMAP_RDLCRAM) ? 0 : 0x08) | ((mmap & CLEM_MEM_IO_MMAP_LCBANK2) ? 0x04 : 0) |
+               ((mmap & CLEM_MEM_IO_MMAP_CXROM) ? 0 : 0x01);
+    for (int i = 1; i < 8; i++) {
+        m->slots |= (i != 3 && (mmap & (CLEM_MEM_IO_MMAP_C1ROM << (i - 1)))) ? 1u << i : 0;
+    }
+    m->store80 = (mmap & CLEM_MEM_IO_MMAP_80COLSTORE) != 0;
+    m->lc_write = (mmap & CLEM_MEM_IO_MMAP_WRLCRAM) != 0;
+    m->new_video = mmio->new_video_c029;
+    m->speed = mmio->speed_c036;
+    m->border = mmio->dev_rtc.ctl_c034 & 15;
+    m->text_fg = mmio->vgc.text_fg_color & 15;
+    m->text_bg = mmio->vgc.text_bg_color & 15;
+    m->volume = mmio->dev_audio.volume & 15;
+    unsigned mode = mmio->vgc.mode_flags;
+    m->text_mode = !(mode & CLEM_VGC_GRAPHICS_MODE);
+    m->mixed = (mode & CLEM_VGC_MIXED_TEXT) != 0;
+    m->col80 = (mode & CLEM_VGC_80COLUMN_TEXT) != 0;
+    m->hires = (mode & CLEM_VGC_HIRES) != 0;
+    m->dhires = m->col80 && (mode & CLEM_VGC_DISABLE_AN3);
+    m->altchar = (mode & CLEM_VGC_ALTCHARSET) != 0;
+    m->mono = (mode & CLEM_VGC_MONOCHROME) || (mmio->new_video_c029 & CLEM_MMIO_NEWVIDEO_DBLHIRES_MONO);
+    m->irq_vbl = (mode & CLEM_VGC_ENABLE_VBL_IRQ) != 0;
+    m->irq_qsec = (mmio->dev_timer.flags & CLEM_MMIO_TIMER_QSEC_ENABLED) != 0;
+    m->irq_1sec = (mmio->dev_timer.flags & CLEM_MMIO_TIMER_1SEC_ENABLED) != 0;
+    m->irq_scanline = mmio->vgc.scanline_irq_enable;
+    const uint8_t *e1 = mmio->e1_bank;
+    if (e1) {
+        uint8_t uses[16] = { 0 };
+        for (int y = 0; y < 200; y++) {
+            uint8_t scb = e1[0x9D00 + y];
+            m->shr_640 += (scb & CLEM_VGC_SCANLINE_CONTROL_640_MODE) != 0;
+            m->shr_fill += (scb & CLEM_VGC_SCANLINE_COLORFILL_MODE) != 0;
+            m->shr_irq += (scb & CLEM_VGC_SCANLINE_CONTROL_INTERRUPT) != 0;
+            uses[scb & 15]++;
+        }
+        for (int p = 1; p < 16; p++) {
+            if (uses[p] > uses[m->shr_palette]) {
+                m->shr_palette = p;
+            }
+        }
+        m->shr_palette_lines = uses[m->shr_palette];
+        const uint8_t *pal = e1 + 0x9E00 + m->shr_palette * 32;
+        for (int i = 0; i < 16; i++) {
+            m->palette[i] = (uint16_t)(pal[2 * i] | (pal[2 * i + 1] << 8)) & 0x0FFF;
+        }
+    }
+    const uint8_t *reg = mmio->dev_audio.doc.reg;
+    m->doc_oscillators = (reg[CLEM_ENSONIQ_REG_OSC_ENABLE] >> 1) + 1;
+    if (m->doc_oscillators > 32) {
+        m->doc_oscillators = 32;
+    }
+    for (int o = 0; o < m->doc_oscillators; o++) {
+        uint8_t ctl = reg[0xA0 + o];
+        m->doc_playing |= (ctl & 1) ? 0 : 1u << o;
+        m->doc_irq |= (ctl & 8) ? 1u << o : 0;
+    }
+    m->speaker = mmio->dev_audio.a2_speaker_frame_count >= 0;
+}
+
 static void log_to_host(int level, const char *msg);
 
 /* The machine's own buffers, once: Clemens's state, the page tables, the

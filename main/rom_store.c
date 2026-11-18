@@ -89,14 +89,23 @@ static long from_sd(const char *name, uint8_t *buf, uint32_t max)
     return n;
 }
 
+static bool s_from_sd[ROM_COUNT];
+
 bool rom_store_load(rom_id_t id, uint8_t *buf)
 {
     if (id >= ROM_COUNT) {
         return false;
     }
     uint32_t size = rom_store_size(id);
+    s_from_sd[id] = false;
     if (from_sd(roms[id].name, buf, size) == (long)size && plausible(buf, size)) {
+        s_from_sd[id] = true;
         return true;                    /* the card's overrides the built-in one */
     }
     return from_partition(roms[id].offset, size, buf) && plausible(buf, size);
+}
+
+bool rom_store_from_sd(rom_id_t id)
+{
+    return id < ROM_COUNT && s_from_sd[id];
 }

@@ -147,6 +147,17 @@ write to the port directly).
   counts it), read from the memory arrays with the list checked
   (`gs_ram_free()`). The ROM starts the Memory Manager at power-on, so it
   shows outside GS/OS too.
+- **The web page's machine card** (`status_rows()` in `main/main.c`, from
+  `gs_get_machine()`: Clemens's registers copied, no side effects): System
+  (speed, native or emulation mode), ROM (flash or card; slot 7's $C02D
+  setting), Memory ($C035's shadowing, the language card and the //e
+  switches from $C068), Free RAM, Screen (Super Hi-Res lines in 640 and 320
+  mode, fill mode; or the Apple II mode, page, text colours, border),
+  Palette (Super Hi-Res: the palette most lines use, 16 swatches; else the
+  text and border colours), Sound (the DOC's oscillators playing, $C03C's
+  volume, the speaker), Interrupts, Keyboard, Disks. At most ~1.85 KB of
+  rows (esp32emu's status reply has 4 KB). The host's `status` script
+  command prints the same registers.
 - **Setup screen**: Memory (MaTouch: one button, 1 MB; Tab5: 1, 2, 4, 8 MB;
   more than was reserved at power-on restarts the board into the machine).
 
